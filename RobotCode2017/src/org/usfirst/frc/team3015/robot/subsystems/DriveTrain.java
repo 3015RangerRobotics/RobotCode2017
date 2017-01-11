@@ -35,51 +35,50 @@ public class DriveTrain extends Subsystem {
         if (squaredInputs) {
           // square the inputs (while preserving the sign) to increase fine control
           // while permitting full power
-          if (moveValue >= 0.0) {
-            moveValue = moveValue * moveValue;
-          } else {
-            moveValue = -(moveValue * moveValue);
-          }
-          if (rotateValue >= 0.0) {
-            rotateValue = rotateValue * rotateValue;
-          } else {
-            rotateValue = -(rotateValue * rotateValue);
-          }
+        	if (moveValue >= 0.0) {
+        		moveValue = moveValue * moveValue;
+        	} else {
+	            moveValue = -(moveValue * moveValue);
+	        }
+	        if (rotateValue >= 0.0) {
+	        	rotateValue = rotateValue * rotateValue;
+	        } else {
+	        	rotateValue = -(rotateValue * rotateValue);
+	        }
         }
 
         if (moveValue > 0.0) {
-          if (rotateValue > 0.0) {
-            leftMotorSpeed = moveValue - rotateValue;
-            rightMotorSpeed = Math.max(moveValue, rotateValue);
-          } else {
-            leftMotorSpeed = Math.max(moveValue, -rotateValue);
-            rightMotorSpeed = moveValue + rotateValue;
-          }
-        } else {
-          if (rotateValue > 0.0) {
-            leftMotorSpeed = -Math.max(-moveValue, rotateValue);
-            rightMotorSpeed = moveValue + rotateValue;
-          } else {
-            leftMotorSpeed = moveValue - rotateValue;
-            rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
-          }
-        }
-
-        setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
+        	if (rotateValue > 0.0) {
+        		leftMotorSpeed = moveValue - rotateValue;
+        		rightMotorSpeed = Math.max(moveValue, rotateValue);
+	        } else {
+	        	leftMotorSpeed = Math.max(moveValue, -rotateValue);
+	        	rightMotorSpeed = moveValue + rotateValue;
+	        }
+	    } else {
+	    	if (rotateValue > 0.0) {
+	    		leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+	    		rightMotorSpeed = moveValue + rotateValue;
+	        } else {
+	        	leftMotorSpeed = moveValue - rotateValue;
+	        	rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+	        }
+	    }	
+	    setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
     }
     
     public void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
         if (leftMotors == null || rightMotors == null) {
-          throw new NullPointerException("Null motor provided");
+        	throw new NullPointerException("Null motor provided");
         }
 
         if (leftMotors != null) {
-          leftMotors.set(limit(leftOutput));
+        	leftMotors.set(limit(leftOutput));
         }
         
 
         if (rightMotors != null) {
-          rightMotors.set(-limit(rightOutput));
+        	rightMotors.set(-limit(rightOutput));
         }
         
     }
@@ -91,10 +90,10 @@ public class DriveTrain extends Subsystem {
      */
     protected static double limit(double num) {
         if (num > 1.0) {
-          return 1.0;
+        	return 1.0;
         }
         if (num < -1.0) {
-          return -1.0;
+        	return -1.0;
         }
         return num;
     }

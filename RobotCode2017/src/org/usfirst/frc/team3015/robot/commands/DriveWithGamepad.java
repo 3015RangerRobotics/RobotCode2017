@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
@@ -19,7 +18,7 @@ public class DriveWithGamepad extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	drive.arcadeDrive(moveValue, rotateValue, true);
+    	drive.arcadeDrive(oi.getDriverLeftY(), oi.getDriverLeftX(), true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -3,17 +3,19 @@ package org.usfirst.frc.team3015.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 
-import org.usfirst.frc.team3015.robot.Robot;
+
+import org.usfirst.frc.team3015.robot.OI;
 import org.usfirst.frc.team3015.robot.subsystems.*;
 /**
  *
  */
 public class CommandBase extends Command {
 	public static DriveTrain drive;
+	public static OI oi;
 	
 	public CommandBase() {
-		// Use requires() here to declare subsystem dependencies
-		
+		drive = new DriveTrain();
+		oi = new OI();	
 	}
 
 	// Called just before this Command runs the first time

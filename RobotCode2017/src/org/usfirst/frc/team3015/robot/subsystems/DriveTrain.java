@@ -17,6 +17,7 @@ public class DriveTrain extends Subsystem {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new DriveWithGamepad());
@@ -66,6 +67,7 @@ public class DriveTrain extends Subsystem {
 
         setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
     }
+    
     public void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
         if (leftMotors == null || rightMotors == null) {
           throw new NullPointerException("Null motor provided");
@@ -96,6 +98,4 @@ public class DriveTrain extends Subsystem {
         }
         return num;
     }
-    
 }
-

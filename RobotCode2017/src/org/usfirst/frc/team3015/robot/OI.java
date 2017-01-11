@@ -3,6 +3,7 @@ package org.usfirst.frc.team3015.robot;
 import org.usfirst.frc.team3015.robot.commands.DriveStraightForTime;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	Joystick driver = new Joystick(0);
-	JoystickButton driverA1 = new JoystickButton(driver, 1);
+	Button driverA1 = new JoystickButton(driver, 1);
 	Joystick coDriver = new Joystick(1);
 	
 	public OI() {

@@ -2,6 +2,8 @@ package org.usfirst.frc.team3015.robot.subsystems;
 
 import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.I2C;
@@ -16,6 +18,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
+	private CANTalon talon1;
+	private CANTalon talon2;
 	private AHRS imu;
 //	private Servo testServo;
 //	private boolean isServoZero = false;
@@ -25,6 +29,12 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
+		talon1 = new CANTalon(1);
+		talon1.changeControlMode(TalonControlMode.PercentVbus);
+		talon1.set(0);
+		talon2 = new CANTalon(2);
+		talon2.changeControlMode(TalonControlMode.PercentVbus);
+		talon2.set(0);
 		imu = new AHRS(SerialPort.Port.kUSB);
 //		testServo = new Servo(6);
 	}
@@ -113,7 +123,8 @@ public class DriveTrain extends Subsystem {
         if (rightMotors != null) {
         	rightMotors.set(-limit(rightOutput));
         }
-        
+        talon1.set(leftOutput);
+        talon2.set(rightOutput);
     }
     
     /**

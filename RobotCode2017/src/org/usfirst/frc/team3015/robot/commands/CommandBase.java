@@ -9,18 +9,23 @@ import org.usfirst.frc.team3015.robot.subsystems.*;
 /**
  *
  */
-public class CommandBase extends Command {
+public abstract class CommandBase extends Command {
 	public static DriveTrain drive;
 	public static OI oi;
 	
 	public CommandBase() {
+		
+	}
+	
+	public static void init(){
 		drive = new DriveTrain();
-		oi = new OI();	
+		oi = new OI();
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+			
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -1,8 +1,14 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
+
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *This is the drive train.
  *Sample class for learning
@@ -10,17 +16,44 @@ import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
+	private AHRS imu;
+//	private Servo testServo;
+//	private boolean isServoZero = false;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
+		imu = new AHRS(SerialPort.Port.kUSB);
+//		testServo = new Servo(6);
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new DriveWithGamepad());
+    }
+    
+    public boolean isCalibrating(){
+    	return imu.isCalibrating();
+    }
+    
+    public boolean isMagneticDisturbance(){
+    	return imu.isMagneticDisturbance();
+    }
+    
+//    public void toggleServo(){
+//    	if(isServoZero){
+//    		testServo.setAngle(90);
+//    		isServoZero = false;
+//    	}else{
+//    		testServo.setAngle(0);
+//    		isServoZero = true;
+//    	}
+//    }
+    
+    public double getAngle(){
+    	return imu.getAngle();
     }
     
     public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {

@@ -21,8 +21,6 @@ public class DriveTrain extends Subsystem {
 	private CANTalon talon1;
 	private CANTalon talon2;
 	private AHRS imu;
-//	private Servo testServo;
-//	private boolean isServoZero = false;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -36,7 +34,6 @@ public class DriveTrain extends Subsystem {
 		talon2.changeControlMode(TalonControlMode.PercentVbus);
 		talon2.set(0);
 		imu = new AHRS(SerialPort.Port.kUSB);
-//		testServo = new Servo(6);
 	}
 	
     public void initDefaultCommand() {
@@ -51,16 +48,6 @@ public class DriveTrain extends Subsystem {
     public boolean isMagneticDisturbance(){
     	return imu.isMagneticDisturbance();
     }
-    
-//    public void toggleServo(){
-//    	if(isServoZero){
-//    		testServo.setAngle(90);
-//    		isServoZero = false;
-//    	}else{
-//    		testServo.setAngle(0);
-//    		isServoZero = true;
-//    	}
-//    }
     
     public double getAngle(){
     	return imu.getAngle();

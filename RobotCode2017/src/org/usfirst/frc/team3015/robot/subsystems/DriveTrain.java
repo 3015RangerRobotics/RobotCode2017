@@ -6,23 +6,16 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-/**
- *This is the drive train.
- *Sample class for learning
- */
+
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
 	private CANTalon talon1;
 	private CANTalon talon2;
 	private AHRS imu;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
@@ -37,7 +30,6 @@ public class DriveTrain extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         setDefaultCommand(new DriveWithGamepad());
     }
     
@@ -114,11 +106,6 @@ public class DriveTrain extends Subsystem {
         talon2.set(rightOutput);
     }
     
-    /**
-     * Creates a limit for the inserted number between -1 and 1
-     * @param num
-     * @return double
-     */
     protected static double limit(double num) {
         if (num > 1.0) {
         	return 1.0;

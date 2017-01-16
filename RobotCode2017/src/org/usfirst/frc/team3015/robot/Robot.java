@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3015.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3015.robot.subsystems.ExampleSubsystem;
 
+import org.usfirst.frc.team3015.robot.commands.CommandBase;
+import org.usfirst.frc.team3015.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3015.robot.subsystems.ExampleSubsystem;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -21,7 +25,6 @@ import org.usfirst.frc.team3015.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -32,10 +35,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+//		chooser.addDefault("Default Auto", new CommandBase());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		CommandBase.init();
 	}
 
 	/**
@@ -43,6 +46,7 @@ public class Robot extends IterativeRobot {
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
 	 */
+	//bla
 	@Override
 	public void disabledInit() {
 

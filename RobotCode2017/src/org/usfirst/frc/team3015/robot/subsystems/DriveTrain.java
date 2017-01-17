@@ -2,8 +2,6 @@ package org.usfirst.frc.team3015.robot.subsystems;
 
 import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 
-import com.ctre.CANTalon;
-import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SerialPort;
@@ -13,19 +11,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
-	private CANTalon talon1;
-	private CANTalon talon2;
 	private AHRS imu;
 	
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
-		talon1 = new CANTalon(1);
-		talon1.changeControlMode(TalonControlMode.PercentVbus);
-		talon1.set(0);
-		talon2 = new CANTalon(2);
-		talon2.changeControlMode(TalonControlMode.PercentVbus);
-		talon2.set(0);
 		imu = new AHRS(SerialPort.Port.kUSB);
 	}
 	
@@ -45,45 +35,45 @@ public class DriveTrain extends Subsystem {
     	return imu.getAngle();
     }
     
-    public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+    public void arcadeDrive(double turnValue, double moveValue, boolean squaredInputs) {
         // local variables to hold the computed PWM values for the motors
     	
         double leftMotorSpeed;
         double rightMotorSpeed;
 
+        turnValue = limit(turnValue);
         moveValue = limit(moveValue);
-        rotateValue = limit(rotateValue);
 
         if (squaredInputs) {
           // square the inputs (while preserving the sign) to increase fine control
           // while permitting full power
-        	if (moveValue >= 0.0) {
-        		moveValue = moveValue * moveValue;
+        	if (turnValue >= 0.0) {
+        		turnValue = turnValue * turnValue;
         	} else {
-	            moveValue = -(moveValue * moveValue);
+	            turnValue = -(turnValue * turnValue);
 	        }
-	        if (rotateValue >= 0.0) {
-	        	rotateValue = rotateValue * rotateValue;
+	        if (moveValue >= 0.0) {
+	        	moveValue = moveValue * moveValue;
 	        } else {
-	        	rotateValue = -(rotateValue * rotateValue);
+	        	moveValue = -(moveValue * moveValue);
 	        }
         }
 
-        if (moveValue > 0.0) {
-        	if (rotateValue > 0.0) {
-        		leftMotorSpeed = moveValue - rotateValue;
-        		rightMotorSpeed = Math.max(moveValue, rotateValue);
+        if (turnValue > 0.0) {
+        	if (moveValue > 0.0) {
+        		leftMotorSpeed = turnValue - moveValue;
+        		rightMotorSpeed = Math.max(turnValue, moveValue);
 	        } else {
-	        	leftMotorSpeed = Math.max(moveValue, -rotateValue);
-	        	rightMotorSpeed = moveValue + rotateValue;
+	        	leftMotorSpeed = Math.max(turnValue, -moveValue);
+	        	rightMotorSpeed = turnValue + moveValue;
 	        }
 	    } else {
-	    	if (rotateValue > 0.0) {
-	    		leftMotorSpeed = -Math.max(-moveValue, rotateValue);
-	    		rightMotorSpeed = moveValue + rotateValue;
+	    	if (moveValue > 0.0) {
+	    		leftMotorSpeed = -Math.max(-turnValue, moveValue);
+	    		rightMotorSpeed = turnValue + moveValue;
 	        } else {
-	        	leftMotorSpeed = moveValue - rotateValue;
-	        	rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+	        	leftMotorSpeed = turnValue - moveValue;
+	        	rightMotorSpeed = -Math.max(-turnValue, -moveValue);
 	        }
 	    }	
 	    setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
@@ -102,8 +92,6 @@ public class DriveTrain extends Subsystem {
         if (rightMotors != null) {
         	rightMotors.set(-limit(rightOutput));
         }
-        talon1.set(leftOutput);
-        talon2.set(rightOutput);
     }
     
     protected static double limit(double num) {

@@ -50,7 +50,6 @@ public class DriveTrain extends Subsystem {
     
     public void arcadeDrive(double turnValue, double moveValue, boolean squaredInputs) {
         // local variables to hold the computed PWM values for the motors
-    	
         double leftMotorSpeed;
         double rightMotorSpeed;
 

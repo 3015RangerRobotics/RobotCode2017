@@ -2,20 +2,30 @@ package org.usfirst.frc.team3015.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3015.robot.Robot;
 
+
+import org.usfirst.frc.team3015.robot.OI;
+import org.usfirst.frc.team3015.robot.subsystems.*;
 /**
  *
  */
-public class ExampleCommand extends Command {
-	public ExampleCommand() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.exampleSubsystem);
+public abstract class CommandBase extends Command {
+	public static DriveTrain drive;
+	public static OI oi;
+	
+	public CommandBase() {
+		
+	}
+	
+	public static void init(){
+		drive = new DriveTrain();
+		oi = new OI();
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+			
 	}
 
 	// Called repeatedly when this Command is scheduled to run

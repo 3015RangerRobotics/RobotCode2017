@@ -54,6 +54,9 @@ public class OI {
 	Button coDriverRTrig = new JoystickTrigger(coDriver,JoystickTrigger.Trigger.kRightTrigger);
 	public OI() {
 //		driverA1.whenPressed(new DriveStraightForTime(.5,10));
+	
+		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
+		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 	}
 	
 	public double getDriverLeftX(){
@@ -62,5 +65,9 @@ public class OI {
 	
 	public double getDriverLeftY(){
 		return driver.getRawAxis(1) * -1;
+	}
+	
+	public double getDriverSumTriggers(){
+		return driver.getRawAxis(3)-driver.getRawAxis(2);
 	}
 }

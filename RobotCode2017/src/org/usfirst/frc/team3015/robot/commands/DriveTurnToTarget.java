@@ -22,13 +22,13 @@ public class DriveTurnToTarget extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.xAngle >= 10){
-    		drive.arcadeDrive(0.4, 0, true);
+    		drive.arcadeDrive(-0.5, 0, true);
     	}else if(Robot.xAngle >= 1){
-    		drive.arcadeDrive(0.3, 0, true);
+    		drive.arcadeDrive(-0.5, 0, true);
     	}else if(Robot.xAngle <= -10){
-    		drive.arcadeDrive(-0.4, 0, true);
+    		drive.arcadeDrive(0.5, 0, true);
     	}else if(Robot.xAngle <= -1){
-    		drive.arcadeDrive(-0.3, 0, true);
+    		drive.arcadeDrive(0.5, 0, true);
     	}else{
     		drive.arcadeDrive(0, 0, true);
     	}

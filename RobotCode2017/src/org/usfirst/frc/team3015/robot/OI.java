@@ -50,7 +50,7 @@ public class OI {
 	Button coDriverDDown = new DPad(driver, DPad.Value.kDPadDown);
 	Button coDriverDRight = new DPad(driver, DPad.Value.kDPadRight);
 	public OI() {
-//		driverA1.whenPressed(new DriveStraightForTime(.5,10));
+		driverA1.whenPressed(new DriveTurnToTarget());
 	}
 	
 	public double getDriverLeftX(){

@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	public static boolean isEnabled = false;
+	public static volatile double xAngle = 0;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -86,6 +87,7 @@ public class Robot extends IterativeRobot {
 						String messageIn = in.readLine();
 						if(messageIn != null){
 							System.out.println(messageIn);
+							xAngle = Double.parseDouble(messageIn.substring(0, messageIn.indexOf(',')));
 						}
 						if(Robot.isEnabled){
 							out.println("enabled");

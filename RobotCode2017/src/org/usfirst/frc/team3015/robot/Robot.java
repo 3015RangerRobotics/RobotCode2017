@@ -57,50 +57,6 @@ public class Robot extends IterativeRobot {
 		System.out.println("FINISHED ROBOT INIT");
 		
 		CommandBase.init();
-		
-//		try {
-//			Socket socket = new Socket("localhost", 3015);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
-		new Thread(new Runnable(){
-			Socket socket;
-			BufferedReader in = null;
-			OutputStreamWriter osw = null;
-			PrintWriter out = null;
-			
-			@Override
-			public void run() {
-				try {
-					System.out.println("starting comms");
-					System.out.println(socket = new Socket("localhost", 3015));
-					System.out.println("1");
-					in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-					System.out.println("2");
-					osw = new OutputStreamWriter(socket.getOutputStream());
-					System.out.println("3");
-					out = new PrintWriter(new BufferedWriter(osw), true);
-					System.out.println("4");
-					
-					while(true){
-						String messageIn = in.readLine();
-						if(messageIn != null){
-							System.out.println(messageIn);
-							xAngle = Double.parseDouble(messageIn.substring(0, messageIn.indexOf(',')));
-						}
-						if(Robot.isEnabled){
-							out.println("enabled");
-						}else{
-							out.println("disabled");
-						}
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-		}).start();
 	}
 
 	/**
@@ -111,7 +67,7 @@ public class Robot extends IterativeRobot {
 	//bla
 	@Override
 	public void disabledInit() {
-
+		isEnabled = false;
 	}
 
 	@Override
@@ -132,6 +88,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		isEnabled = true;
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -156,6 +113,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		isEnabled = true;
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

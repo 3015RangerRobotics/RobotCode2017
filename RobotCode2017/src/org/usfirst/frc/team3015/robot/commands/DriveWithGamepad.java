@@ -19,10 +19,10 @@ public class DriveWithGamepad extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	drive.arcadeDrive(oi.getDriverLeftX(), oi.getDriverLeftY(), true);
-    	if(!drive.isCalibrating()){
-    		System.out.println("IMU Angle: " + drive.getAngle());
-    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
-    	}
+//    	if(!drive.isCalibrating()){
+//    		System.out.println("IMU Angle: " + drive.getAngle());
+//    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

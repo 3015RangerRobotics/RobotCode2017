@@ -2,12 +2,24 @@
 package org.usfirst.frc.team3015.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import org.spectrum3847.RIOdroid.RIOadb;
+import org.spectrum3847.RIOdroid.RIOdroid;
 import org.usfirst.frc.team3015.robot.commands.CommandBase;
 
 /**
@@ -21,6 +33,7 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static boolean isEnabled = false;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -31,7 +44,61 @@ public class Robot extends IterativeRobot {
 //		chooser.addDefault("Default Auto", new CommandBase());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		RIOdroid.initUSB();
+		
+		System.out.println(RIOadb.clearNetworkPorts());
+		RIOdroid.init();
+		Timer.delay(1);
+		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
+		Timer.delay(1);
+		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
+		System.out.println("FINISHED ROBOT INIT");
+		
 		CommandBase.init();
+		
+//		try {
+//			Socket socket = new Socket("localhost", 3015);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		new Thread(new Runnable(){
+			Socket socket;
+			BufferedReader in = null;
+			OutputStreamWriter osw = null;
+			PrintWriter out = null;
+			
+			@Override
+			public void run() {
+				try {
+					System.out.println("starting comms");
+					System.out.println(socket = new Socket("localhost", 3015));
+					System.out.println("1");
+					in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					System.out.println("2");
+					osw = new OutputStreamWriter(socket.getOutputStream());
+					System.out.println("3");
+					out = new PrintWriter(new BufferedWriter(osw), true);
+					System.out.println("4");
+					
+					while(true){
+						String messageIn = in.readLine();
+						if(messageIn != null){
+							System.out.println(messageIn);
+						}
+						if(Robot.isEnabled){
+							out.println("enabled");
+						}else{
+							out.println("disabled");
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}).start();
 	}
 
 	/**

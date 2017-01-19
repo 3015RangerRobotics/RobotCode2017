@@ -14,31 +14,31 @@ public class DriveTrain extends Subsystem {
 	private VictorSP rightMotors;
 	private VictorSP hMotors;
 	private DoubleSolenoid hWheelSolenoid;
-	private AHRS imu;
+//	private AHRS imu;
 	
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
 		hWheelSolenoid = new DoubleSolenoid(0, 1);
-		imu = new AHRS(SerialPort.Port.kUSB);
+//		imu = new AHRS(SerialPort.Port.kUSB);
 	}
 	
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithGamepad());
     }
     
-    public boolean isCalibrating(){
-    	return imu.isCalibrating();
-    }
+//    public boolean isCalibrating(){
+//    	return imu.isCalibrating();
+//    }
     
-    public boolean isMagneticDisturbance(){
-    	return imu.isMagneticDisturbance();
-    }
+//    public boolean isMagneticDisturbance(){
+//    	return imu.isMagneticDisturbance();
+//    }
     
-    public double getAngle(){
-    	return imu.getAngle();
-    }
+//    public double getAngle(){
+//    	return imu.getAngle();
+//    }
     
     public void setHWheelSolenoid(DoubleSolenoid.Value value){
     	hWheelSolenoid.set(value);

@@ -32,7 +32,8 @@ public class OI {
 	Button driverDUp = new DPad(driver, DPad.Value.kDPadUp);
 	Button driverDDown = new DPad(driver, DPad.Value.kDPadDown);
 	Button driverDRight = new DPad(driver, DPad.Value.kDPadRight);
-	
+	Button driverLTrig = new JoystickTrigger(driver,JoystickTrigger.Trigger.kLeftTrigger,.05);
+	Button driverRTrig = new JoystickTrigger(driver,JoystickTrigger.Trigger.kRightTrigger,.05);
 	
 	Joystick coDriver = new Joystick(1);
 	Button coDriverA1 = new JoystickButton(coDriver, 1);
@@ -45,12 +46,17 @@ public class OI {
 	Button coDriverSTART8 = new JoystickButton(coDriver, 8);
 	Button coDriverLS9 = new JoystickButton(coDriver, 9);
 	Button coDriverRS10 = new JoystickButton(coDriver, 10);
-	Button coDriverDLeft = new DPad(driver, DPad.Value.kDPadLeft);
-	Button coDriverDUp = new DPad(driver, DPad.Value.kDPadUp);
-	Button coDriverDDown = new DPad(driver, DPad.Value.kDPadDown);
-	Button coDriverDRight = new DPad(driver, DPad.Value.kDPadRight);
+	Button coDriverDLeft = new DPad(coDriver, DPad.Value.kDPadLeft);
+	Button coDriverDUp = new DPad(coDriver, DPad.Value.kDPadUp);
+	Button coDriverDDown = new DPad(coDriver, DPad.Value.kDPadDown);
+	Button coDriverDRight = new DPad(coDriver, DPad.Value.kDPadRight);
+	Button coDriverLTrig = new JoystickTrigger(coDriver,JoystickTrigger.Trigger.kLeftTrigger); 
+	Button coDriverRTrig = new JoystickTrigger(coDriver,JoystickTrigger.Trigger.kRightTrigger);
 	public OI() {
 		driverA1.whenPressed(new DriveTurnToTarget());
+	
+		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
+		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 	}
 	
 	public double getDriverLeftX(){
@@ -59,5 +65,9 @@ public class OI {
 	
 	public double getDriverLeftY(){
 		return driver.getRawAxis(1) * -1;
+	}
+	
+	public double getDriverSumTriggers(){
+		return driver.getRawAxis(3)-driver.getRawAxis(2);
 	}
 }

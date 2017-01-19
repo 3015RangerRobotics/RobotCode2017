@@ -12,41 +12,41 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
-//	private VictorSP hMotors;
-//	private DoubleSolenoid hWheelSolenoid;
-//	private AHRS imu;
+	private VictorSP hMotors;
+	private DoubleSolenoid hWheelSolenoid;
+	private AHRS imu;
 	
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
-//		hMotors = new VictorSP(2);
-//		hWheelSolenoid = new DoubleSolenoid(0, 1);
-//		imu = new AHRS(SerialPort.Port.kUSB);
+		hMotors = new VictorSP(2);
+		hWheelSolenoid = new DoubleSolenoid(0, 1);
+		imu = new AHRS(SerialPort.Port.kUSB);
 	}
 	
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithGamepad());
     }
     
-//    public boolean isCalibrating(){
-//    	return imu.isCalibrating();
-//    }
+    public boolean isCalibrating(){
+    	return imu.isCalibrating();
+    }
     
-//    public boolean isMagneticDisturbance(){
-//    	return imu.isMagneticDisturbance();
-//    }
+    public boolean isMagneticDisturbance(){
+    	return imu.isMagneticDisturbance();
+    }
     
-//    public double getAngle(){
-//    	return imu.getAngle();
-//    }
+    public double getAngle(){
+    	return imu.getAngle();
+    }
     
-//    public void setHWheelSolenoid(DoubleSolenoid.Value value){
-//    	hWheelSolenoid.set(value);
-//    }
-//    
-//    public DoubleSolenoid.Value getHWheelSolenoid(){
-//    	return hWheelSolenoid.get();
-//    }
+    public void setHWheelSolenoid(DoubleSolenoid.Value value){
+    	hWheelSolenoid.set(value);
+    }
+    
+    public DoubleSolenoid.Value getHWheelSolenoid(){
+    	return hWheelSolenoid.get();
+    }
     
     public void arcadeDrive(double turnValue, double moveValue, boolean squaredInputs) {
         // local variables to hold the computed PWM values for the motors
@@ -116,7 +116,7 @@ public class DriveTrain extends Subsystem {
         return num;
     }
     
-//    public void hDrive(double speed){
-//    	hMotors.set(speed);
-//    }
+    public void hDrive(double speed){
+    	hMotors.set(speed);
+    }
 }

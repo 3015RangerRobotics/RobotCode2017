@@ -54,6 +54,13 @@ public class Robot extends IterativeRobot {
 		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
 		Timer.delay(1);
 		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
+		
+		Timer.delay(1);
+		RIOdroid.executeCommand("adb shell am force-stop com.rangerrobot.rangervision");
+		Timer.delay(0.5);
+		RIOdroid.executeCommand("adb shell am start -n com.rangerrobot.rangervision/com.rangerrobot.rangervision.RangerVision");
+		Timer.delay(3);
+		
 		System.out.println("FINISHED ROBOT INIT");
 		
 		CommandBase.init();

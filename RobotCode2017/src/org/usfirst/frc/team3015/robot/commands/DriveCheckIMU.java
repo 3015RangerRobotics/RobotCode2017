@@ -1,17 +1,22 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-public class VisionEnableComms extends CommandBase {
+import edu.wpi.first.wpilibj.command.Command;
 
-    public VisionEnableComms() {
-    	requires(vision);
-    	this.setRunWhenDisabled(true);
+/**
+ *
+ */
+public class DriveCheckIMU extends CommandBase {
+
+    public DriveCheckIMU() {
+        // Use requires() here to declare subsystem dependencies
+         requires(drive);
+         requires(vision);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!vision.shouldRun()){
-    		vision.enableComms();
-    		vision.runComms();
+    	if(drive.getAngle() == 0){
+    		vision.speak("Gyro not found in USB port 2.");
     	}
     }
 
@@ -31,6 +36,5 @@ public class VisionEnableComms extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

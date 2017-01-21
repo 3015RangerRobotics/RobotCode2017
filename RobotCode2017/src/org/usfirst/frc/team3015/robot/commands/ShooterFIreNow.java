@@ -1,15 +1,13 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShooterFireWhenReady extends CommandBase {
+public class ShooterFIreNow extends CommandBase {
 
-    public ShooterFireWhenReady() {
+    public ShooterFIreNow() {
     	requires(shooterFeeder);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,14 +19,7 @@ public class ShooterFireWhenReady extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(ShooterWheel.isPrimed()) {
-    		shooterFeeder.setBallFeeder(1);
-    		
-    	}
-    	else {
-    		shooterFeeder.setBallFeeder(0);
-    		
-    	}
+    	shooterFeeder.setBallFeeder(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

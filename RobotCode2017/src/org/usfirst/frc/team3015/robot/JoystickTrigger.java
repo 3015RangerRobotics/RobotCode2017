@@ -24,7 +24,7 @@ public class JoystickTrigger extends Button {
 	/**
 	 * Default construction, sets the trigger distance to .5
 	 * 
-	 * @param joystick 	The joystick you will be using
+	 * @param joystick 	The joystick you will be using.
 	 * @param value 	Selection between the left and right trigger via enum
 	 */
 	public JoystickTrigger(Joystick joystick, Trigger value){

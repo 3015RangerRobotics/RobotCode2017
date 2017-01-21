@@ -36,15 +36,21 @@ public class ShooterWheel extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
+    /**
+     * Sets the speed of the shooter wheel
+     * @param speed speed of the wheel
+     */
     public void setShooterWheel(double speed){
     	shooterWheel.set(speed);
     }
-    
+    /**
+     * Returns if the shooter wheel is primed
+     * @return isPrimed
+     */
     public static boolean isPrimed(){
-    	
     	return isPrimed;
     }
+    
     public static void setIsPrimed(boolean myIsPrimed) {
     	isPrimed = myIsPrimed;
     }

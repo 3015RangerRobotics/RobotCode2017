@@ -4,14 +4,12 @@ package org.usfirst.frc.team3015.robot.commands;
  *
  */
 public class DriveStraightForTime extends CommandBase {
-	private double time;
 	private double speed;
 	
     public DriveStraightForTime(double time,double speed){
-        this.time = time;
         this.speed = speed;
+        this.setTimeout(time);
 		requires(drive);
-		this.setTimeout(time);
     }
 
     // Called just before this Command runs the first time

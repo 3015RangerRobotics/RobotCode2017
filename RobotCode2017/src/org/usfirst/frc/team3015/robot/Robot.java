@@ -2,15 +2,25 @@
 package org.usfirst.frc.team3015.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import org.spectrum3847.RIOdroid.RIOadb;
+import org.spectrum3847.RIOdroid.RIOdroid;
 import org.usfirst.frc.team3015.robot.commands.CommandBase;
-import org.usfirst.frc.team3015.robot.commands.ExampleCommand;
-import org.usfirst.frc.team3015.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,11 +31,10 @@ import org.usfirst.frc.team3015.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
-
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static boolean isEnabled = false;
+	public static volatile double xAngle = 0;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -33,10 +42,28 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
-		chooser.addDefault("Default Auto", new CommandBase());
+//		chooser.addDefault("Default Auto", new CommandBase());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		RIOdroid.initUSB();
+		
+		System.out.println(RIOadb.clearNetworkPorts());
+		RIOdroid.init();
+		Timer.delay(1);
+		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
+		Timer.delay(1);
+		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
+		
+		Timer.delay(1);
+		RIOdroid.executeCommand("adb shell am force-stop com.rangerrobot.rangervision");
+		Timer.delay(0.5);
+		RIOdroid.executeCommand("adb shell am start -n com.rangerrobot.rangervision/com.rangerrobot.rangervision.RangerVision");
+		Timer.delay(3);
+		
+		System.out.println("FINISHED ROBOT INIT");
+		
+		CommandBase.init();
 	}
 
 	/**
@@ -47,7 +74,7 @@ public class Robot extends IterativeRobot {
 	//bla
 	@Override
 	public void disabledInit() {
-
+		isEnabled = false;
 	}
 
 	@Override
@@ -68,6 +95,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		isEnabled = true;
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -92,6 +120,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		isEnabled = true;
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

@@ -1,33 +1,25 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+public class VisionDisableComms extends CommandBase {
 
-/**
- *
- */
-public class DriveWithGamepad extends CommandBase {
-
-    public DriveWithGamepad() {
-        requires(drive);
-    	// Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public VisionDisableComms() {
+    	requires(vision);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(vision.shouldRun()){
+    		vision.disableComms();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.arcadeDrive(oi.getDriverLeftX(), oi.getDriverLeftY(), true);
-//    	if(!drive.isCalibrating()){
-//    		System.out.println("IMU Angle: " + drive.getAngle());
-//    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
-//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -37,5 +29,6 @@ public class DriveWithGamepad extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

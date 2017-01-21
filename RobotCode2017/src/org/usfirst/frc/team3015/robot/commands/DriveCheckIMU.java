@@ -1,33 +1,32 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveWithGamepad extends CommandBase {
+public class DriveCheckIMU extends CommandBase {
 
-    public DriveWithGamepad() {
-        requires(drive);
-    	// Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public DriveCheckIMU() {
+        // Use requires() here to declare subsystem dependencies
+         requires(drive);
+         requires(vision);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(drive.getAngle() == 0){
+    		vision.speak("Gyro not found in USB port 2.");
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.arcadeDrive(oi.getDriverLeftX(), oi.getDriverLeftY(), true);
-//    	if(!drive.isCalibrating()){
-//    		System.out.println("IMU Angle: " + drive.getAngle());
-//    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
-//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

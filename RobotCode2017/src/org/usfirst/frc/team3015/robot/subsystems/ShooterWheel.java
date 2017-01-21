@@ -1,26 +1,52 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
 import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
  * This is where methods for controlling this subsystem go
  */
-public class Shooter extends Subsystem {
+public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
+//	private VictorSP ballFeeder;
+	
+	private Encoder shooterWheelEncoder;
+//	private Encoder ballFeederEncoder;
+	private static boolean isPrimed = false;
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 /**
  *  Constructing the shooter and declaring shooterWheel
  */
-	public Shooter(){
-		shooterWheel = new CANTalon(1);
-//    	shooterWheel.configEncoderCodesPerRev(codesPerRev);
+	public ShooterWheel(){
+//		shooterWheel = new CANTalon(1);
+//    	shooterWheel.configEncoderCodesPerRev(codesPerRev)
+//		ballFeeder = new VictorSP(3);
+//		shooterWheelEncoder = new Encoder(6, 7);
+//		ballFeederEncoder = new Encoder(8, 9);
+		
+		
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void setShooterWheel(double speed){
+    	shooterWheel.set(speed);
+    }
+    
+    public boolean isPrimed(){
+    	
+    	return isPrimed;
+    }
+    public static void setIsPrimed(boolean myIsPrimed) {
+    	isPrimed = myIsPrimed;
     }
     
     /**

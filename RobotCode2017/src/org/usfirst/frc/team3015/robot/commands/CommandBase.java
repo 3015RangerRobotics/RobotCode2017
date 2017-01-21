@@ -12,13 +12,17 @@ import org.usfirst.frc.team3015.robot.subsystems.*;
 public abstract class CommandBase extends Command {
 	public static DriveTrain drive;
 	public static Shooter shooter;
+	public static Climber climber;
 	public static Vision vision;
+	public static Harvester harvester;
 	public static OI oi;
 	
 	public static void init(){
 		drive = new DriveTrain();
 		shooter = new Shooter();
 		vision = new Vision();
+		climber = new Climber();
+		harvester = new Harvester();
 		oi = new OI();
 	}
 }

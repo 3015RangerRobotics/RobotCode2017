@@ -3,7 +3,11 @@ package org.usfirst.frc.team3015.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-
+/**
+ * Takes trigger axis values and turns them into true/false buttons.
+ * @author rangerrobots
+ *
+ */
 public class JoystickTrigger extends Button {
 	private Joystick m_joystick; 
 	private int m_triggerAxis;
@@ -13,7 +17,11 @@ public class JoystickTrigger extends Button {
 		kLeftTrigger,
 		kRightTrigger
 	}
-	
+	/**
+	 * Default construction with no trigger value
+	 * @param joystick
+	 * @param value
+	 */
 	public JoystickTrigger(Joystick joystick, Trigger value){
 		this(joystick,value,0.5);
 	}

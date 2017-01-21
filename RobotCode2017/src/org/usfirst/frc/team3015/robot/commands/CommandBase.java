@@ -14,6 +14,7 @@ public abstract class CommandBase extends Command {
 	public static Shooter shooter;
 	public static Climber climber;
 	public static Vision vision;
+	public static Harvester harvester;
 	public static OI oi;
 	
 	public static void init(){
@@ -21,6 +22,7 @@ public abstract class CommandBase extends Command {
 		shooter = new Shooter();
 		vision = new Vision();
 		climber = new Climber();
+		harvester = new Harvester();
 		oi = new OI();
 	}
 }

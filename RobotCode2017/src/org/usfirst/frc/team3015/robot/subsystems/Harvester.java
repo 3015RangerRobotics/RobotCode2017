@@ -12,7 +12,7 @@ public class Harvester extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void Harvester(){
-		
+//		intake = new VictorSP()
 	}
 	
 	public void harvest() {
@@ -23,6 +23,9 @@ public class Harvester extends Subsystem {
 		intake.set(-0.8);
 	}
 	
+	public void end() {
+		intake.set(0);
+	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

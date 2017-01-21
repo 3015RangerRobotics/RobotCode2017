@@ -12,7 +12,11 @@ import org.usfirst.frc.team3015.robot.Robot;
 import org.usfirst.frc.team3015.robot.commands.VisionEnableComms;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+/**
+ * Vision subsystem for communicating with the vision tracking phone
+ * @author Michael
+ *
+ */
 public class Vision extends Subsystem {
 	public static volatile double xAngleToTarget = 0;
 	private volatile boolean shouldRun = false;
@@ -27,7 +31,9 @@ public class Vision extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new VisionEnableComms());
     }
-    
+    /**
+     * Method to start the thread that uses socket servers to communicate with the android phone
+     */
     public void runComms(){
     	new Thread(new Runnable(){
 			Socket socket;
@@ -74,28 +80,44 @@ public class Vision extends Subsystem {
 			
 		}).start();
     }
-    
+    /**
+     * Method to change the shouldRun boolean to true to allow the comms thread to run
+     */
     public void enableComms(){
     	shouldRun = true;
     }
-    
+    /**
+     * Method to change the shouldRun boolean to false to stop the comms thread from running
+     */
     public void disableComms(){
     	shouldRun = false;
     }
-    
+    /**
+     * Returns whether the comms thread is/should be running
+     * @return shouldRun
+     */
     public boolean shouldRun(){
     	return shouldRun;
     }
-    
+    /**
+     * Executes a command on the RoboRIO, mainly used for adb commands
+     * @param command the command to execute
+     */
     public void executeCommand(String command){
     	System.out.println("Running command: " + command + "\n" + RIOdroid.executeCommand(command));
     }
-    
+    /**
+     * Sends a message to the phone for the text-to-speech to say
+     * @param text what the phone should say
+     */
     public void speak(String text){
     	shouldSpeak = true;
     	message = text;
     }
-    
+    /**
+     * Tells the phone whether a vision target should be seen (ex. know we are lined up in auto)
+     * @param bool should the phone see the target
+     */
     public void shouldSeeTarget(boolean bool){
     	shouldSeeTarget = bool;
     }

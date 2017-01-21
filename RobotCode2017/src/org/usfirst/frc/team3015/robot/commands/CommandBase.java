@@ -11,7 +11,8 @@ import org.usfirst.frc.team3015.robot.subsystems.*;
  */
 public abstract class CommandBase extends Command {
 	public static DriveTrain drive;
-	public static Shooter shooter;
+	public static ShooterWheel shooterWheel;
+	public static ShooterFeeder shooterFeeder;
 	public static Climber climber;
 	public static Vision vision;
 	public static Harvester harvester;
@@ -19,7 +20,8 @@ public abstract class CommandBase extends Command {
 	
 	public static void init(){
 		drive = new DriveTrain();
-		shooter = new Shooter();
+		shooterWheel = new ShooterWheel();
+		shooterFeeder = new ShooterFeeder();
 		vision = new Vision();
 		climber = new Climber();
 		harvester = new Harvester();

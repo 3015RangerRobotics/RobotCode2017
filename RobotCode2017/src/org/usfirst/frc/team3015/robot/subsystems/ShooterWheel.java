@@ -41,7 +41,7 @@ public class ShooterWheel extends Subsystem {
     	shooterWheel.set(speed);
     }
     
-    public boolean isPrimed(){
+    public static boolean isPrimed(){
     	
     	return isPrimed;
     }

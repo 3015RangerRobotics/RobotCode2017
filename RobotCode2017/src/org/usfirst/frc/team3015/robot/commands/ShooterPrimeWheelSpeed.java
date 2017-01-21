@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShooterPrimeWheelSpeed extends CommandBase {
 
     public ShooterPrimeWheelSpeed() {
-    	requires(shooter);
+    	requires(shooterWheel);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooter.setSpeedMode();
-    	shooter.enable();
-    	shooter.setBallFeeder(1);
+    	shooterWheel.setSpeedMode();
+    	shooterWheel.enable();
+    	shooterWheel.setShooterWheel(1);
     	this.setTimeout(2);
     	
     	
@@ -25,12 +25,12 @@ public class ShooterPrimeWheelSpeed extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.setShooterWheel(1);
+    	shooterWheel.setShooterWheel(1);
     	if (isTimedOut()){
-    		shooter.setIsPrimed(true);
+    		shooterWheel.setIsPrimed(true);
     	}
     	else {
-    		shooter.setIsPrimed(false);
+    		shooterWheel.setIsPrimed(false);
     	}
     }
 
@@ -42,8 +42,8 @@ public class ShooterPrimeWheelSpeed extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooter.setShooterWheel(0);
-    	shooter.disable();
+    	shooterWheel.setShooterWheel(0);
+    	shooterWheel.disable();
     }
 
     // Called when another command which requires one or more of the same

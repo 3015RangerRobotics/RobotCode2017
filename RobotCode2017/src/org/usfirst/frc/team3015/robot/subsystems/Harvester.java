@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Harvester subsystem
  */
 public class Harvester extends Subsystem {
 	private VictorSP intake;
@@ -14,15 +14,21 @@ public class Harvester extends Subsystem {
 	public void Harvester(){
 //		intake = new VictorSP()
 	}
-	
+	/**
+	 * Intake fuel
+	 */
 	public void harvest() {
 		intake.set(0.8);
 	}
-	
+	/**
+	 * Reverses intake
+	 */
 	public void reverseHarvest() {
 		intake.set(-0.8);
 	}
-	
+	/**
+	 * Stops intake
+	 */
 	public void end() {
 		intake.set(0);
 	}

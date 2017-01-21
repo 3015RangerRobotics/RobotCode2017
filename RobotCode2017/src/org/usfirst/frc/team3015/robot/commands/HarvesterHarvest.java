@@ -3,11 +3,11 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- *
+ * Intake fuel
  */
-public class Harvest extends CommandBase {
+public class HarvesterHarvest extends CommandBase {
 
-    public Harvest() {
+    public HarvesterHarvest() {
         // Use requires() here to declare subsystem dependencies
           requires(harvester);
     }

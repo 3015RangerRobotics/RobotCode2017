@@ -4,9 +4,9 @@ package org.usfirst.frc.team3015.robot.commands;
 /**
  *
  */
-public class ClimbUp extends CommandBase {
+public class ClimberClimbUp extends CommandBase {
 
-    public ClimbUp() {
+    public ClimberClimbUp() {
     	requires(climber);
     }
 

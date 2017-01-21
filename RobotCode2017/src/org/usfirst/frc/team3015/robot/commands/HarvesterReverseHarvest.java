@@ -3,11 +3,11 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- *
+ * Reverses intake
  */
-public class ReverseHarvest extends CommandBase {
+public class HarvesterReverseHarvest extends CommandBase {
 
-    public ReverseHarvest() {
+    public HarvesterReverseHarvest() {
         // Use requires() here to declare subsystem dependencies
           requires(harvester);
     }

@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClimbDown extends CommandBase {
+public class ClimberClimbDown extends CommandBase {
 
-    public ClimbDown() {
+    public ClimberClimbDown() {
     	requires(climber);
     }
 

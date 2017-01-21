@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Code for our skid-steer drop-H drive train
+ */
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
@@ -16,6 +19,9 @@ public class DriveTrain extends Subsystem {
 	private DoubleSolenoid hWheelSolenoid;
 	private AHRS imu;
 	
+	/**
+	 * Constructs the drive train
+	 */
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
@@ -24,18 +30,33 @@ public class DriveTrain extends Subsystem {
 		imu = new AHRS(SerialPort.Port.kUSB);
 	}
 	
+	/**
+	 * Sets default command to DriveWithGamepad 
+	 */
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithGamepad());
     }
     
+    /**
+     * Checks to see if the NavX is calibrating
+     * @return If the NavX is calibrating
+     */
     public boolean isCalibrating(){
     	return imu.isCalibrating();
     }
     
+    /**
+     * Checks to see if NavX is getting magnetic interference
+     * @return If the NavX is getting magnetic interference
+     */
     public boolean isMagneticDisturbance(){
     	return imu.isMagneticDisturbance();
     }
     
+    /**
+     * Gets the angle from the NavX
+     * @return NavX angle
+     */
     public double getAngle(){
     	return imu.getAngle();
     }
@@ -48,6 +69,12 @@ public class DriveTrain extends Subsystem {
     	return hWheelSolenoid.get();
     }
     
+    /**
+     * Single stick driving
+     * @param turnValue		
+     * @param moveValue		
+     * @param squaredInputs	
+     */
     public void arcadeDrive(double turnValue, double moveValue, boolean squaredInputs) {
         // local variables to hold the computed PWM values for the motors
         double leftMotorSpeed;

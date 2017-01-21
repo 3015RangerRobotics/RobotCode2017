@@ -45,24 +45,23 @@ public class Robot extends IterativeRobot {
 //		chooser.addDefault("Default Auto", new CommandBase());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		
+		//init stuff
 		RIOdroid.initUSB();
-		
 		System.out.println(RIOadb.clearNetworkPorts());
 		RIOdroid.init();
+		//forward the ports used for comms
 		Timer.delay(1);
 		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
 		Timer.delay(1);
 		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
-		
+		//run adb commands on the phone to close the app if it is running, and re-open it
 		Timer.delay(1);
 		RIOdroid.executeCommand("adb shell am force-stop com.rangerrobot.rangervision");
 		Timer.delay(0.5);
 		RIOdroid.executeCommand("adb shell am start -n com.rangerrobot.rangervision/com.rangerrobot.rangervision.RangerVision");
 		Timer.delay(3);
-		
 		System.out.println("FINISHED ROBOT INIT");
-		
+		//init command base
 		CommandBase.init();
 	}
 

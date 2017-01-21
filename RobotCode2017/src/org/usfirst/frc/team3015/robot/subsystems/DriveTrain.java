@@ -48,44 +48,44 @@ public class DriveTrain extends Subsystem {
     	return hWheelSolenoid.get();
     }
     
-    public void arcadeDrive(double turnValue, double moveValue, boolean squaredInputs) {
+    public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
         // local variables to hold the computed PWM values for the motors
         double leftMotorSpeed;
         double rightMotorSpeed;
 
-        turnValue = limit(turnValue);
         moveValue = limit(moveValue);
+        rotateValue = limit(rotateValue);
 
         if (squaredInputs) {
           // square the inputs (while preserving the sign) to increase fine control
           // while permitting full power
-        	if (turnValue >= 0.0) {
-        		turnValue = turnValue * turnValue;
+        	if (moveValue >= 0.0) {
+        		moveValue = moveValue * moveValue;
         	} else {
-	            turnValue = -(turnValue * turnValue);
+	            moveValue = -(moveValue * moveValue);
 	        }
-	        if (moveValue >= 0.0) {
-	        	moveValue = moveValue * moveValue;
+	        if (rotateValue >= 0.0) {
+	        	rotateValue = rotateValue * rotateValue;
 	        } else {
-	        	moveValue = -(moveValue * moveValue);
+	        	rotateValue = -(rotateValue * rotateValue);
 	        }
         }
 
-        if (turnValue > 0.0) {
-        	if (moveValue > 0.0) {
-        		leftMotorSpeed = turnValue - moveValue;
-        		rightMotorSpeed = Math.max(turnValue, moveValue);
+        if (moveValue > 0.0) {
+        	if (rotateValue > 0.0) {
+        		leftMotorSpeed = moveValue - rotateValue;
+        		rightMotorSpeed = Math.max(moveValue, rotateValue);
 	        } else {
-	        	leftMotorSpeed = Math.max(turnValue, -moveValue);
-	        	rightMotorSpeed = turnValue + moveValue;
+	        	leftMotorSpeed = Math.max(moveValue, -rotateValue);
+	        	rightMotorSpeed = moveValue + rotateValue;
 	        }
 	    } else {
-	    	if (moveValue > 0.0) {
-	    		leftMotorSpeed = -Math.max(-turnValue, moveValue);
-	    		rightMotorSpeed = turnValue + moveValue;
+	    	if (rotateValue > 0.0) {
+	    		leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+	    		rightMotorSpeed = moveValue + rotateValue;
 	        } else {
-	        	leftMotorSpeed = turnValue - moveValue;
-	        	rightMotorSpeed = -Math.max(-turnValue, -moveValue);
+	        	leftMotorSpeed = moveValue - rotateValue;
+	        	rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 	        }
 	    }	
 	    setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);

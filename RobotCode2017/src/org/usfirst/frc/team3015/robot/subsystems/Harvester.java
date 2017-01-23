@@ -14,6 +14,12 @@ public class Harvester extends Subsystem {
 	public void Harvester(){
 //		intake = new VictorSP()
 	}
+	
+	public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+	
 	/**
 	 * Intake fuel
 	 */
@@ -29,12 +35,10 @@ public class Harvester extends Subsystem {
 	/**
 	 * Stops intake
 	 */
-	public void end() {
+	public void stopHarvester() {
 		intake.set(0);
 	}
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	
+    
 }
 

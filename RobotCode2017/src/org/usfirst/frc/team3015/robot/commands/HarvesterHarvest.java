@@ -28,7 +28,7 @@ public class HarvesterHarvest extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	harvester.end(); 
+    	harvester.stopHarvester(); 
     }
 
     // Called when another command which requires one or more of the same

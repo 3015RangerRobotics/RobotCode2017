@@ -1,24 +1,22 @@
 package org.usfirst.frc.team3015.robot.commands;
 
 
-
 /**
- * Reverses intake
+ *
  */
-public class HarvesterReverseHarvest extends CommandBase {
+public class ShooterFireNow extends CommandBase {
 
-    public HarvesterReverseHarvest() {
-          requires(harvester);
+    public ShooterFireNow() {
+    	requires(shooterFeeder);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	harvester.reverseHarvest();
+    	shooterFeeder.setBallFeeder(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -28,7 +26,7 @@ public class HarvesterReverseHarvest extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	harvester.end(); 
+    	shooterFeeder.setBallFeeder(0);
     }
 
     // Called when another command which requires one or more of the same

@@ -1,16 +1,13 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShooterFIreNow extends CommandBase {
+public class ShooterFireNowReverse extends CommandBase {
 
-    public ShooterFIreNow() {
+    public ShooterFireNowReverse() {
     	requires(shooterFeeder);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +16,7 @@ public class ShooterFIreNow extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooterFeeder.setBallFeeder(1);
+    	shooterFeeder.setBallFeeder(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

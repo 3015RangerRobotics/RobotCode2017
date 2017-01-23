@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+
 
 /**
  *
@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveCheckIMU extends CommandBase {
 
     public DriveCheckIMU() {
-        // Use requires() here to declare subsystem dependencies
          requires(drive);
          requires(vision);
     }

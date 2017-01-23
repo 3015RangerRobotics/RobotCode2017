@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3015.robot.OI;
 import org.usfirst.frc.team3015.robot.subsystems.*;
 /**
- *
+ * Where subsystem's commands are organized
  */
 public abstract class CommandBase extends Command {
 	public static DriveTrain drive;

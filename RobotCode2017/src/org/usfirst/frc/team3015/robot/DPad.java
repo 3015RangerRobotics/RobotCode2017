@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 /**
  * Takes a DPad input direction and converts it to a Button for Commands
  * 
- * @author rangerrobots
  *
  */
 public class DPad extends Button{
@@ -15,8 +14,6 @@ public class DPad extends Button{
 	
 	/**
 	 * DPad directions in words
-	 * @author rangerrobots
-	 *
 	 */
 	public enum Value {
 		kDPadRight,
@@ -70,10 +67,10 @@ public class DPad extends Button{
 	}
 	
 	/**
-	 * Simple DPad constructor
+	 * DPad constructor
 	 * 
-	 * @param joystick 		The gamepad we are referencing
-	 * @param dPadDegree 	the direction on the DPad in degrees
+	 * @param joystick 		The joystick we are referencing
+	 * @param dPadDegree 	the direction to reference on the DPad in degrees
 	 */
 	public DPad(Joystick joystick, int dPadDegree){
 		this.dPadDegree = dPadDegree;
@@ -81,7 +78,7 @@ public class DPad extends Button{
 	}
 
 	/**
-	 * outputs true if joystick POV matches specified DPad degree
+	 * Outputs true if joystick POV matches specified DPad degree
 	 */
 	@Override
 	public boolean get() {

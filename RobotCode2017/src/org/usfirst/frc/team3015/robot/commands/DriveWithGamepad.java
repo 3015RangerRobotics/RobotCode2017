@@ -8,8 +8,6 @@ public class DriveWithGamepad extends CommandBase {
 
     public DriveWithGamepad() {
         requires(drive);
-    	// Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

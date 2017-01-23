@@ -10,8 +10,6 @@ import org.usfirst.frc.team3015.robot.Robot;
 public class DriveTurnToTarget extends CommandBase {
 
     public DriveTurnToTarget() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(drive);
     }
 

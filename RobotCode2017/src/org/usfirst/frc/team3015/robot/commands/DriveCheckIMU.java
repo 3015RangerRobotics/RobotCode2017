@@ -8,7 +8,6 @@ package org.usfirst.frc.team3015.robot.commands;
 public class DriveCheckIMU extends CommandBase {
 
     public DriveCheckIMU() {
-        // Use requires() here to declare subsystem dependencies
          requires(drive);
          requires(vision);
     }

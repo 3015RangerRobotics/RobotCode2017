@@ -2,7 +2,6 @@ package org.usfirst.frc.team3015.robot.commands;
 
 import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
 
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *

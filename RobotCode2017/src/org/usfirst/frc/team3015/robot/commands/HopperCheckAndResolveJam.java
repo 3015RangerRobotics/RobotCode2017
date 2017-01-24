@@ -12,12 +12,12 @@ public class HopperCheckAndResolveJam extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double deJammerCheck = hopper.getEncoderRaw();
-    	hopper.checkForJam(deJammerCheck);
+    	hopper.checkForJam();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -27,10 +27,12 @@ public class HopperCheckAndResolveJam extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	hopper.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

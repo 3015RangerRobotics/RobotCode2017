@@ -2,11 +2,11 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- * Rotates the hopper
+ *
  */
-public class HopperRotate extends CommandBase {
+public class HopperStop extends CommandBase {
 
-    public HopperRotate() {
+    public HopperStop() {
         requires(hopper);
     }
 
@@ -16,7 +16,7 @@ public class HopperRotate extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	hopper.rotate();
+    	hopper.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -26,12 +26,10 @@ public class HopperRotate extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	hopper.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

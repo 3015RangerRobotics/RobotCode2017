@@ -14,6 +14,7 @@ public class Hopper extends Subsystem {
 
     private VictorSP rotation;
     private Encoder deJammer;
+    private final double PROCESS_SPEED = 0.5;
     
     /**
      * Constructs hardware
@@ -28,19 +29,19 @@ public class Hopper extends Subsystem {
     }
     
     public void rotate() {
-    	rotation.set(0.5);
+    	rotation.set(PROCESS_SPEED);
     }
     
-    public void checkForJam(double encoderRaw) {
+    public void checkForJam() {
     	if(rotation.get() > 0 || rotation.get() < 0) {
-    		if (deJammer.getRaw() > encoderRaw) { //this is where I think i'm wrong
+    		if (deJammer.getRate() == 0) { 
     			fixJam();
     		}
     	}
     }
     
     public void fixJam() {
-    	rotation.set(-0.5);
+    	rotation.set(-1*rotation.get());
     }
     
     public void stop() {

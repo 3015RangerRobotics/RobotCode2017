@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3015.robot.OI;
 import org.usfirst.frc.team3015.robot.subsystems.*;
 /**
- *
+ * Where subsystem's commands are organized
  */
 public abstract class CommandBase extends Command {
 	public static DriveTrain drive;
@@ -16,6 +16,7 @@ public abstract class CommandBase extends Command {
 	public static Climber climber;
 	public static Vision vision;
 	public static Harvester harvester;
+	public static Hopper hopper;
 	public static OI oi;
 	
 	public static void init(){
@@ -25,6 +26,7 @@ public abstract class CommandBase extends Command {
 		vision = new Vision();
 		climber = new Climber();
 		harvester = new Harvester();
+		hopper = new Hopper();
 		oi = new OI();
 	}
 }

@@ -14,7 +14,6 @@ public class JoystickTrigger extends Button {
 	
 	/**
 	 * Select left or right triggers with names instead of 2 and 3.
-	 *
 	 */
 	public enum Trigger {
 		kLeftTrigger,

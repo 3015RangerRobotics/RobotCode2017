@@ -8,7 +8,6 @@ package org.usfirst.frc.team3015.robot.commands;
 public class HarvesterReverseHarvest extends CommandBase {
 
     public HarvesterReverseHarvest() {
-        // Use requires() here to declare subsystem dependencies
           requires(harvester);
     }
 

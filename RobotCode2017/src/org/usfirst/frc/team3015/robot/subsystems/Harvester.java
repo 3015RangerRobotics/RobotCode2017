@@ -9,8 +9,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Harvester extends Subsystem {
 	private VictorSP intake;
 	 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    /**
+     * Constructs hardware
+     */
 	public void Harvester(){
 //		intake = new VictorSP()
 	}

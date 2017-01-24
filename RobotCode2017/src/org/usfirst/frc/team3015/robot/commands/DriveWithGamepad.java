@@ -8,8 +8,6 @@ public class DriveWithGamepad extends CommandBase {
 
     public DriveWithGamepad() {
         requires(drive);
-    	// Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -18,7 +16,7 @@ public class DriveWithGamepad extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.arcadeDrive(oi.getDriverLeftX(), oi.getDriverLeftY(), true);
+    	drive.arcadeDrive(oi.getDriverLeftY(), oi.getDriverLeftX(), true);
 //    	if(!drive.isCalibrating()){
 //    		System.out.println("IMU Angle: " + drive.getAngle());
 //    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());

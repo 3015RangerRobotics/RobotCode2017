@@ -23,6 +23,11 @@ public class ShooterFeeder extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    /**
+     * 
+     * @param speed speed of the ball feeder.
+     */
     public void setBallFeeder(double speed) {
     	ballFeeder.set(speed);
     }

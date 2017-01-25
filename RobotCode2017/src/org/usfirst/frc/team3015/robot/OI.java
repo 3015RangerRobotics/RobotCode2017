@@ -53,7 +53,7 @@ public class OI {
 	Button coDriverRTrig = new JoystickTrigger(coDriver,JoystickTrigger.Trigger.kRightTrigger);
 	
 	public OI() {
-		driverA1.whenPressed(new DriveTurnToTarget()); 
+		driverA1.whenPressed(new DriveTurnToTargetWithGyro()); 
 		driverSTART8.whenPressed(new CG_SystemsCheck());
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());

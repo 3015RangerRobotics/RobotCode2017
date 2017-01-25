@@ -4,10 +4,10 @@ package org.usfirst.frc.team3015.robot.commands;
 /**
  *
  */
-public class DriveWithGamepad extends CommandBase {
+public class HopperStop extends CommandBase {
 
-    public DriveWithGamepad() {
-        requires(drive);
+    public HopperStop() {
+        requires(hopper);
     }
 
     // Called just before this Command runs the first time
@@ -16,16 +16,12 @@ public class DriveWithGamepad extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.arcadeDrive(oi.getDriverLeftY(), oi.getDriverLeftX(), true);
-//    	if(!drive.isCalibrating()){
-//    		System.out.println("IMU Angle: " + drive.getAngle());
-//    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
-//    	}
+    	hopper.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

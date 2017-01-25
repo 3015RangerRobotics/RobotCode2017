@@ -2,12 +2,12 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- *
+ * Rotates the hopper
  */
-public class ShooterFireNow extends CommandBase {
+public class HopperRotate extends CommandBase {
 
-    public ShooterFireNow() {
-    	requires(shooterFeeder);
+    public HopperRotate() {
+        requires(hopper);
     }
 
     // Called just before this Command runs the first time
@@ -16,7 +16,10 @@ public class ShooterFireNow extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooterFeeder.setBallFeeder(1);
+    	hopper.rotate();
+    	if(hopper.getEncoderRate() <= 2){
+    		hopper.reverse();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -26,7 +29,7 @@ public class ShooterFireNow extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooterFeeder.setBallFeeder(0);
+    	hopper.stop();
     }
 
     // Called when another command which requires one or more of the same

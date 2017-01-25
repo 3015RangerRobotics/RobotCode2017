@@ -8,6 +8,9 @@ import org.usfirst.frc.team3015.robot.Robot;
  *
  */
 public class DriveTurnToTarget extends CommandBase {
+	private double speedOffset = 0.01;
+	private int stuckCounter = 0;
+	private double lastAngle = 0;
 
     public DriveTurnToTarget() {
     	requires(drive);
@@ -20,21 +23,28 @@ public class DriveTurnToTarget extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.xAngle >= 10){
-    		drive.arcadeDrive(-0.5, 0, true);
+    		drive.arcadeDrive(-0.5, 0, false);
     	}else if(Robot.xAngle >= 1){
-    		drive.arcadeDrive(-0.5, 0, true);
+    		drive.arcadeDrive(-0.5, 0, false);
+    	}else if(Robot.xAngle >= 0.25){
+    		drive.arcadeDrive(-0.4, 0, false);
     	}else if(Robot.xAngle <= -10){
-    		drive.arcadeDrive(0.5, 0, true);
+    		drive.arcadeDrive(0.5, 0, false);
     	}else if(Robot.xAngle <= -1){
-    		drive.arcadeDrive(0.5, 0, true);
-    	}else{
-    		drive.arcadeDrive(0, 0, true);
+    		drive.arcadeDrive(0.5, 0, false);
+    	}else if(Robot.xAngle <= -0.25){
+    		drive.arcadeDrive(0.4, 0, false);
     	}
+    	else{
+    		drive.arcadeDrive(0, 0, false);
+    	}
+    	
+//    	if(Math.abs(lastAngle - Robot.xAngle) < )
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(Robot.xAngle) < 2);
+        return (Math.abs(Robot.xAngle) < 0.5);
     }
 
     // Called once after isFinished returns true

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
-import org.usfirst.frc.team3015.robot.commands.HopperCheckAndResolveJam;
+import org.usfirst.frc.team3015.robot.commands.HopperStop;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -14,7 +14,7 @@ public class Hopper extends Subsystem {
 
     private VictorSP rotation;
     private Encoder deJammer;
-    private final double PROCESS_SPEED = 0.5;
+    private double rotationSpeed = 0.5;
     
     /**
      * Constructs hardware
@@ -25,31 +25,27 @@ public class Hopper extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(new HopperCheckAndResolveJam());
+       this.setDefaultCommand(new HopperStop());
     }
     
     public void rotate() {
-    	rotation.set(PROCESS_SPEED);
+    	rotation.set(rotationSpeed);
     }
     
-    public void checkForJam() {
-    	if(rotation.get() > 0 || rotation.get() < 0) {
-    		if (deJammer.getRate() == 0) { 
-    			fixJam();
-    		}
-    	}
-    }
-    
-    public void fixJam() {
-    	rotation.set(-1*rotation.get());
+    public void reverse() {
+    	rotationSpeed *= -1;
     }
     
     public void stop() {
     	rotation.set(0);
     }
     
-    public double getEncoderRaw() {
-    	return deJammer.getRaw();
+    public double getEncoderRate(){
+    	return deJammer.getRate();
+    }
+    
+    public double getEncoder() {
+    	return deJammer.get();
     }
 }
 

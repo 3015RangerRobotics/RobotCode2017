@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3015.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 
@@ -28,5 +29,13 @@ public abstract class CommandBase extends Command {
 		harvester = new Harvester();
 		hopper = new Hopper();
 		oi = new OI();
+		
+		SmartDashboard.putData(climber);
+		SmartDashboard.putData(drive);
+		SmartDashboard.putData(harvester);
+		SmartDashboard.putData(hopper);
+		SmartDashboard.putData(vision);
+		SmartDashboard.putData(shooterFeeder);
+		SmartDashboard.putData(shooterWheel);
 	}
 }

@@ -12,6 +12,11 @@ public class GearManipulator extends Subsystem {
 	DigitalInput gearDetector;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	
+	public GearManipulator(){
+//		clawSolenoid = new DoubleSolenoid();
+//		gearDetector = new DigitalInput();
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -22,13 +27,13 @@ public class GearManipulator extends Subsystem {
      * this opens the claw
      */
     public void openClaw() {
-    	
+    	clawSolenoid.set(DoubleSolenoid.Value.kForward);
     }
     /**
      * this closes the claw
      */
     public void closeClaw() {
-    	
+    	clawSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
     

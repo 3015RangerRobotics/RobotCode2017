@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Vision extends Subsystem {
 	public static volatile double xAngleToTarget = 0;
+	public static volatile boolean isSpoinger = false;
 	private volatile boolean shouldRun = false;
 	private volatile boolean shouldSpeak = false;
 	private volatile boolean shouldSeeTarget = false;
@@ -57,8 +58,9 @@ public class Vision extends Subsystem {
 					while(shouldRun){
 						String messageIn = in.readLine();
 						if(messageIn != null){
-							System.out.println(messageIn);
+//							System.out.println(messageIn);
 							Vision.xAngleToTarget = Double.parseDouble(messageIn.substring(0, messageIn.indexOf(',')));
+							Vision.isSpoinger = Boolean.parseBoolean(messageIn.substring(messageIn.indexOf('-')));
 						}
 						
 						if(shouldSeeTarget){

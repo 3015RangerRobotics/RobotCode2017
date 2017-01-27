@@ -25,7 +25,7 @@ public class Hopper extends Subsystem {
     }
     
     public void initDefaultCommand() {
-       this.setDefaultCommand(new HopperStop());
+//       this.setDefaultCommand(new HopperStop());
     }
     
     public void rotate() {

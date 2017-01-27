@@ -2,8 +2,7 @@ package org.usfirst.frc.team3015.robot.subsystems;
 
 import org.usfirst.frc.team3015.robot.commands.HopperStop;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.VictorSP;
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -12,8 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Hopper extends Subsystem {
 
-    private VictorSP rotation;
-    private Encoder deJammer;
+    private CANTalon rotation;
     private double rotationSpeed = 0.5;
     
     /**
@@ -40,12 +38,10 @@ public class Hopper extends Subsystem {
     	rotation.set(0);
     }
     
-    public double getEncoderRate(){
-    	return deJammer.getRate();
+    public double getCurrent(){
+    	return rotation.getOutputCurrent();
     }
     
-    public double getEncoder() {
-    	return deJammer.get();
-    }
+    
 }
 

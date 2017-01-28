@@ -2,7 +2,7 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- *
+ *Command to climb up
  */
 public class ClimberClimbUp extends CommandBase {
 

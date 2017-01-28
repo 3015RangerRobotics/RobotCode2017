@@ -1,5 +1,4 @@
 package org.usfirst.frc.team3015.robot.subsystems;
-
 import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -9,6 +8,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Code for our skid-steer drop-H drive train
@@ -59,6 +59,7 @@ public class DriveTrain extends Subsystem {
      * @return NavX angle
      */
     public double getAngle(){
+    	SmartDashboard.putNumber("gyro",imu.getYaw());
     	return imu.getYaw();
     }
     

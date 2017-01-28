@@ -16,4 +16,16 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
+
+/**
+ * Names for Values
+ */
+// climbEncoder = encoder used for climbing, Found in Climber
+// gyro = it is the navX angle, found in DriveTrain
+// gearDetector = detects gears, found in GearManipulator
+// pressureSensor = senses pressure, found in OurCompressor
+// ballFeederEncoder = reads speed of ball feeder, found in shooterFeeder
+// shooterWheelEncoder = reads speed of shooter wheel, found in ShooterWheel
+//
+
 }

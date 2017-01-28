@@ -2,6 +2,7 @@ package org.usfirst.frc.team3015.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class GearManipulator extends Subsystem {
 	private DoubleSolenoid clawActuator;
 	private DoubleSolenoid tiltActuator;
+	private Solenoid pegPiston; // name in progress, may not be used. 
 	private VictorSP gearIntake;
 	private DigitalInput gearDetector;
 
@@ -58,6 +60,20 @@ public class GearManipulator extends Subsystem {
     }
     
     /**
+     * Push gear onto (or father on) peg 
+     */
+    public void extendPegPiston() {
+    	pegPiston.set(true);
+    }
+    
+    /**
+     * Retract solenoid
+     */
+    public void resetPegPiston() {
+    	pegPiston.set(false);
+    }
+    
+    /**
      * Run intake
      */
     public void intakeForward() {
@@ -84,6 +100,22 @@ public class GearManipulator extends Subsystem {
      */
     public boolean getIsGearPresent() {
     	return gearDetector.get();
+    }
+    
+    public boolean isTiltedUp() {
+    	return tiltActuator.get() == DoubleSolenoid.Value.kForward;
+    }
+    
+    public boolean isTiltedDown() {
+    	return tiltActuator.get() == DoubleSolenoid.Value.kReverse;
+    }
+    
+    public boolean isClawOpen() {
+    	return clawActuator.get() == DoubleSolenoid.Value.kForward;
+    }
+    
+    public boolean isClawClosed() {
+    	return clawActuator.get() == DoubleSolenoid.Value.kReverse;
     }
 }
 

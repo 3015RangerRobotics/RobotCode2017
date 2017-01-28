@@ -2,12 +2,12 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- *Command to climb down
+ * Stops compressor
  */
-public class ClimberClimbDown extends CommandBase {
+public class OurCompressorOff extends CommandBase {
 
-    public ClimberClimbDown() {
-    	requires(climber);
+    public OurCompressorOff() {
+        requires(ourCompressor);
     }
 
     // Called just before this Command runs the first time
@@ -16,7 +16,7 @@ public class ClimberClimbDown extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.climbDown();
+    	ourCompressor.stopCompressor();
     }
 
     // Make this return true when this Command no longer needs to run execute()

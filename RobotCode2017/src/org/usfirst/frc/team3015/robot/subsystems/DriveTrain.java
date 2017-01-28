@@ -5,6 +5,7 @@ import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -27,7 +28,7 @@ public class DriveTrain extends Subsystem {
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
 		hWheelSolenoid = new DoubleSolenoid(0, 1);
-		imu = new AHRS(SerialPort.Port.kUSB);
+		imu = new AHRS(I2C.Port.kOnboard);
 	}
 	
 	/**
@@ -58,7 +59,7 @@ public class DriveTrain extends Subsystem {
      * @return NavX angle
      */
     public double getAngle(){
-    	return imu.getAngle();
+    	return imu.getYaw();
     }
     
     public void setHWheelSolenoid(DoubleSolenoid.Value value){

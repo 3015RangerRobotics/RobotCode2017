@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
-import org.usfirst.frc.team3015.robot.commands.HopperStop;
-
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,13 +10,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Hopper extends Subsystem {
 
     private CANTalon rotation;
-    private double rotationSpeed = 0.5;
+    private final double ROTATION_SPEED = 1;
     
     /**
      * Constructs hardware
      */
     public Hopper() {
-//    	rotation = new VictorSP();
+//    	rotation = new CANTalon();
 //    	deJammer = new Encoder();
     }
     
@@ -27,11 +25,11 @@ public class Hopper extends Subsystem {
     }
     
     public void rotate() {
-    	rotation.set(rotationSpeed);
+    	rotation.set(ROTATION_SPEED);
     }
     
     public void reverse() {
-    	rotationSpeed *= -1;
+    	rotation.set(ROTATION_SPEED * -1);
     }
     
     public void stop() {

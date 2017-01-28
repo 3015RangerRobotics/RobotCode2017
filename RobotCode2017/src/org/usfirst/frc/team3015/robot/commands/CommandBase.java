@@ -18,6 +18,7 @@ public abstract class CommandBase extends Command {
 	public static Vision vision;
 	public static Harvester harvester;
 	public static Hopper hopper;
+	public static OurCompressor ourCompressor;
 	public static OI oi;
 	
 	public static void init(){
@@ -28,6 +29,7 @@ public abstract class CommandBase extends Command {
 		climber = new Climber();
 		harvester = new Harvester();
 		hopper = new Hopper();
+		ourCompressor = new OurCompressor();
 		oi = new OI();
 		
 		SmartDashboard.putData(climber);
@@ -37,5 +39,6 @@ public abstract class CommandBase extends Command {
 		SmartDashboard.putData(vision);
 		SmartDashboard.putData(shooterFeeder);
 		SmartDashboard.putData(shooterWheel);
+		SmartDashboard.putData(ourCompressor);
 	}
 }

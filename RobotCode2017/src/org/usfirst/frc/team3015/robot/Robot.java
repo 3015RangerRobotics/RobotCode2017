@@ -124,8 +124,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		Command test = new DriveTurnToTarget(true);
-		test.start();
+//		Command test = new DriveTurnToTarget(true);
+//		test.start();
 	}
 
 	/**

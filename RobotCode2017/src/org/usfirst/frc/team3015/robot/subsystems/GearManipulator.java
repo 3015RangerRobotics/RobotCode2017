@@ -2,23 +2,26 @@ package org.usfirst.frc.team3015.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  *
  */
 public class GearManipulator extends Subsystem {
-	DoubleSolenoid clawSolenoid;
-	DigitalInput gearDetector;
-	DigitalInput test;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	private DoubleSolenoid clawActuator;
+	private DoubleSolenoid tiltActuator;
+	private VictorSP gearIntake;
+	private DigitalInput gearDetector;
+
+	private final double INTAKE_SPEED = .8;
+	private final double INTAKE_REVERSE_SPEED = -.5;
 	
 	public GearManipulator(){
-//		clawSolenoid = new DoubleSolenoid();
+//		clawActuator = new DoubleSolenoid();
+//		tiltActuator = new DoubleSolenoid();
+//		gearMotor = VictorSP();
 //		gearDetector = new DigitalInput();
-		test = new DigitalInput(0);
 	}
 
     public void initDefaultCommand() {
@@ -27,20 +30,60 @@ public class GearManipulator extends Subsystem {
     }
     
     /**
-     * this opens the claw
+     * Opens the claw
      */
     public void openClaw() {
-    	clawSolenoid.set(DoubleSolenoid.Value.kForward);
-    }
-    /**
-     * this closes the claw
-     */
-    public void closeClaw() {
-    	clawSolenoid.set(DoubleSolenoid.Value.kReverse);
+    	clawActuator.set(DoubleSolenoid.Value.kForward);
     }
     
-    public boolean getTest(){
-    	return test.get();
+    /**
+     * Closes the claw
+     */
+    public void closeClaw() {
+    	clawActuator.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    /**
+     * Send manipulator outside the frame
+     */
+    public void tiltDown() {
+    	tiltActuator.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    /**
+     * Send manipulator inside the frame
+     */
+    public void tiltUp() {
+    	tiltActuator.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    /**
+     * Run intake
+     */
+    public void intakeForward() {
+    	gearIntake.set(INTAKE_SPEED);
+    }
+    
+    /**
+     * Reverse intake
+     */
+    public void intakeReverse() {
+    	gearIntake.set(INTAKE_REVERSE_SPEED);
+    }
+    
+    /**
+     * Stop intake
+     */
+    public void intakeStop() {
+    	gearIntake.set(0);
+    }
+    
+    /**
+     * Checks to see if gear is present
+     * @return true/false if gear is present
+     */
+    public boolean getIsGearPresent() {
+    	return gearDetector.get();
     }
 }
 

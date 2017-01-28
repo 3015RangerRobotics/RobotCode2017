@@ -2,25 +2,21 @@ package org.usfirst.frc.team3015.robot.commands;
 
 
 /**
- *
+ * Sends manipulator inside the frame
  */
-public class DriveWithGamepad extends CommandBase {
+public class GearTiltUp extends CommandBase {
 
-    public DriveWithGamepad() {
-        requires(drive);
+    public GearTiltUp() {
+        requires(gearManipulator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	gearManipulator.tiltUp();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.arcadeDrive(oi.getDriverLeftY(), oi.getDriverLeftX(), true);
-//    	if(!drive.isCalibrating()){
-//    		System.out.println("IMU Angle: " + drive.getAngle());
-//    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
-//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,5 +31,6 @@ public class DriveWithGamepad extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

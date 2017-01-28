@@ -5,10 +5,14 @@ import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Code for our skid-steer drop-H drive train
+ */
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
@@ -16,28 +20,46 @@ public class DriveTrain extends Subsystem {
 	private DoubleSolenoid hWheelSolenoid;
 	private AHRS imu;
 	
+	/**
+	 * Constructs the drive train
+	 */
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
 		hWheelSolenoid = new DoubleSolenoid(0, 1);
-		imu = new AHRS(SerialPort.Port.kUSB);
+		imu = new AHRS(I2C.Port.kOnboard);
 	}
 	
+	/**
+	 * Sets default command to DriveWithGamepad 
+	 */
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithGamepad());
     }
     
+    /**
+     * Checks to see if the NavX is calibrating
+     * @return If the NavX is calibrating
+     */
     public boolean isCalibrating(){
     	return imu.isCalibrating();
     }
     
+    /**
+     * Checks to see if NavX is getting magnetic interference
+     * @return If the NavX is getting magnetic interference
+     */
     public boolean isMagneticDisturbance(){
     	return imu.isMagneticDisturbance();
     }
     
+    /**
+     * Gets the angle from the NavX
+     * @return NavX angle
+     */
     public double getAngle(){
-    	return imu.getAngle();
+    	return imu.getYaw();
     }
     
     public void setHWheelSolenoid(DoubleSolenoid.Value value){
@@ -47,22 +69,28 @@ public class DriveTrain extends Subsystem {
     public DoubleSolenoid.Value getHWheelSolenoid(){
     	return hWheelSolenoid.get();
     }
-    
-    public void arcadeDrive(double turnValue, double moveValue, boolean squaredInputs) {
+  
+    /**
+     * Single stick driving
+     * @param moveValue		
+     * @param rotateValue		
+     * @param squaredInputs	
+     */
+    public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
         // local variables to hold the computed PWM values for the motors
         double leftMotorSpeed;
         double rightMotorSpeed;
 
-        turnValue = limit(turnValue);
+        rotateValue = limit(rotateValue);
         moveValue = limit(moveValue);
 
         if (squaredInputs) {
           // square the inputs (while preserving the sign) to increase fine control
           // while permitting full power
-        	if (turnValue >= 0.0) {
-        		turnValue = turnValue * turnValue;
+        	if (rotateValue >= 0.0) {
+        		rotateValue = rotateValue * rotateValue;
         	} else {
-	            turnValue = -(turnValue * turnValue);
+	            rotateValue = -(rotateValue * rotateValue);
 	        }
 	        if (moveValue >= 0.0) {
 	        	moveValue = moveValue * moveValue;
@@ -71,21 +99,21 @@ public class DriveTrain extends Subsystem {
 	        }
         }
 
-        if (turnValue > 0.0) {
+        if (rotateValue > 0.0) {
         	if (moveValue > 0.0) {
-        		leftMotorSpeed = turnValue - moveValue;
-        		rightMotorSpeed = Math.max(turnValue, moveValue);
+        		leftMotorSpeed = rotateValue - moveValue;
+        		rightMotorSpeed = Math.max(rotateValue, moveValue);
 	        } else {
-	        	leftMotorSpeed = Math.max(turnValue, -moveValue);
-	        	rightMotorSpeed = turnValue + moveValue;
+	        	leftMotorSpeed = Math.max(rotateValue, -moveValue);
+	        	rightMotorSpeed = rotateValue + moveValue;
 	        }
 	    } else {
 	    	if (moveValue > 0.0) {
-	    		leftMotorSpeed = -Math.max(-turnValue, moveValue);
-	    		rightMotorSpeed = turnValue + moveValue;
+	    		leftMotorSpeed = -Math.max(-rotateValue, moveValue);
+	    		rightMotorSpeed = rotateValue + moveValue;
 	        } else {
-	        	leftMotorSpeed = turnValue - moveValue;
-	        	rightMotorSpeed = -Math.max(-turnValue, -moveValue);
+	        	leftMotorSpeed = rotateValue - moveValue;
+	        	rightMotorSpeed = -Math.max(-rotateValue, -moveValue);
 	        }
 	    }	
 	    setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);

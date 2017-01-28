@@ -2,10 +2,8 @@ package org.usfirst.frc.team3015.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+
+
 import org.usfirst.frc.team3015.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,6 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	//Commands & Inputs for Driver
 	Joystick driver = new Joystick(0);
 	Button driverA1 = new JoystickButton(driver, 1);
 	Button driverB2 = new JoystickButton(driver, 2);
@@ -34,7 +33,7 @@ public class OI {
 	Button driverDRight = new DPad(driver, DPad.Value.kDPadRight);
 	Button driverLTrig = new JoystickTrigger(driver,JoystickTrigger.Trigger.kLeftTrigger,.05);
 	Button driverRTrig = new JoystickTrigger(driver,JoystickTrigger.Trigger.kRightTrigger,.05);
-	
+	//Commands & Inputs for coDriver
 	Joystick coDriver = new Joystick(1);
 	Button coDriverA1 = new JoystickButton(coDriver, 1);
 	Button coDriverB2 = new JoystickButton(coDriver, 2);
@@ -52,9 +51,9 @@ public class OI {
 	Button coDriverDRight = new DPad(coDriver, DPad.Value.kDPadRight);
 	Button coDriverLTrig = new JoystickTrigger(coDriver,JoystickTrigger.Trigger.kLeftTrigger); 
 	Button coDriverRTrig = new JoystickTrigger(coDriver,JoystickTrigger.Trigger.kRightTrigger);
+	
 	public OI() {
-		driverA1.whenPressed(new DriveTurnToTarget()); 
-		driverSTART8.whenPressed(new CG_SystemsCheck());
+		driverA1.whenPressed(new DriveTurnToTarget(false));
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 	}

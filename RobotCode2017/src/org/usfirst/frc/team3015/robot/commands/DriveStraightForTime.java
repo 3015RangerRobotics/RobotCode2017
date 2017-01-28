@@ -1,11 +1,15 @@
 package org.usfirst.frc.team3015.robot.commands;
 
 /**
- *
+ * Driving for a set amount of time at a set speed
  */
 public class DriveStraightForTime extends CommandBase {
 	private double speed;
-	
+	/**
+	 * Driving for a set amount of time at a set speed
+	 * @param time  Length of time to drive
+	 * @param speed Speed at which it drives
+	 */
     public DriveStraightForTime(double time,double speed){
         this.speed = speed;
         this.setTimeout(time);

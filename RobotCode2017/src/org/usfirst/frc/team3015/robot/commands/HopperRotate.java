@@ -17,7 +17,7 @@ public class HopperRotate extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	hopper.rotate();
-    	if(hopper.getCurrent() >= 24){
+    	if(Math.abs(hopper.getCurrent()) >= 24){
     		hopper.reverse();
     	}
     }

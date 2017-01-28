@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
-import org.usfirst.frc.team3015.robot.commands.ClimberClimbUp;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;

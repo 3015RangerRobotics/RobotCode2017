@@ -12,7 +12,7 @@ public class Harvester extends Subsystem {
     /**
      * Constructs hardware
      */
-	public void Harvester(){
+	public Harvester(){
 //		intake = new VictorSP()
 	}
 	

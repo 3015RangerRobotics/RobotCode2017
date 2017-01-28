@@ -3,7 +3,8 @@ package org.usfirst.frc.team3015.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 
 /**
- * 
+ * Runs the compressor
+ * Stops if lower than set match time or voltage
  */
 public class OurCompressorAuto extends CommandBase {
 	private final double CUTOFF_VOLTAGE = 7.5;

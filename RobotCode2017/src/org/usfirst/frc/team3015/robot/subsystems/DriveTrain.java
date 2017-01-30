@@ -19,6 +19,10 @@ public class DriveTrain extends Subsystem {
 	private VictorSP hMotors;
 	private DoubleSolenoid hWheelSolenoid;
 	private AHRS imu;
+	private double turnToAngleTurnSpeed = 0;
+	private double turnToAngleIncrement = 0.001;
+	private double lastAngle = 0;
+	private long lastTime = 0;
 	
 	/**
 	 * Constructs the drive train
@@ -36,6 +40,50 @@ public class DriveTrain extends Subsystem {
 	 */
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithGamepad());
+    }
+    
+    public void turnToAngle(double angle, boolean usesGyro){
+    	long currentTime = System.currentTimeMillis();
+    	if(currentTime - lastTime <= 0){
+    		lastTime = currentTime;
+    		return;
+    	}
+    	double updateRate = 1000/(currentTime-lastTime);
+    	double turnRate;
+    	if(Vision.xAngleToTarget >= 10){
+    		turnRate = -15.0;
+    	}else if(Vision.xAngleToTarget >= 1){
+    		turnRate = -10.0;
+    	}else if(Vision.xAngleToTarget >= 0.25){
+    		turnRate = -5.0;
+    	}else if(Vision.xAngleToTarget <= -10){
+    		turnRate = 15.0;
+    	}else if(Vision.xAngleToTarget <= -1){
+    		turnRate = 10.0;
+    	}else if(Vision.xAngleToTarget <= -0.25){
+    		turnRate = 5.0;
+    	}
+    	else{
+    		turnRate = 0;
+    	}
+    	
+    	double neededTurnAmount = Math.abs(turnRate / updateRate);
+    	double turnAmount = Math.abs(lastAngle - (usesGyro ? getAngle() : Vision.xAngleToTarget));
+    	if(turnAmount <= neededTurnAmount - neededTurnAmount*0.1){
+    		turnToAngleTurnSpeed += turnToAngleIncrement;
+    	}else if(turnAmount >= neededTurnAmount + neededTurnAmount*0.1){
+    		turnToAngleTurnSpeed -= turnToAngleIncrement;
+    	}
+    	System.out.println("Update Rate: " + updateRate);
+    	System.out.println("Turn Amount: " + turnAmount);
+    	System.out.println("Needed turn amount: " + neededTurnAmount);
+    	System.out.println("Angle: " + getAngle());
+    	System.out.println("Magnetic Disturbance: " + isMagneticDisturbance());
+    	System.out.println("Turn Speed: " + turnToAngleTurnSpeed);
+    	
+    	arcadeDrive(0, (turnRate < 0) ? -turnToAngleTurnSpeed : turnToAngleTurnSpeed, false);
+    	lastAngle = usesGyro ? getAngle() : Vision.xAngleToTarget;
+    	lastTime = currentTime;
     }
     
     /**

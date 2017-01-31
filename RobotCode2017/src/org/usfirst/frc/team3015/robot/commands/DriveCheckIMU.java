@@ -15,7 +15,7 @@ public class DriveCheckIMU extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(drive.getAngle() == 0){
-    		vision.speak("Gyro not found in USB port 2.");
+    		vision.speak("Gyro not found in I squared C port.");
     	}
     }
 

@@ -5,7 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,7 +17,9 @@ public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
 	private VictorSP hMotors;
-	private DoubleSolenoid hWheelSolenoid;
+	private Solenoid hWheelSolenoid;
+	private Solenoid frontOmnis;
+	private Solenoid backOmnis;
 	private AHRS imu;
 	private double turnToAngleTurnSpeed = 0;
 	private double turnToAngleIncrement = 0.001;
@@ -31,7 +33,9 @@ public class DriveTrain extends Subsystem {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
-		hWheelSolenoid = new DoubleSolenoid(0, 1);
+		hWheelSolenoid = new Solenoid(0);
+		frontOmnis = new Solenoid(1);
+		backOmnis = new Solenoid(2);
 		imu = new AHRS(I2C.Port.kOnboard);
 	}
 	
@@ -111,12 +115,40 @@ public class DriveTrain extends Subsystem {
     	return imu.getYaw();
     }
     
-    public void setHWheelSolenoid(DoubleSolenoid.Value value){
-    	hWheelSolenoid.set(value);
+    public void setHWheelDeployed(){
+    	hWheelSolenoid.set(true);
     }
     
-    public DoubleSolenoid.Value getHWheelSolenoid(){
+    public void setHWheelRetracted(){
+    	hWheelSolenoid.set(false);
+    }
+    
+    public boolean getHWheelSolenoid(){
     	return hWheelSolenoid.get();
+    }
+    
+    public void setFrontOmnisDeployed(){
+    	frontOmnis.set(true);
+    }
+    
+    public void setFrontOmnisRetracted(){
+    	frontOmnis.set(false);
+    }
+    
+    public void setBackOmnisDeployed(){
+    	backOmnis.set(true);
+    }
+    
+    public void setBackOmnisRetracted(){
+    	backOmnis.set(false);
+    }
+    
+    public boolean isFrontOmnisDeployed(){
+    	return frontOmnis.get();
+    }
+    
+    public boolean isBackOmnisDeployed(){
+    	return backOmnis.get();
     }
   
     /**

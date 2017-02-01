@@ -54,17 +54,17 @@ public class DriveTrain extends Subsystem {
     	}
     	double updateRate = 1000/(currentTime-lastTime);
     	double turnRate;
-    	if(Vision.xAngleToTarget >= 10){
+    	if(angle >= 10){
     		turnRate = -15.0;
-    	}else if(Vision.xAngleToTarget >= 1){
+    	}else if(angle >= 1){
     		turnRate = -10.0;
-    	}else if(Vision.xAngleToTarget >= 0.25){
+    	}else if(angle >= 0.25){
     		turnRate = -5.0;
-    	}else if(Vision.xAngleToTarget <= -10){
+    	}else if(angle <= -10){
     		turnRate = 15.0;
-    	}else if(Vision.xAngleToTarget <= -1){
+    	}else if(angle <= -1){
     		turnRate = 10.0;
-    	}else if(Vision.xAngleToTarget <= -0.25){
+    	}else if(angle <= -0.25){
     		turnRate = 5.0;
     	}
     	else{

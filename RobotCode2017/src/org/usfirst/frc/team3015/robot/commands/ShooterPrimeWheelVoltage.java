@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
 
 /**
  *
@@ -24,10 +25,10 @@ public class ShooterPrimeWheelVoltage extends CommandBase {
     protected void execute() {
     	shooterWheel.setShooterWheel(1);
     	if (isTimedOut()){
-    		shooterWheel.setIsPrimed(true);
+    		ShooterWheel.setIsPrimed(true);
     	}
     	else {
-    		shooterWheel.setIsPrimed(false);
+    		ShooterWheel.setIsPrimed(false);
     	}
     	
     }

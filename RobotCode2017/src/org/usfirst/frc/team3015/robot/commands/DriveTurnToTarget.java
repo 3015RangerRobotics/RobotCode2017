@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.Robot;
 import org.usfirst.frc.team3015.robot.subsystems.Vision;
 
 

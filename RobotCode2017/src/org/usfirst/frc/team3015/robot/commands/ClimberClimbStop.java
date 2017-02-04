@@ -4,9 +4,9 @@ package org.usfirst.frc.team3015.robot.commands;
 /**
  *Command to climb down
  */
-public class ClimberClimbDown extends CommandBase {
+public class ClimberClimbStop extends CommandBase {
 
-    public ClimberClimbDown() {
+    public ClimberClimbStop() {
     	requires(climber);
     }
 
@@ -16,7 +16,7 @@ public class ClimberClimbDown extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.climbDown();
+    	climber.stopClimb();
     }
 
     // Make this return true when this Command no longer needs to run execute()

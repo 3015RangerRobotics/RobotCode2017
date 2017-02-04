@@ -55,18 +55,18 @@ public class OI {
 	
 	public OI() {
 		driverA1.whenPressed(new DriveTurnToTarget(false));
-		driverB2.whenPressed(new DriveStraightToDistance(1000, 0.5));
+		driverB2.whenPressed(new DriveStraightToDistance(10.00, 0.5));
 		driverX3.whenPressed(new DriveTurnToAngle(90));
 //		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 //		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 	}
 	
 	public double getDriverLeftX(){
-		return driver.getRawAxis(0);
+		return -driver.getRawAxis(0);
 	}
 	
 	public double getDriverLeftY(){
-		return driver.getRawAxis(1) * -1;
+		return -driver.getRawAxis(1);
 	}
 	
 	public double getDriverSumTriggers(){

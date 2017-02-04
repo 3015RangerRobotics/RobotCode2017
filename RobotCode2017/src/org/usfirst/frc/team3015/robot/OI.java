@@ -56,8 +56,8 @@ public class OI {
 	
 	public OI() {
 		driverA1.whenPressed(new DriveTurnToTarget(false));
-		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
-		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
+//		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
+//		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 	}
 	
 	public double getDriverLeftX(){

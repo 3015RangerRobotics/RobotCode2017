@@ -5,6 +5,7 @@ import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,6 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
+	private Encoder leftEncoder; 
+	private Encoder rightEncoder;
+	private Encoder hEncoder;
 	private VictorSP hMotors;
 	private DoubleSolenoid hWheelSolenoid;
 	private DoubleSolenoid frontOmnis;
@@ -33,12 +37,14 @@ public class DriveTrain extends Subsystem {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
-		hWheelSolenoid = new DoubleSolenoid(0, 1);
-		frontOmnis = new DoubleSolenoid(2, 3);
-		backOmnis = new DoubleSolenoid(4, 5);
+//		hWheelSolenoid = new DoubleSolenoid(0, 1);
+//		frontOmnis = new DoubleSolenoid(2, 3);
+//		backOmnis = new DoubleSolenoid(4, 5);
+//		leftEncoder = new Encoder(0,1);
+//		rightEncoder = new Encoder(2,3);
+//		hEncoder = new Encoder(4,5); 
 		imu = new AHRS(I2C.Port.kOnboard);
 	}
-	
 	/**
 	 * Sets default command to DriveWithGamepad 
 	 */
@@ -228,4 +234,16 @@ public class DriveTrain extends Subsystem {
     public void hDrive(double speed){
     	hMotors.set(speed);
     }
+    
+    public double getLeftEncoder() {
+		return leftEncoder.getDistance();
+	}
+
+	public double getRightEncoder() {
+		return rightEncoder.getDistance();
+	}
+
+	public double gethEncoder() {
+		return hEncoder.getDistance();
+	}
 }

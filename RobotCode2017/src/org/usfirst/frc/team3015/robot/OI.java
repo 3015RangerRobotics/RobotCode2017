@@ -1,13 +1,12 @@
 package org.usfirst.frc.team3015.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-
-
-
-import org.usfirst.frc.team3015.robot.commands.*;
+import org.usfirst.frc.team3015.robot.commands.DriveStraightToDistance;
+import org.usfirst.frc.team3015.robot.commands.DriveTurnToAngle;
+import org.usfirst.frc.team3015.robot.commands.DriveTurnToTarget;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -56,6 +55,8 @@ public class OI {
 	
 	public OI() {
 		driverA1.whenPressed(new DriveTurnToTarget(false));
+		driverB2.whenPressed(new DriveStraightToDistance(1000, 0.5));
+		driverX3.whenPressed(new DriveTurnToAngle(90));
 //		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 //		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 	}

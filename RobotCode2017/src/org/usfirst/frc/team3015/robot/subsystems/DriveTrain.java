@@ -14,6 +14,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Code for our skid-steer drop-H drive train
  */
+
+
+
+
+//DO NOT DELETE THIS COMMENT
+//As of right now the transGearRedu, transGrearReduH, wheelCirc, and wheelCircH are not accurate values!!
+//DO NOT DELETE THIS COMMENT
+
+
+
+
+
+
+
+
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
@@ -29,6 +44,12 @@ public class DriveTrain extends Subsystem {
 	private double turnToAngleIncrement = 0.001;
 	private double lastAngle = 0;
 	private long lastTime = 0;
+	private double transGearRedu = 30/44;
+	private double transGearReduH = 30/44;
+	private int clicksPerRotation = 20;
+	private double wheelCirc = 9.0;
+	private double wheelCircH = 9.0;
+	
 	
 	/**
 	 * Constructs the drive train
@@ -116,9 +137,29 @@ public class DriveTrain extends Subsystem {
      * Gets the angle from the NavX
      * @return NavX angle
      */
+    
+    public double getLeftDriveEncoderInches(){
+    	return ((leftEncoder.getDistance() * transGearRedu) / wheelCirc);
+    }
+    public double getRightDriveEncoderInches(){
+    	return ((rightEncoder.getDistance() * transGearRedu) / wheelCirc);
+    }
+    public double getHDriveEncoderInches(){
+    	return ((hEncoder.getDistance() * transGearReduH) / wheelCircH);
+    }
+    public void zeroDriveEncoder(){
+    	leftEncoder.reset();
+    	rightEncoder.reset();
+    }
+    public void zeroHDriveEncoder(){
+    	hEncoder.reset();
+    }
     public double getAngle(){
-    	SmartDashboard.putNumber("gyro",imu.getYaw());
-    	return imu.getYaw();
+    	SmartDashboard.putNumber("gyro",imu.getAngle());
+    	return imu.getAngle();
+    }
+    public void zeroAngle(){
+    	imu.zeroYaw();
     }
     
     public void setHWheelDeployed(){

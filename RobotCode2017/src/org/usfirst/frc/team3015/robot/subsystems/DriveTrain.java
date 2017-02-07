@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 //DO NOT DELETE THIS COMMENT
-//As of right now the transGearRedu, transGrearReduH, wheelCirc, and wheelCircH are not accurate values!!
+//As of right now the transGearRedu and transGrearReduH are not accurate values!!
 //DO NOT DELETE THIS COMMENT
 
 
@@ -47,8 +47,7 @@ public class DriveTrain extends Subsystem {
 	private double transGearRedu = 30/44;
 	private double transGearReduH = 30/44;
 	private int clicksPerRotation = 20;
-	private double wheelCirc = 9.0;
-	private double wheelCircH = 9.0;
+	private double wheelCirc = 4 * Math.PI;
 	
 	
 	/**
@@ -145,7 +144,7 @@ public class DriveTrain extends Subsystem {
     	return ((rightEncoder.getDistance() * transGearRedu) / wheelCirc);
     }
     public double getHDriveEncoderInches(){
-    	return ((hEncoder.getDistance() * transGearReduH) / wheelCircH);
+    	return ((hEncoder.getDistance() * transGearReduH) / wheelCirc);
     }
     public void zeroDriveEncoder(){
     	leftEncoder.reset();

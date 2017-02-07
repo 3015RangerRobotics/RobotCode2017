@@ -48,7 +48,8 @@ public class DriveTrain extends Subsystem {
 	private double transGearReduH = 30/44;
 	private int clicksPerRotation = 20;
 	private double wheelCirc = 4 * Math.PI;
-	
+	private double hDriveCPI = ((clicksPerRotation * transGearReduH)/(wheelCirc));
+	private double driveCPI = ((clicksPerRotation * transGearRedu)/(wheelCirc));
 	
 	/**
 	 * Constructs the drive train
@@ -138,13 +139,13 @@ public class DriveTrain extends Subsystem {
      */
     
     public double getLeftDriveEncoderInches(){
-    	return ((leftEncoder.getDistance() * transGearRedu) / wheelCirc);
+    	return leftEncoder.getDistance() * driveCPI;
     }
     public double getRightDriveEncoderInches(){
-    	return ((rightEncoder.getDistance() * transGearRedu) / wheelCirc);
+    	return rightEncoder.getDistance() * driveCPI;
     }
     public double getHDriveEncoderInches(){
-    	return ((hEncoder.getDistance() * transGearReduH) / wheelCirc);
+    	return hEncoder.getDistance() * hDriveCPI;
     }
     public void zeroDriveEncoder(){
     	leftEncoder.reset();

@@ -52,7 +52,7 @@ public class DriveStraightToDistance extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (isReverse){
-        	if(drive.getLeftEncoderInches() < distance || drive.getRightEncoderInches() < distance){
+        	if(drive.getLeftDriveEncoderInches() < distance || drive.getRightDriveEncoderInches() < distance){
         		return true;
         	}
         }else{

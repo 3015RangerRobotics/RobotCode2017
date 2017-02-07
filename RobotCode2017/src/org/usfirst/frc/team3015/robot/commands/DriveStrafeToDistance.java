@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStraightToDistance extends CommandBase {
+public class DriveStrafeToDistance extends CommandBase {
 	private double distance;
 	private double speed;
 	private boolean isReverse;
 	private double startAngle;
 	
-    public DriveStraightToDistance(double distanceInInches, double speed) {
+    public DriveStrafeToDistance(double distanceInInches, double speed) {
         this.distance = distanceInInches;
         this.speed = speed;
         requires(drive);
@@ -52,7 +52,7 @@ public class DriveStraightToDistance extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (isReverse){
-        	if(drive.getLeftEncoderInches() < distance || drive.getRightEncoderInches() < distance){
+        	if(drive.getLeftDriveEncoderInches() < distance || drive.getRightDriveEncoderInches() < distance){
         		return true;
         	}
         }else{

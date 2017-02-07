@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3015.robot;
 
-import org.usfirst.frc.team3015.robot.commands.DriveStraightToDistance;
+import org.usfirst.frc.team3015.robot.commands.DriveStrafeToDistance;
 import org.usfirst.frc.team3015.robot.commands.DriveTurnToAngle;
 import org.usfirst.frc.team3015.robot.commands.DriveTurnToTarget;
 
@@ -55,7 +55,7 @@ public class OI {
 	
 	public OI() {
 		driverA1.whenPressed(new DriveTurnToTarget(false));
-		driverB2.whenPressed(new DriveStraightToDistance(10.00, 0.5));
+		driverB2.whenPressed(new DriveStrafeToDistance(10.00, 0.5));
 		driverX3.whenPressed(new DriveTurnToAngle(90));
 //		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 //		driverRTrig.whenPressed(new DriveStrafeWithGamepad());

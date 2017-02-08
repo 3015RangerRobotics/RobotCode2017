@@ -139,13 +139,13 @@ public class DriveTrain extends Subsystem {
      */
     
     public double getLeftDriveEncoderInches(){
-    	return leftEncoder.getDistance() * driveCPI;
+    	return leftEncoder.getDistance() / driveCPI;
     }
     public double getRightDriveEncoderInches(){
-    	return rightEncoder.getDistance() * driveCPI;
+    	return rightEncoder.getDistance() / driveCPI;
     }
     public double getHDriveEncoderInches(){
-    	return hEncoder.getDistance() * hDriveCPI;
+    	return hEncoder.getDistance() / hDriveCPI;
     }
     public void zeroDriveEncoder(){
     	leftEncoder.reset();

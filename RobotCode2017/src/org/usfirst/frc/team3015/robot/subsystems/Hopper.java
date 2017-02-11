@@ -11,13 +11,13 @@ public class Hopper extends Subsystem {
 
     private CANTalon rotation;
     private final double ROTATION_SPEED = 1;
+    private final double REVERSE_ROTATION_SPEED = -.5;
     
     /**
      * Constructs hardware
      */
     public Hopper() {
 //    	rotation = new CANTalon();
-//    	deJammer = new Encoder();
     }
     
     public void initDefaultCommand() {
@@ -29,7 +29,7 @@ public class Hopper extends Subsystem {
     }
     
     public void reverse() {
-    	rotation.set(ROTATION_SPEED * -1);
+    	rotation.set(REVERSE_ROTATION_SPEED);
     }
     
     public void stop() {

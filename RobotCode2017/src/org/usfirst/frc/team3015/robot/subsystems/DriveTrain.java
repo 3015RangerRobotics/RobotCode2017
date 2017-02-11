@@ -36,9 +36,8 @@ public class DriveTrain extends Subsystem {
 	private Encoder rightEncoder;
 	private Encoder hEncoder;
 	private VictorSP hMotors;
-	private DoubleSolenoid hWheelSolenoid;
+	private DoubleSolenoid hWheelAndBack;
 	private DoubleSolenoid frontOmnis;
-	private DoubleSolenoid backOmnis;
 	private AHRS imu;
 	private double turnToAngleTurnSpeed = 0;
 	private double turnToAngleIncrement = 0.001;
@@ -57,10 +56,9 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
-//		hMotors = new VictorSP(2);
-//		hWheelSolenoid = new DoubleSolenoid(0, 1);
-//		frontOmnis = new DoubleSolenoid(2, 3);
-//		backOmnis = new DoubleSolenoid(4, 5);
+		hMotors = new VictorSP(2);
+		hWheelAndBack = new DoubleSolenoid(0, 1);
+		frontOmnis = new DoubleSolenoid(2, 3);
 //		leftEncoder = new Encoder(0,1);
 //		rightEncoder = new Encoder(2,3);
 //		hEncoder = new Encoder(4,5); 
@@ -162,16 +160,16 @@ public class DriveTrain extends Subsystem {
     	imu.zeroYaw();
     }
     
-    public void setHWheelDeployed(){
-    	hWheelSolenoid.set(DoubleSolenoid.Value.kForward);
+    public void setHWheelAndBackDeployed(){
+    	hWheelAndBack.set(DoubleSolenoid.Value.kForward);
     }
     
-    public void setHWheelRetracted(){
-    	hWheelSolenoid.set(DoubleSolenoid.Value.kReverse);
+    public void setHWheelAndBackRetracted(){
+    	hWheelAndBack.set(DoubleSolenoid.Value.kReverse);
     }
     
-    public boolean isHWheelSolenoidDeployed(){
-    	return hWheelSolenoid.get() == DoubleSolenoid.Value.kForward;
+    public boolean isHWheelAndBackDeployed(){
+    	return hWheelAndBack.get() == DoubleSolenoid.Value.kForward;
     }
     
     public void setFrontOmnisDeployed(){
@@ -182,20 +180,8 @@ public class DriveTrain extends Subsystem {
     	frontOmnis.set(DoubleSolenoid.Value.kReverse);
     }
     
-    public void setBackOmnisDeployed(){
-    	backOmnis.set(DoubleSolenoid.Value.kForward);
-    }
-    
-    public void setBackOmnisRetracted(){
-    	backOmnis.set(DoubleSolenoid.Value.kReverse);
-    }
-    
     public boolean isFrontOmnisDeployed(){
     	return frontOmnis.get() == DoubleSolenoid.Value.kForward;
-    }
-    
-    public boolean isBackOmnisDeployed(){
-    	return backOmnis.get() == DoubleSolenoid.Value.kForward;
     }
   
     /**

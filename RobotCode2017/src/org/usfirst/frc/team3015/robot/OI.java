@@ -1,8 +1,6 @@
 package org.usfirst.frc.team3015.robot;
 
-import org.usfirst.frc.team3015.robot.commands.DriveStrafeToDistance;
-import org.usfirst.frc.team3015.robot.commands.DriveTurnToAngle;
-import org.usfirst.frc.team3015.robot.commands.DriveTurnToTarget;
+import org.usfirst.frc.team3015.robot.commands.*;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -54,11 +52,23 @@ public class OI {
 	
 	
 	public OI() {
-		driverA1.whenPressed(new DriveTurnToTarget(false));
-		driverB2.whenPressed(new DriveStrafeToDistance(10.00, 0.5));
-		driverX3.whenPressed(new DriveTurnToAngle(90));
-//		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
-//		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
+		driverA1.whileHeld(new HarvesterHarvest());
+		driverB2.whileHeld(new HarvesterReverseHarvest());
+		driverX3.whileHeld(new GearIntake());
+		driverY4.whileHeld(new GearOuttake());
+		driverLB5.whenPressed(new DriveTurnToTarget(true));
+		driverRB6.whileHeld(new DriveAntiDefense());
+		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
+		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
+		
+		coDriverA1.whenPressed(new GearTiltDown());
+		coDriverB2.whenPressed(new HarvesterStop());
+		coDriverX3.whileHeld(new HarvesterHarvest());
+		coDriverY4.whenPressed(new GearTiltUp());
+		coDriverLB5.whenPressed(new GearClawClose());
+		coDriverRB6.whenPressed(new GearClawOpen());
+		coDriverDUp.whileHeld(new ClimberClimbUp());
+		coDriverDUp.whenReleased(new ClimberClimbStop());
 	}
 	
 	public double getDriverLeftX(){

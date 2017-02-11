@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Stops compressor
@@ -16,6 +17,7 @@ public class OurCompressorOff extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putNumber("pressureSensor", ourCompressor.getPressure());
     	ourCompressor.stopCompressor();
     }
 

@@ -13,20 +13,34 @@ public class OurCompressor extends Subsystem {
 	private AnalogPotentiometer pressureSensor;
 	
 	public OurCompressor() {
-//		compressor = new Compressor(1);
+		compressor = new Compressor();
 //		pressureSensor = new AnalogPotentiometer(2, 250, -25);
 	}
 	
+	/**
+	 * Make the compressor run based on the state of the pressure switch.
+	 */
 	public void startCompressor() {
 		compressor.start();
 	}
 	
+	/**
+	 * Stop the compressor from running
+	 */
 	public void stopCompressor() {
 		compressor.stop();
 	}
 	
+	/**
+	 * Get the pressure sensor's reading
+	 * @return Pressure reading in PSI
+	 */
+	public double getPressure() {
+		return pressureSensor.get();
+	}
+	
     public void initDefaultCommand() {
     	// Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        //setDefaultCommand(new OurCompressorOn());
     }
 }

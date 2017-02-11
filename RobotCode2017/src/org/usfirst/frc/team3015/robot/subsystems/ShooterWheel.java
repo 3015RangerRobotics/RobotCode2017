@@ -12,10 +12,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
-//	private VictorSP ballFeeder;
-	
-	private Encoder shooterWheelEncoder;
-//	private Encoder ballFeederEncoder;
 	private static boolean isPrimed = false;
 	
     // Put methods for controlling this subsystem
@@ -24,11 +20,8 @@ public class ShooterWheel extends Subsystem {
  *  Constructing the shooter and declaring shooterWheel
  */
 	public ShooterWheel(){
-//		shooterWheel = new CANTalon(1);
-//    	shooterWheel.configEncoderCodesPerRev(codesPerRev)
-//		ballFeeder = new VictorSP(3);
-//		shooterWheelEncoder = new Encoder(6, 7);
-//		ballFeederEncoder = new Encoder(8, 9);
+		shooterWheel = new CANTalon(1);
+//    	shooterWheel.configEncoderCodesPerRev(codesPerRev);
 		
 		
 	}

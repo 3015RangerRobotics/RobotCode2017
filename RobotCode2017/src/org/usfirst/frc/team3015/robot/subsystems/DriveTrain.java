@@ -57,13 +57,13 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
-//		hMotors = new VictorSP(2);
+		hMotors = new VictorSP(2);
 //		hWheelSolenoid = new DoubleSolenoid(0, 1);
 //		frontOmnis = new DoubleSolenoid(2, 3);
 //		backOmnis = new DoubleSolenoid(4, 5);
-//		leftEncoder = new Encoder(0,1);
-//		rightEncoder = new Encoder(2,3);
-//		hEncoder = new Encoder(4,5); 
+		leftEncoder = new Encoder(0,1);
+		rightEncoder = new Encoder(2,3);
+		hEncoder = new Encoder(4,5); 
 		imu = new AHRS(I2C.Port.kOnboard);
 	}
 	/**

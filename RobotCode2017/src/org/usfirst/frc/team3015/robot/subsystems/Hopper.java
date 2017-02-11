@@ -17,7 +17,7 @@ public class Hopper extends Subsystem {
      * Constructs hardware
      */
     public Hopper() {
-//    	rotation = new CANTalon();
+    	rotation = new CANTalon(2);
     }
     
     public void initDefaultCommand() {

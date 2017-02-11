@@ -45,7 +45,7 @@ public class DriveTrain extends Subsystem {
 	private double lastAngle = 0;
 	private long lastTime = 0;
 	private double transGearRedu = 30/44;
-	private double transGearReduH = 30/44;
+	private double transGearReduH = 50/1;
 	private int clicksPerRotation = 20;
 	private double wheelCirc = 4 * Math.PI;
 	private double hDriveCPI = ((clicksPerRotation * transGearReduH)/(wheelCirc));
@@ -57,13 +57,13 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
-		hMotors = new VictorSP(2);
+//		hMotors = new VictorSP(2);
 //		hWheelSolenoid = new DoubleSolenoid(0, 1);
 //		frontOmnis = new DoubleSolenoid(2, 3);
 //		backOmnis = new DoubleSolenoid(4, 5);
-		leftEncoder = new Encoder(0,1);
-		rightEncoder = new Encoder(2,3);
-		hEncoder = new Encoder(4,5); 
+//		leftEncoder = new Encoder(0,1);
+//		rightEncoder = new Encoder(2,3);
+//		hEncoder = new Encoder(4,5); 
 		imu = new AHRS(I2C.Port.kOnboard);
 	}
 	/**

@@ -1,13 +1,11 @@
 
 package org.usfirst.frc.team3015.robot;
 
-import org.spectrum3847.RIOdroid.RIOadb;
-import org.spectrum3847.RIOdroid.RIOdroid;
+import org.usfirst.frc.team3015.robot.commands.AutonomousCrossBaseLine;
+import org.usfirst.frc.team3015.robot.commands.AutonomousHopperShot;
 import org.usfirst.frc.team3015.robot.commands.CommandBase;
-import org.usfirst.frc.team3015.robot.commands.DriveTurnToTarget;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -34,8 +32,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-//		chooser.addDefault("Default Auto", new CommandBase());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
+		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		SmartDashboard.putData("Auto mode", chooser);
 		//init stuff
 //		RIOdroid.initUSB();

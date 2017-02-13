@@ -32,6 +32,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		CommandBase.init();//Construct Subsystems BEFORE any Commands are constructed
 		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
 		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -57,7 +58,6 @@ public class Robot extends IterativeRobot {
 //		RIOdroid.executeCommand("adb shell input tap 1200 1000");
 //		Timer.delay(1);
 		//init command base
-		CommandBase.init();
 		System.out.println("FINISHED ROBOT INIT");
 	}
 

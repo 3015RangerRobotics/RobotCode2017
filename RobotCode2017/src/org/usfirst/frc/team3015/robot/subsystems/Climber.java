@@ -15,7 +15,7 @@ public class Climber extends Subsystem {
 	 * Constructs Hardware
 	 */
 	public Climber() {
-		climbMotor = new CANTalon(3);
+//		climbMotor = new CANTalon(3);
 	}
 	
 	@Override

@@ -1,11 +1,14 @@
 
 package org.usfirst.frc.team3015.robot;
 
+import org.spectrum3847.RIOdroid.RIOadb;
+import org.spectrum3847.RIOdroid.RIOdroid;
 import org.usfirst.frc.team3015.robot.commands.AutonomousCrossBaseLine;
 import org.usfirst.frc.team3015.robot.commands.AutonomousHopperShot;
 import org.usfirst.frc.team3015.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -32,32 +35,32 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
-		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		SmartDashboard.putData("Auto mode", chooser);
 		//init stuff
-//		RIOdroid.initUSB();
-//		System.out.println(RIOadb.clearNetworkPorts());
-//		RIOdroid.init();
+		RIOdroid.initUSB();
+		System.out.println(RIOadb.clearNetworkPorts());
+		RIOdroid.init();
 //		//forward the ports used for comms
-//		Timer.delay(1);
-//		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
-//		Timer.delay(1);
-//		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
+		Timer.delay(1);
+		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
+		Timer.delay(1);
+		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
 //		//run adb commands on the phone to close the app if it is running, and re-open it
-//		Timer.delay(1);
+		Timer.delay(1);
 ////		RIOdroid.executeCommand("adb shell input KEYCODE_WAKEUP");
 ////		Timer.delay(0.5);
 ////		RIOdroid.executeCommand("adb shell input text 3015 && adb shell input keyevent 66");
 ////		Timer.delay(0.5);
-//		RIOdroid.executeCommand("adb shell am force-stop com.rangerrobot.rangervision");
-//		Timer.delay(0.5);
-//		RIOdroid.executeCommand("adb shell am start -n com.rangerrobot.rangervision/com.rangerrobot.rangervision.RangerVision");
-//		Timer.delay(2);
-//		RIOdroid.executeCommand("adb shell input tap 1200 1000");
-//		Timer.delay(1);
+		RIOdroid.executeCommand("adb shell am force-stop com.rangerrobot.rangervision");
+		Timer.delay(0.5);
+		RIOdroid.executeCommand("adb shell am start -n com.rangerrobot.rangervision/com.rangerrobot.rangervision.RangerVision");
+		Timer.delay(2);
+		RIOdroid.executeCommand("adb shell input tap 1200 1000");
+		Timer.delay(1);
 		//init command base
 		CommandBase.init();
+		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
+		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		System.out.println("FINISHED ROBOT INIT");
 	}
 

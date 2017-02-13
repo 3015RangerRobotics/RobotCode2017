@@ -19,8 +19,8 @@ public class Harvester extends Subsystem {
      * Constructs hardware
      */
 	public Harvester(){
-		intake = new VictorSP(3);
-		transport = new VictorSP(4);
+//		intake = new VictorSP(3);
+//		transport = new VictorSP(4);
 	}
 	
 	public void initDefaultCommand() {

@@ -20,7 +20,7 @@ public class ShooterWheel extends Subsystem {
  *  Constructing the shooter and declaring shooterWheel
  */
 	public ShooterWheel(){
-		shooterWheel = new CANTalon(1);
+//		shooterWheel = new CANTalon(1);
 //    	shooterWheel.configEncoderCodesPerRev(codesPerRev);
 		
 		

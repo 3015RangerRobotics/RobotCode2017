@@ -35,6 +35,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		CommandBase.init();//Construct Subsystems BEFORE any Commands are constructed
+		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
+		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		SmartDashboard.putData("Auto mode", chooser);
 		//init stuff
 		RIOdroid.initUSB();

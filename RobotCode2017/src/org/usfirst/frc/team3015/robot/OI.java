@@ -52,8 +52,10 @@ public class OI {
 	
 	
 	public OI() {
-		driverA1.whileHeld(new HarvesterHarvest());
-		driverB2.whileHeld(new HarvesterReverseHarvest());
+//		driverA1.whileHeld(new HarvesterHarvest());
+//		driverB2.whileHeld(new HarvesterReverseHarvest());
+		driverA1.whenPressed(new StreamFrontCamera());
+		driverB2.whenPressed(new StreamBackCamera());
 		driverX3.whileHeld(new GearIntake());
 		driverY4.whileHeld(new GearOuttake());
 		driverLB5.whenPressed(new DriveTurnToTarget(true));

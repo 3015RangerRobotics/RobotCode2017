@@ -20,6 +20,7 @@ public abstract class CommandBase extends Command {
 	public static Hopper hopper;
 	public static OurCompressor ourCompressor;
 	public static GearManipulator gearManipulator;
+	public static CameraStream cameraStream;
 	public static OI oi;
 	
 	public static void init(){
@@ -32,6 +33,7 @@ public abstract class CommandBase extends Command {
 		hopper = new Hopper();
 		ourCompressor = new OurCompressor();
 		gearManipulator = new GearManipulator();
+		cameraStream = new CameraStream();
 		oi = new OI();
 		
 		SmartDashboard.putData(climber);

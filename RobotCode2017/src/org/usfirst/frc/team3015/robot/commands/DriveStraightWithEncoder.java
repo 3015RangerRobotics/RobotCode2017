@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStrightWithEncoder extends Command {
+public class DriveStraightWithEncoder extends Command {
 
-    public DriveStrightWithEncoder() {
+    public DriveStraightWithEncoder() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

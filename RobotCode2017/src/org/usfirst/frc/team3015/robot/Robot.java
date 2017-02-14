@@ -4,7 +4,7 @@ package org.usfirst.frc.team3015.robot;
 import org.spectrum3847.RIOdroid.RIOadb;
 import org.spectrum3847.RIOdroid.RIOdroid;
 import org.usfirst.frc.team3015.robot.commands.AutonomousCrossBaseLine;
-import org.usfirst.frc.team3015.robot.commands.AutonomousHopperShot;
+//import org.usfirst.frc.team3015.robot.commands.AutonomousHopperShot;
 import org.usfirst.frc.team3015.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
 //		Timer.delay(2);
 //		RIOdroid.executeCommand("adb shell input tap 1200 1000");
 //		Timer.delay(1);
-		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
+//		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
 		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		SmartDashboard.putData("autonomous",chooser);
 		System.out.println("FINISHED ROBOT INIT");

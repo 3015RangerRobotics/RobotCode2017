@@ -7,12 +7,13 @@ package org.usfirst.frc.team3015.robot.commands;
 public class ShooterStopFiring extends CommandBase {
 
     public ShooterStopFiring() {
-    	requires(shooterFeeder);
+    	requires(hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooterFeeder.setBallFeeder(0);
+    	hopper.stopFeeder();
+    	hopper.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

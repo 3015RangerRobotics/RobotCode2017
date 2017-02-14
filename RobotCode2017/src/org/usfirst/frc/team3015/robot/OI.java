@@ -54,23 +54,23 @@ public class OI {
 	public OI() {
 //		driverA1.whileHeld(new HarvesterHarvest());
 //		driverB2.whileHeld(new HarvesterReverseHarvest());
-		driverA1.whenPressed(new StreamFrontCamera());
-		driverB2.whenPressed(new StreamBackCamera());
-		driverX3.whileHeld(new GearIntake());
-		driverY4.whileHeld(new GearOuttake());
-		driverLB5.whenPressed(new DriveTurnToTarget(true));
-		driverRB6.whileHeld(new DriveAntiDefense());
+//		driverA1.whenPressed(new StreamFrontCamera());
+//		driverB2.whenPressed(new StreamBackCamera());
+//		driverX3.whileHeld(new GearIntake());
+//		driverY4.whileHeld(new GearOuttake());
+//		driverLB5.whenPressed(new DriveTurnToTarget(true));
+//		driverRB6.whileHeld(new DriveAntiDefense());
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
 		
-		coDriverA1.whenPressed(new GearTiltDown());
-		coDriverB2.whenPressed(new HarvesterStop());
-		coDriverX3.whileHeld(new HarvesterHarvest());
-		coDriverY4.whenPressed(new GearTiltUp());
-		coDriverLB5.whenPressed(new GearClawClose());
-		coDriverRB6.whenPressed(new GearClawOpen());
-		coDriverDUp.whileHeld(new ClimberClimbUp());
-		coDriverDUp.whenReleased(new ClimberClimbStop());
+//		coDriverA1.whenPressed(new GearTiltDown());
+//		coDriverB2.whenPressed(new HarvesterStop());
+//		coDriverX3.whileHeld(new HarvesterHarvest());
+//		coDriverY4.whenPressed(new GearTiltUp());
+//		coDriverLB5.whenPressed(new GearClawClose());
+//		coDriverRB6.whenPressed(new GearClawOpen());
+//		coDriverDUp.whileHeld(new ClimberClimbUp());
+//		coDriverDUp.whenReleased(new ClimberClimbStop());
 	}
 	
 	public double getDriverLeftX(){

@@ -12,13 +12,13 @@ public class DriveStrafeWithGamepad extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drive.setHWheelAndBackDeployed();
-    	drive.setFrontOmnisDeployed();
+//    	drive.setHWheelAndBackDeployed();
+//    	drive.setFrontOmnisDeployed();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.hDrive(oi.getDriverSumTriggers());
+    	drive.hDrive(-oi.getDriverSumTriggers());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -28,8 +28,8 @@ public class DriveStrafeWithGamepad extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drive.setHWheelAndBackRetracted();
-    	drive.setFrontOmnisRetracted();
+//    	drive.setHWheelAndBackRetracted();
+//    	drive.setFrontOmnisRetracted();
     }
 
     // Called when another command which requires one or more of the same

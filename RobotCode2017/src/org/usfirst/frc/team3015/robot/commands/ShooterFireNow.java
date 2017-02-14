@@ -1,41 +1,38 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
+import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
+
 
 /**
  *
  */
-public class DriveStrafeForTime extends CommandBase {
-	private double speed;
-	private Timer timer = new Timer();
+public class ShooterFireNow extends CommandBase {
 	
-    public DriveStrafeForTime(double time, double speed) {
-        this.speed = speed; 
-        this.setTimeout(time);
-        requires(drive);
+
+    public ShooterFireNow() {
+    	requires(hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timer.reset();
-    	timer.start();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (timer.get()>0.3) {
-			drive.hDrive(speed);
-		}
+    	hopper.startFeeder();
+		hopper.rotate();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drive.hDrive(0);
+    	hopper.stopFeeder();
+    	hopper.stop();
     }
 
     // Called when another command which requires one or more of the same

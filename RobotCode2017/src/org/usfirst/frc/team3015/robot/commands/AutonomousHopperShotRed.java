@@ -9,22 +9,14 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutonomousHopperShotRed extends CommandGroup {
 
     public AutonomousHopperShotRed() {
+    	
+    	addParallel(new ShooterPrimeWheelSpeed());
     	addSequential(new DriveStraightToDistance(70.0, 1.0));
     	
-        addParallel(new DriveStrafeToDistance(70.0, 1.0));
-        addSequential(new ShooterPrimeWheelSpeed());
+        addSequential(new DriveStrafeToDistance(70.0, 1.0));
         
-    	//addSequential(new DriveStrafeToDistance (70.0, 1.0));
+    	addSequential(new ShooterFireNow());
     	
-    	addSequential(new WaitCommand(1));
     	
-    	//addParallel()
-        //addParallel(new Command1());
-        //addSequential(new Command2());
-
-    	
-    	addParallel(new HopperRotate());
-    	
-    	addSequential(new HopperStop());
     }
 }

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
@@ -9,7 +9,7 @@ public class DriveStrafeToDistance extends CommandBase {
 	private double distance;
 	private double speed;
 	private boolean isReverse;
-	private double startAngle;
+	private Timer timer = new Timer();
 	
     public DriveStrafeToDistance(double distanceInInches, double speed) {
         this.distance = distanceInInches;
@@ -21,32 +21,15 @@ public class DriveStrafeToDistance extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	startAngle = drive.getAngle();
+    	timer.reset();
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double turnValue;
-    	double currentAngle = drive.getAngle();
-    	if (currentAngle > startAngle + 10){
-    		turnValue = 0.5;
-    		
-    	}
-    	else if (currentAngle > startAngle + 0.5){
-    		turnValue = 0.3;
-    	}
-    	else if (currentAngle < startAngle - 0.5){
-    		turnValue = -0.3;
-    	}
-    	else if (currentAngle < startAngle - 10){
-    		turnValue = -0.5;
-    	}
-    	else{
-    		turnValue = 0;
-    	}
-    	
-    	
-    	drive.arcadeDrive(speed, turnValue, false);
+    	if (timer.get()>0.3) {
+			drive.hDrive(speed);
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

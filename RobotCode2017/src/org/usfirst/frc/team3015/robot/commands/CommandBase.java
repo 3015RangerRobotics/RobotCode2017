@@ -13,7 +13,7 @@ import org.usfirst.frc.team3015.robot.subsystems.*;
 public abstract class CommandBase extends Command {
 	public static DriveTrain drive;
 	public static ShooterWheel shooterWheel;
-	public static ShooterFeeder shooterFeeder;
+//	public static ShooterFeeder shooterFeeder;
 	public static Climber climber;
 	public static Vision vision;
 	public static Harvester harvester;
@@ -26,7 +26,7 @@ public abstract class CommandBase extends Command {
 	public static void init(){
 		drive = new DriveTrain();
 		shooterWheel = new ShooterWheel();
-		shooterFeeder = new ShooterFeeder();
+//		shooterFeeder = new ShooterFeeder();
 		vision = new Vision();
 		climber = new Climber();
 		harvester = new Harvester();
@@ -41,7 +41,7 @@ public abstract class CommandBase extends Command {
 		SmartDashboard.putData(harvester);
 		SmartDashboard.putData(hopper);
 		SmartDashboard.putData(vision);
-		SmartDashboard.putData(shooterFeeder);
+//		SmartDashboard.putData(shooterFeeder);
 		SmartDashboard.putData(shooterWheel);
 		SmartDashboard.putData(ourCompressor);
 		SmartDashboard.putData(gearManipulator);

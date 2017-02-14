@@ -7,7 +7,7 @@ package org.usfirst.frc.team3015.robot.commands;
 public class ShooterFireNowReverse extends CommandBase {
 
     public ShooterFireNowReverse() {
-    	requires(shooterFeeder);
+    	requires(harvester);
     }
 
     // Called just before this Command runs the first time
@@ -16,7 +16,7 @@ public class ShooterFireNowReverse extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooterFeeder.setBallFeeder(-1);
+    	harvester.setBallFeeder(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -26,7 +26,7 @@ public class ShooterFireNowReverse extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooterFeeder.setBallFeeder(0);
+    	harvester.setBallFeeder(0);
     }
 
     // Called when another command which requires one or more of the same

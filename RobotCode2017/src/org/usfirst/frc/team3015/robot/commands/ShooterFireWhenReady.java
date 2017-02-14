@@ -9,7 +9,7 @@ import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
 public class ShooterFireWhenReady extends CommandBase {
 
     public ShooterFireWhenReady() {
-    	requires(shooterFeeder);
+    	requires(harvester);
     }
 
     // Called just before this Command runs the first time
@@ -19,11 +19,11 @@ public class ShooterFireWhenReady extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(ShooterWheel.isPrimed()) {
-    		shooterFeeder.setBallFeeder(1);
+    		harvester.setBallFeeder(1);
     		
     	}
     	else {
-    		shooterFeeder.setBallFeeder(0);
+    		harvester.setBallFeeder(0);
     		
     	}
     }
@@ -35,7 +35,7 @@ public class ShooterFireWhenReady extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooterFeeder.setBallFeeder(0);
+    	harvester.setBallFeeder(0);
     }
 
     // Called when another command which requires one or more of the same

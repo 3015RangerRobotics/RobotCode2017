@@ -10,9 +10,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Harvester extends Subsystem {
 	private VictorSP intake;
 	private VictorSP transport;
-	private VictorSP ballFeeder;
-	private Encoder ballFeederEncoder;
-
 	
 	private final double HARVEST_IN_SPEED = 0.8;
 	private final double HARVEST_OUT_SPEED = -0.8;
@@ -25,8 +22,6 @@ public class Harvester extends Subsystem {
 	public Harvester(){
 //		intake = new VictorSP(3);
 //		transport = new VictorSP(4);
-//		ballFeeder = new VictorSP(3);
-//    	ballFeederEncoder = new Encoder(8, 9);
 	}
 	
 	public void initDefaultCommand() {
@@ -65,10 +60,5 @@ public class Harvester extends Subsystem {
 	public void stopTransport() {
 		transport.set(0);
 	}
-	
-	public void setBallFeeder(double speed) {
-    	ballFeeder.set(speed);
-    }
-    
 }
 

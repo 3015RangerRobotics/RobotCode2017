@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
-//		hMotors = new VictorSP(2);
+		hMotors = new VictorSP(2);
 //		hWheelAndBack = new DoubleSolenoid(0, 1);
 //		frontOmnis = new DoubleSolenoid(2, 3);
 //		leftEncoder = new Encoder(0,1);

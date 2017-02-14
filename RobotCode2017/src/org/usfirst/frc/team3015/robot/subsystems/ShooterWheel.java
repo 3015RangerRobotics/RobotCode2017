@@ -20,7 +20,7 @@ public class ShooterWheel extends Subsystem {
  *  Constructing the shooter and declaring shooterWheel
  */
 	public ShooterWheel(){
-//		shooterWheel = new CANTalon(1);
+		shooterWheel = new CANTalon(1);
 //    	shooterWheel.configEncoderCodesPerRev(codesPerRev);
 		
 		
@@ -33,15 +33,19 @@ public class ShooterWheel extends Subsystem {
      * Sets the speed of the shooter wheel
      * @param speed speed of the wheel
      */
-    public void setShooterWheel(double speed){
-    	shooterWheel.set(speed);
+    public void startShooterWheel(){
+    	shooterWheel.set(1.0);
     }
     /**
      * Returns if the shooter wheel is primed
      * @return isPrimed
      */
-    public static boolean isPrimed(){
+    public boolean isPrimed(){
     	return isPrimed;
+    }
+    
+    public void stopShooterWheel(){
+    	shooterWheel.set(0);
     }
     
     public static void setIsPrimed(boolean myIsPrimed) {

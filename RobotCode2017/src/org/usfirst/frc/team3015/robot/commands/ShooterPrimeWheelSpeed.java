@@ -8,22 +8,20 @@ import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
 public class ShooterPrimeWheelSpeed extends CommandBase {
 
     public ShooterPrimeWheelSpeed() {
-    	requires(shooterWheel);
+    	requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooterWheel.setSpeedMode();
-    	shooterWheel.enable();
-    	shooterWheel.setShooterWheel(1);
-    	this.setTimeout(2);
-    	
-    	
+    	shooter.setSpeedMode();
+    	shooter.enable();
+    	shooter.startShooterWheel();
+    	this.setTimeout(3);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooterWheel.setShooterWheel(1);
+    	shooter.startShooterWheel();
     	if (isTimedOut()){
     		ShooterWheel.setIsPrimed(true);
     	}
@@ -40,8 +38,7 @@ public class ShooterPrimeWheelSpeed extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooterWheel.setShooterWheel(0);
-    	shooterWheel.disable();
+    	
     }
 
     // Called when another command which requires one or more of the same

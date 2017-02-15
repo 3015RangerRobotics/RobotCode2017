@@ -1,13 +1,14 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
+import edu.wpi.first.wpilibj.Timer;
 
 
 /**
  *
  */
 public class ShooterFireNow extends CommandBase {
-	
+	boolean isReversing = false;
+	Timer timer = new Timer();
 
     public ShooterFireNow() {
     	requires(hopper);
@@ -21,7 +22,19 @@ public class ShooterFireNow extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	hopper.startFeeder();
-		hopper.rotate();
+//		hopper.rotate();
+    	System.out.println("hopper current: " + Math.abs(hopper.getCurrent()));
+		if(Math.abs(hopper.getCurrent()) >= 7 && !isReversing){
+    		hopper.reverse();
+    		timer.start();
+    		timer.reset();
+    		isReversing = true;
+    	}else if(timer.get() <= 0.8 && isReversing){
+    		hopper.reverse();
+    	}else{
+    		hopper.rotate();
+    		isReversing = false;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

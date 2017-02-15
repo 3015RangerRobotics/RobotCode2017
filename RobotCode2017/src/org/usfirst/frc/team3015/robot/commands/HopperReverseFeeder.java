@@ -1,47 +1,38 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
+import org.usfirst.frc.team3015.robot.subsystems.Harvester;
+
+import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ * Rotates the hopper
  */
-public class ShooterPrimeWheelVoltage extends CommandBase {
-
-    public ShooterPrimeWheelVoltage() {
-    	requires(shooter);
+public class HopperReverseFeeder extends CommandBase {
+//	Timer timer = new Timer();
+//	boolean isReversing;
+	
+    public HopperReverseFeeder() {
+        requires(hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooter.setVoltageMode();
-//    	shooter.enable();
-    	shooter.startShooterWheel();
-    	this.setTimeout(3);
-    	
-    	
+//    	hopper.rotate();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.startShooterWheel();
-    	if (isTimedOut()){
-    		ShooterWheel.setIsPrimed(true);
-    	}
-    	else {
-    		ShooterWheel.setIsPrimed(false);
-    	}
-    	System.out.println("Shooter Wheel Velocity: " + shooter.getWheelEncoder());
+    	hopper.reverseFeeder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	hopper.stopFeeder();
     }
 
     // Called when another command which requires one or more of the same
@@ -49,4 +40,6 @@ public class ShooterPrimeWheelVoltage extends CommandBase {
     protected void interrupted() {
     	end();
     }
+
+
 }

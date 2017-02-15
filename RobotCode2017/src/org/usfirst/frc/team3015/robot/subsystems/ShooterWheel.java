@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -21,6 +22,7 @@ public class ShooterWheel extends Subsystem {
  */
 	public ShooterWheel(){
 		shooterWheel = new CANTalon(1);
+		shooterWheel.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 //    	shooterWheel.configEncoderCodesPerRev(codesPerRev);
 		
 		
@@ -34,7 +36,7 @@ public class ShooterWheel extends Subsystem {
      * @param speed speed of the wheel
      */
     public void startShooterWheel(){
-    	shooterWheel.set(1.0);
+    	shooterWheel.set(8.0);
     }
     /**
      * Returns if the shooter wheel is primed
@@ -46,6 +48,10 @@ public class ShooterWheel extends Subsystem {
     
     public void stopShooterWheel(){
     	shooterWheel.set(0);
+    }
+    
+    public double getWheelEncoder(){
+    	return shooterWheel.getEncVelocity();
     }
     
     public static void setIsPrimed(boolean myIsPrimed) {

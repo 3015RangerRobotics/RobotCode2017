@@ -16,7 +16,7 @@ public class Hopper extends Subsystem {
 
     private CANTalon rotation;
     private VictorSP ballFeeder;
-    private final double ROTATION_SPEED = -0.9;
+    private final double ROTATION_SPEED = -.5;
     private final double REVERSE_ROTATION_SPEED = 0.35;
     
     /**
@@ -45,6 +45,10 @@ public class Hopper extends Subsystem {
     
     public double getCurrent(){
     	return rotation.getOutputCurrent();
+    }
+    
+    public double getSpeed(){
+    	return rotation.getSpeed();
     }
     
     public void startFeeder(){

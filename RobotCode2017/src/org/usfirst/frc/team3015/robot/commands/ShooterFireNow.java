@@ -24,17 +24,19 @@ public class ShooterFireNow extends CommandBase {
     	hopper.startFeeder();
 //		hopper.rotate();
     	System.out.println("hopper current: " + Math.abs(hopper.getCurrent()));
-		if(Math.abs(hopper.getCurrent()) >= 7 && !isReversing){
-    		hopper.reverse();
-    		timer.start();
-    		timer.reset();
-    		isReversing = true;
-    	}else if(timer.get() <= 0.8 && isReversing){
-    		hopper.reverse();
-    	}else{
+//    	System.out.println("Hopper speed: " + Math.abs(hopper.getSpeed()));
+//		if(Math.abs(hopper.getCurrent()) >= 6.5 && !isReversing){
+//		if(Math.abs(hopper.getSpeed()) <= 5 && !isReversing){
+//    		hopper.reverse();
+//    		timer.start();
+//    		timer.reset();
+//    		isReversing = true;
+//    	}else if(timer.get() <= 0.5 && isReversing){
+//    		hopper.reverse();
+//    	}else{
     		hopper.rotate();
     		isReversing = false;
-    	}
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -36,7 +36,7 @@ public class ShooterWheel extends Subsystem {
      * @param speed speed of the wheel
      */
     public void startShooterWheel(){
-    	shooterWheel.set(8.0);
+    	shooterWheel.set(8.1);
     }
     /**
      * Returns if the shooter wheel is primed

@@ -1,16 +1,14 @@
 package org.usfirst.frc.team3015.robot.commands;
 
 public class VisionSpeak extends CommandBase {
-	private String text;
 
-    public VisionSpeak(String message) {
+    public VisionSpeak() {
     	requires(vision);
-    	this.text = message;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	vision.speak(text);
+    	vision.speak();
     }
 
     // Called repeatedly when this Command is scheduled to run

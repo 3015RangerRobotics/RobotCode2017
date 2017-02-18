@@ -112,9 +112,13 @@ public class Vision extends Subsystem {
      * Sends a message to the phone for the text-to-speech to say
      * @param text what the phone should say
      */
-    public void speak(String text){
+    public void speakAddMessage(String text){
+//    	shouldSpeak = true;
+    	message += text + " ";
+    }
+    
+    public void speak(){
     	shouldSpeak = true;
-    	message = text;
     }
     /**
      * Tells the phone whether a vision target should be seen (ex. know we are lined up in auto)

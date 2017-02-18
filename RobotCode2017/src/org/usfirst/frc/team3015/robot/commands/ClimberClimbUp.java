@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *Command to climb up
@@ -17,11 +18,12 @@ public class ClimberClimbUp extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	climber.climbUp();
+    	System.out.println("Climber Current:" + climber.getCurrent());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(climber.getCurrent()) > 50;
+        return Math.abs(climber.getCurrent()) > 500;
     }
 
     // Called once after isFinished returns true

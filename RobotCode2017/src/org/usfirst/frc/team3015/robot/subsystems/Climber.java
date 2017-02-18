@@ -3,6 +3,7 @@ package org.usfirst.frc.team3015.robot.subsystems;
 
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Climber Subsystem
@@ -15,7 +16,7 @@ public class Climber extends Subsystem {
 	 * Constructs Hardware
 	 */
 	public Climber() {
-//		climbMotor = new CANTalon(3);
+		climbMotor = new CANTalon(3);
 	}
 	
 	@Override
@@ -26,6 +27,7 @@ public class Climber extends Subsystem {
 	 * Stop Climbing
 	 */
 	public void stopClimb(){
+		SmartDashboard.putBoolean("isClimbing", false);
 		climbMotor.set(0);
 	}
 	
@@ -33,7 +35,8 @@ public class Climber extends Subsystem {
 	 * Climb up 
 	 */
 	public void climbUp() {
-		climbMotor.set(.8);
+		SmartDashboard.putBoolean("isClimbing", true);
+		climbMotor.set(-1.0);
 	}
 	
 	/**

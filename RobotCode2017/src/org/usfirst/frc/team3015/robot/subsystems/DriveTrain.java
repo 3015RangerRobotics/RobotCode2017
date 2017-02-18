@@ -7,6 +7,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -57,12 +58,12 @@ public class DriveTrain extends Subsystem {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
-//		hWheelAndBack = new DoubleSolenoid(0, 1);
-//		frontOmnis = new DoubleSolenoid(2, 3);
+		hWheelAndBack = new DoubleSolenoid(0, 1);
+		frontOmnis = new DoubleSolenoid(2, 3);
 //		leftEncoder = new Encoder(0,1);
 //		rightEncoder = new Encoder(2,3);
 //		hEncoder = new Encoder(4,5); 
-//		imu = new AHRS(I2C.Port.kOnboard);
+//		imu = new AHRS(Port.kUSB);
 	}
 	/**
 	 * Sets default command to DriveWithGamepad 

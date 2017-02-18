@@ -53,10 +53,10 @@ public class OI {
 	
 	public OI() {
 //		driverA1.whileHeld(new HarvesterHarvest());
-		driverA1.whileHeld(new ShooterFireNow());
-		driverA1.whenReleased(new ShooterStopFiring());
-		driverB2.whileHeld(new HopperReverseFeeder());
-		driverB2.whenReleased(new HopperStopFeeder());
+//		driverA1.whileHeld(new ShooterFireNow());
+//		driverA1.whenReleased(new ShooterStopFiring());
+//		driverB2.whileHeld(new HopperReverseFeeder());
+//		driverB2.whenReleased(new HopperStopFeeder());
 //		driverB2.whileHeld(new HarvesterReverseHarvest());
 //		driverA1.whenPressed(new StreamFrontCamera());
 //		driverB2.whenPressed(new StreamBackCamera());
@@ -77,6 +77,8 @@ public class OI {
 //		coDriverRB6.whenPressed(new GearClawOpen());
 //		coDriverDUp.whileHeld(new ClimberClimbUp());
 //		coDriverDUp.whenReleased(new ClimberClimbStop());
+		driverA1.whileHeld(new ClimberClimbUp());
+		driverA1.whenReleased(new ClimberClimbStop());
 	}
 	
 	public double getDriverLeftX(){

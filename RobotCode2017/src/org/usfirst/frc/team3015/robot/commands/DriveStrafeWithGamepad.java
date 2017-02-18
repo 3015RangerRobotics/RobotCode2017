@@ -12,8 +12,8 @@ public class DriveStrafeWithGamepad extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	drive.setHWheelAndBackDeployed();
-//    	drive.setFrontOmnisDeployed();
+    	drive.setHWheelAndBackDeployed();
+    	drive.setFrontOmnisDeployed();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -8,6 +8,7 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.ControllerPower;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Hopper for feeding our wheel shooter 1 ball at a time.
@@ -38,6 +39,7 @@ public class Hopper extends Subsystem {
     }
     
     public void rotate() {
+    	SmartDashboard.putNumber("hopperStatus", -1);
     	rotation.set(ROTATION_SPEED);
     }
     

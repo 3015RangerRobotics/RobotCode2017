@@ -6,6 +6,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -37,6 +38,7 @@ public class ShooterWheel extends Subsystem {
      * @param speed speed of the wheel
      */
     public void startShooterWheelVoltage(){
+    	SmartDashboard.putBoolean("isShooting", true);
     	shooterWheel.set(8.1);
     }
     /**
@@ -48,10 +50,12 @@ public class ShooterWheel extends Subsystem {
     }
     
     public void startShooterWheelSpeed(){
+    	SmartDashboard.putBoolean("isShooting", true);
     	shooterWheel.set(targetSpeed);
     }
     
     public void stopShooterWheel(){
+    	SmartDashboard.putBoolean("isShooting", false);
     	shooterWheel.set(0);
     }
     

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3015.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -30,10 +31,12 @@ public class GearManipulator extends Subsystem {
     }
     
     public void tiltDown(){
+    	SmartDashboard.putBoolean("isGearUp", false);
     	tilt.set(-0.8);
     }
     
     public void tiltUp(){
+    	SmartDashboard.putBoolean("isGearUp", true);
     	tilt.set(0.8);
     }
     
@@ -45,6 +48,7 @@ public class GearManipulator extends Subsystem {
      * Opens the claw
      */
     public void openClaw() {
+    	SmartDashboard.putBoolean("isClawOpen", true);
     	grabber.set(false);
     }
     
@@ -52,6 +56,7 @@ public class GearManipulator extends Subsystem {
      * Closes the claw
      */
     public void closeClaw() {
+    	SmartDashboard.putBoolean("isClawOpen", false);
     	grabber.set(true);
     }
     
@@ -59,6 +64,7 @@ public class GearManipulator extends Subsystem {
      * Run intake
      */
     public void intake() {
+    	SmartDashboard.putBoolean("isIntakeRunning", true);
     	gearIntake.set(INTAKE_SPEED);
     }
     
@@ -66,6 +72,7 @@ public class GearManipulator extends Subsystem {
      * Reverse intake
      */
     public void outtake() {
+    	SmartDashboard.putBoolean("isIntakeRunning", true);
     	gearIntake.set(-INTAKE_SPEED);
     }
     
@@ -73,6 +80,7 @@ public class GearManipulator extends Subsystem {
      * Stop intake
      */
     public void intakeStop() {
+    	SmartDashboard.putBoolean("isIntakeRunning", false);
     	gearIntake.set(0);
     }
     

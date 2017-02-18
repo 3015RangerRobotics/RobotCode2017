@@ -18,7 +18,7 @@ public class ShooterFireWhenReady extends CommandBase {
     protected void initialize() {
     	shooter.setSpeedMode();
     	shooter.enable();
-    	shooter.startShooterWheel();
+    	shooter.startShooterWheelVoltage();
     	if(shooter.isPrimed()){
     		isPrimed = true;
     	}else{
@@ -28,7 +28,7 @@ public class ShooterFireWhenReady extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.startShooterWheel();
+    	shooter.startShooterWheelVoltage();
     	if(isPrimed) {
     		hopper.startFeeder();
     		hopper.rotate();

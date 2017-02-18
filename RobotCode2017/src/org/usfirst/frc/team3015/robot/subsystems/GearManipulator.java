@@ -10,19 +10,17 @@ import edu.wpi.first.wpilibj.DigitalInput;
  *
  */
 public class GearManipulator extends Subsystem {
-	private DoubleSolenoid clawActuator;
-	private DoubleSolenoid tiltActuator;
-	private Solenoid pegPiston; // name in progress, may not be used. 
+	private Solenoid grabber;
 	private VictorSP gearIntake;
+	private VictorSP tilt;
 	private DigitalInput gearDetector;
 
 	private final double INTAKE_SPEED = .8;
-	private final double INTAKE_REVERSE_SPEED = -.5;
 	
 	public GearManipulator(){
-//		clawActuator = new DoubleSolenoid();
-//		tiltActuator = new DoubleSolenoid();
+//		grabber = new Solenoid();
 //		gearMotor = VictorSP();
+//      tilt = new VictorSP();
 //		gearDetector = new DigitalInput();
 	}
 
@@ -31,60 +29,44 @@ public class GearManipulator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    public void tiltDown(){
+    	tilt.set(-0.8);
+    }
+    
+    public void tiltUp(){
+    	tilt.set(0.8);
+    }
+    
+    public void tiltStop(){
+    	tilt.set(0);
+    }
+    
     /**
      * Opens the claw
      */
     public void openClaw() {
-    	clawActuator.set(DoubleSolenoid.Value.kForward);
+    	grabber.set(false);
     }
     
     /**
      * Closes the claw
      */
     public void closeClaw() {
-    	clawActuator.set(DoubleSolenoid.Value.kReverse);
-    }
-    
-    /**
-     * Send manipulator outside the frame
-     */
-    public void tiltDown() {
-    	tiltActuator.set(DoubleSolenoid.Value.kReverse);
-    }
-    
-    /**
-     * Send manipulator inside the frame
-     */
-    public void tiltUp() {
-    	tiltActuator.set(DoubleSolenoid.Value.kForward);
-    }
-    
-    /**
-     * Push gear onto (or father on) peg 
-     */
-    public void extendPegPiston() {
-    	pegPiston.set(true);
-    }
-    
-    /**
-     * Retract solenoid
-     */
-    public void resetPegPiston() {
-    	pegPiston.set(false);
+    	grabber.set(true);
     }
     
     /**
      * Run intake
      */
-    public void intakeForward() {
+    public void intake() {
     	gearIntake.set(INTAKE_SPEED);
     }
     
     /**
      * Reverse intake
      */
-    public void intakeReverse() {
-    	gearIntake.set(INTAKE_REVERSE_SPEED);
+    public void outtake() {
+    	gearIntake.set(-INTAKE_SPEED);
     }
     
     /**
@@ -102,20 +84,8 @@ public class GearManipulator extends Subsystem {
     	return gearDetector.get();
     }
     
-    public boolean isTiltedUp() {
-    	return tiltActuator.get() == DoubleSolenoid.Value.kForward;
-    }
-    
-    public boolean isTiltedDown() {
-    	return tiltActuator.get() == DoubleSolenoid.Value.kReverse;
-    }
-    
     public boolean isClawOpen() {
-    	return clawActuator.get() == DoubleSolenoid.Value.kForward;
-    }
-    
-    public boolean isClawClosed() {
-    	return clawActuator.get() == DoubleSolenoid.Value.kReverse;
+    	return grabber.get();
     }
 }
 

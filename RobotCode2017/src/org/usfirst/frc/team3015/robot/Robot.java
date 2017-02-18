@@ -3,9 +3,7 @@ package org.usfirst.frc.team3015.robot;
 
 import org.spectrum3847.RIOdroid.RIOadb;
 import org.spectrum3847.RIOdroid.RIOdroid;
-import org.usfirst.frc.team3015.robot.commands.AutonomousCrossBaseLine;
-//import org.usfirst.frc.team3015.robot.commands.AutonomousHopperShot;
-import org.usfirst.frc.team3015.robot.commands.CommandBase;
+import org.usfirst.frc.team3015.robot.commands.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -58,7 +56,17 @@ public class Robot extends IterativeRobot {
 //		RIOdroid.executeCommand("adb shell input tap 1200 1000");
 //		Timer.delay(1);
 //		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
+		chooser.addObject("Gear and Hopper Shot Red", new AutonomousGearAndHopperShotRed());
+		chooser.addObject("Gear and Hopper Shot Blue", new AutonomousGearAndHopperShotBlue());
+		chooser.addObject("Hopper Shot Red", new AutonomousHopperShotRed());
+		chooser.addObject("Hopper Shot Blue", new AutonomousHopperShotBlue());
+		chooser.addObject("Two Gear Red", new AutonomousTwoGearRed());
+		chooser.addObject("Two Gear Blue", new AutonomousTwoGearBlue());
+		chooser.addObject("One Gear Middle", new AutonomousOneGearMiddle());
+		chooser.addObject("One Gear Left", new AutonomousOneGearLeft());
+		chooser.addObject("One Gear Right", new AutonomousOneGearRight());
 		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
+		chooser.addObject("No Auto", null);
 		SmartDashboard.putData("autonomous",chooser);
 		System.out.println("FINISHED ROBOT INIT");
 	}

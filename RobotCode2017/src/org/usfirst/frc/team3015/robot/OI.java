@@ -53,6 +53,10 @@ public class OI {
 	
 	public OI() {
 //		driverA1.whileHeld(new HarvesterHarvest());
+		driverA1.whileHeld(new ShooterFireNow());
+		driverA1.whenReleased(new ShooterStopFiring());
+		driverB2.whileHeld(new HopperReverseFeeder());
+		driverB2.whenReleased(new HopperStopFeeder());
 //		driverB2.whileHeld(new HarvesterReverseHarvest());
 //		driverA1.whenPressed(new StreamFrontCamera());
 //		driverB2.whenPressed(new StreamBackCamera());
@@ -62,6 +66,8 @@ public class OI {
 //		driverRB6.whileHeld(new DriveAntiDefense());
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
+		driverSTART8.whenPressed(new ShooterPrimeWheelVoltage());
+		driverSEL7.whenPressed(new ShooterStopWheel());
 		
 //		coDriverA1.whenPressed(new GearTiltDown());
 //		coDriverB2.whenPressed(new HarvesterStop());

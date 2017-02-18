@@ -12,11 +12,13 @@ public class HopperStop extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	hopper.stop();
+    	hopper.stopFeeder();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	hopper.stop();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

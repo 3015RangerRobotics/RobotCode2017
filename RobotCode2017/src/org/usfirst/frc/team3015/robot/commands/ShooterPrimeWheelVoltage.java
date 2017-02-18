@@ -15,7 +15,7 @@ public class ShooterPrimeWheelVoltage extends CommandBase {
     protected void initialize() {
     	shooter.setVoltageMode();
 //    	shooter.enable();
-    	shooter.startShooterWheel();
+    	shooter.startShooterWheelVoltage();
     	this.setTimeout(3);
     	
     	
@@ -23,7 +23,7 @@ public class ShooterPrimeWheelVoltage extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.startShooterWheel();
+    	shooter.startShooterWheelVoltage();
     	if (isTimedOut()){
     		ShooterWheel.setIsPrimed(true);
     	}

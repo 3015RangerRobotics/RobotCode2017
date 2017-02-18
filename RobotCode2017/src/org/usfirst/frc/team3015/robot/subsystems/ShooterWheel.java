@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
 	private static boolean isPrimed = false;
+	private double targetSpeed = 25500;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -35,7 +36,7 @@ public class ShooterWheel extends Subsystem {
      * Sets the speed of the shooter wheel
      * @param speed speed of the wheel
      */
-    public void startShooterWheel(){
+    public void startShooterWheelVoltage(){
     	shooterWheel.set(8.1);
     }
     /**
@@ -44,6 +45,10 @@ public class ShooterWheel extends Subsystem {
      */
     public boolean isPrimed(){
     	return isPrimed;
+    }
+    
+    public void startShooterWheelSpeed(){
+    	shooterWheel.set(targetSpeed);
     }
     
     public void stopShooterWheel(){
@@ -79,6 +84,16 @@ public class ShooterWheel extends Subsystem {
     public void setSpeedMode(){
     	shooterWheel.changeControlMode(CANTalon.TalonControlMode.Speed);
     	shooterWheel.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+    	shooterWheel.reverseSensor(true);
+    	shooterWheel.configNominalOutputVoltage(+0.0f, -0.0f);
+    	shooterWheel.configPeakOutputVoltage(+12.0f, -12.0f);
+    	shooterWheel.setNominalClosedLoopVoltage(12.0);
+    	shooterWheel.setProfile(0);
+    	shooterWheel.setF(0.028);//0.025675
+    	shooterWheel.setP(0.26);//0.03
+    	shooterWheel.setI(0.000001); 
+    	shooterWheel.setD(5);
+    	shooterWheel.enableBrakeMode(false);
     }
     
     /**

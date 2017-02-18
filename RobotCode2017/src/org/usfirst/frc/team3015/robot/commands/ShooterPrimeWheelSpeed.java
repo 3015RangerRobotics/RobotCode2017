@@ -15,13 +15,13 @@ public class ShooterPrimeWheelSpeed extends CommandBase {
     protected void initialize() {
     	shooter.setSpeedMode();
     	shooter.enable();
-    	shooter.startShooterWheel();
-    	this.setTimeout(3);
+    	shooter.startShooterWheelSpeed();
+    	this.setTimeout(1.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.startShooterWheel();
+    	shooter.startShooterWheelVoltage();
     	if (isTimedOut()){
     		ShooterWheel.setIsPrimed(true);
     	}

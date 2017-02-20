@@ -60,9 +60,9 @@ public class DriveTrain extends Subsystem {
 		hMotors = new VictorSP(2);
 		hWheelAndBack = new DoubleSolenoid(0, 1);
 		frontOmnis = new DoubleSolenoid(2, 3);
-//		leftEncoder = new Encoder(0,1);
-//		rightEncoder = new Encoder(2,3);
-//		hEncoder = new Encoder(4,5); 
+		leftEncoder = new Encoder(0,1);
+		rightEncoder = new Encoder(2,3);
+		hEncoder = new Encoder(4,5); 
 //		imu = new AHRS(Port.kUSB);
 	}
 	/**
@@ -260,6 +260,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void hDrive(double speed){
+    	SmartDashboard.putBoolean("isHDriving", true);
     	hMotors.set(speed);
     }
     

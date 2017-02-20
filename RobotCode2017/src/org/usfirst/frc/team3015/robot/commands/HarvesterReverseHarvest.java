@@ -29,6 +29,8 @@ public class HarvesterReverseHarvest extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	harvester.stopHarvester();
+    	harvester.stopTransport();
     	 
     }
 

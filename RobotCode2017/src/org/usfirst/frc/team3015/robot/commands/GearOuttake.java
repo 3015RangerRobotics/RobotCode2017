@@ -9,7 +9,7 @@ public class GearOuttake extends CommandBase {
 
     public GearOuttake() {
         // Use requires() here to declare subsystem dependencies
-         requires(gearManipulator);
+//         requires(gearManipulator);
     }
 
     // Called just before this Command runs the first time

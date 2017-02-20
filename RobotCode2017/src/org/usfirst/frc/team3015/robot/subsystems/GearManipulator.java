@@ -19,9 +19,9 @@ public class GearManipulator extends Subsystem {
 	private final double INTAKE_SPEED = .8;
 	
 	public GearManipulator(){
-//		grabber = new Solenoid();
-//		gearMotor = VictorSP();
-//      tilt = new VictorSP();
+		grabber = new Solenoid(4);
+		gearIntake = new VictorSP(5);
+        tilt = new VictorSP(7);
 //		gearDetector = new DigitalInput();
 	}
 
@@ -32,12 +32,12 @@ public class GearManipulator extends Subsystem {
     
     public void tiltDown(){
     	SmartDashboard.putBoolean("isGearUp", false);
-    	tilt.set(-0.8);
+    	tilt.set(-0.6);
     }
     
     public void tiltUp(){
     	SmartDashboard.putBoolean("isGearUp", true);
-    	tilt.set(0.8);
+    	tilt.set(1.0);
     }
     
     public void tiltStop(){
@@ -64,7 +64,7 @@ public class GearManipulator extends Subsystem {
      * Run intake
      */
     public void intake() {
-    	SmartDashboard.putBoolean("isIntakeRunning", true);
+    	SmartDashboard.putBoolean("isGearIntakeRunning", true);
     	gearIntake.set(INTAKE_SPEED);
     }
     
@@ -72,7 +72,7 @@ public class GearManipulator extends Subsystem {
      * Reverse intake
      */
     public void outtake() {
-    	SmartDashboard.putBoolean("isIntakeRunning", true);
+    	SmartDashboard.putBoolean("isGearIntakeRunning", true);
     	gearIntake.set(-INTAKE_SPEED);
     }
     

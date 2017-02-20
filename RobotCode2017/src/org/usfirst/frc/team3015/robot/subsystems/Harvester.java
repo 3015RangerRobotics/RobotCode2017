@@ -12,8 +12,8 @@ public class Harvester extends Subsystem {
 	private VictorSP intake;
 	private VictorSP transport;
 	
-	private final double HARVEST_IN_SPEED = 0.8;
-	private final double HARVEST_OUT_SPEED = -0.8;
+	private final double HARVEST_IN_SPEED = -0.8;
+	private final double HARVEST_OUT_SPEED = 0.8;
 	private final double TRANSPORT_IN_SPEED = 0.9;
 	private final double TRANSPORT_OUT_SPEED = -0.9;
 	
@@ -21,8 +21,8 @@ public class Harvester extends Subsystem {
      * Constructs hardware
      */
 	public Harvester(){
-//		intake = new VictorSP(3);
-//		transport = new VictorSP(4);
+		intake = new VictorSP(3);
+		transport = new VictorSP(4);
 	}
 	
 	public void initDefaultCommand() {

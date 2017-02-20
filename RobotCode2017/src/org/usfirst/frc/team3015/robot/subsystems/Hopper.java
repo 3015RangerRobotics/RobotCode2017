@@ -22,7 +22,7 @@ public class Hopper extends Subsystem {
 //    private final double REVERSE_ROTATION_SPEED = 0.35;
     private final double ROTATION_SPEED = -0.9*12.25;
     private final double REVERSE_ROTATION_SPEED = 0.35*12.25;
-    private final double START_BALLFEEDER_SPEED = -.9*12.25;
+    private final double START_BALLFEEDER_SPEED = -.8*12.25;
     private final double REVERSE_BALLFEEDER_SPEED = 0.8*12.25;
     
     /**
@@ -60,14 +60,17 @@ public class Hopper extends Subsystem {
     }
     
     public void startFeeder(){
+    	SmartDashboard.putNumber("feederStatus", 1);
     	ballFeeder.set(START_BALLFEEDER_SPEED/ControllerPower.getInputVoltage());
     }
     
     public void reverseFeeder(){
+    	SmartDashboard.putNumber("feederStatus", -1);
     	ballFeeder.set(REVERSE_BALLFEEDER_SPEED/ControllerPower.getInputVoltage());
     }
     
     public void stopFeeder(){
+    	SmartDashboard.putNumber("feederStatus", 0);
     	ballFeeder.set(0);
     }
 }

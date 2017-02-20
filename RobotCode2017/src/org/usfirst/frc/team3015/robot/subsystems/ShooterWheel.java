@@ -25,6 +25,7 @@ public class ShooterWheel extends Subsystem {
 	public ShooterWheel(){
 		shooterWheel = new CANTalon(1);
 		shooterWheel.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		shooterWheel.enableBrakeMode(false);
 //    	shooterWheel.configEncoderCodesPerRev(codesPerRev);
 		
 		
@@ -38,8 +39,7 @@ public class ShooterWheel extends Subsystem {
      * @param speed speed of the wheel
      */
     public void startShooterWheelVoltage(){
-    	SmartDashboard.putBoolean("isShooting", true);
-    	shooterWheel.set(8.1);
+    	shooterWheel.set(6.5);//7.2
     }
     /**
      * Returns if the shooter wheel is primed
@@ -52,6 +52,7 @@ public class ShooterWheel extends Subsystem {
     public void startShooterWheelSpeed(){
     	SmartDashboard.putBoolean("isShooting", true);
     	shooterWheel.set(targetSpeed);
+    	System.out.println(shooterWheel.getSpeed());
     }
     
     public void stopShooterWheel(){
@@ -91,7 +92,7 @@ public class ShooterWheel extends Subsystem {
     	shooterWheel.reverseSensor(true);
     	shooterWheel.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterWheel.configPeakOutputVoltage(+12.0f, -12.0f);
-    	shooterWheel.setNominalClosedLoopVoltage(12.0);
+//    	shooterWheel.setNominalClosedLoopVoltage(12.0);
     	shooterWheel.setProfile(0);
     	shooterWheel.setF(0.028);//0.025675
     	shooterWheel.setP(0.26);//0.03

@@ -52,8 +52,10 @@ public class OI {
 	
 	
 	public OI() {
+		driverA1.whileHeld(new GearIntake());
+		driverB2.whileHeld(new GearOuttake());
 //		driverA1.whileHeld(new HarvesterHarvest());
-//		driverA1.whileHeld(new ShooterFireNow());
+//		driverY4.whileHeld(new ShooterFireNow());
 //		driverA1.whenReleased(new ShooterStopFiring());
 //		driverB2.whileHeld(new HopperReverseFeeder());
 //		driverB2.whenReleased(new HopperStopFeeder());
@@ -66,19 +68,23 @@ public class OI {
 //		driverRB6.whileHeld(new DriveAntiDefense());
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
-		driverSTART8.whenPressed(new ShooterPrimeWheelVoltage());
-		driverSEL7.whenPressed(new ShooterStopWheel());
+//		driverSTART8.whileHeld(new DriveAntiDefense());
+//		driverSTART8.whileHeld(new DriveAntiDefense());
 		
-//		coDriverA1.whenPressed(new GearTiltDown());
-//		coDriverB2.whenPressed(new HarvesterStop());
-//		coDriverX3.whileHeld(new HarvesterHarvest());
-//		coDriverY4.whenPressed(new GearTiltUp());
-//		coDriverLB5.whenPressed(new GearClawClose());
-//		coDriverRB6.whenPressed(new GearClawOpen());
+		coDriverA1.whileHeld(new GearTiltDown());
+		coDriverB2.whileHeld(new HarvesterReverseHarvest());
+		coDriverX3.whileHeld(new HarvesterHarvest());
+		coDriverY4.whileHeld(new GearTiltUp());
+		coDriverLB5.whenPressed(new GearClawClose());
+		coDriverRB6.whenPressed(new GearClawOpen());
+		coDriverSEL7.whenPressed(new ShooterStopWheel());
+		coDriverSTART8.whenPressed(new ShooterPrimeWheelVoltage());
+		coDriverRTrig.whileHeld(new ShooterFireNow());
 //		coDriverDUp.whileHeld(new ClimberClimbUp());
 //		coDriverDUp.whenReleased(new ClimberClimbStop());
-		driverA1.whileHeld(new ClimberClimbUp());
-		driverA1.whenReleased(new ClimberClimbStop());
+//		driverA1.whileHeld(new ClimberClimbUp());
+//		driverA1.whenReleased(new ClimberClimbStop());
+//		coDriverB2.whileHeld(new ShooterFireNow());
 	}
 	
 	public double getDriverLeftX(){

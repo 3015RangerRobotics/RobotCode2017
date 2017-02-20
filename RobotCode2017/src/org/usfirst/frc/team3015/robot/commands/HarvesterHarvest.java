@@ -14,7 +14,7 @@ public class HarvesterHarvest extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	harvester.stopHarvester();
+//    	harvester.stopHarvester();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,6 +30,8 @@ public class HarvesterHarvest extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() { 
+    	harvester.stopHarvester();
+    	harvester.stopTransport();
     }
 
     // Called when another command which requires one or more of the same

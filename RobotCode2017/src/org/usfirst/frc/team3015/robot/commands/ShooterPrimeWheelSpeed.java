@@ -13,6 +13,7 @@ public class ShooterPrimeWheelSpeed extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	shooter.disable();
     	shooter.setSpeedMode();
     	shooter.enable();
     	shooter.startShooterWheelSpeed();

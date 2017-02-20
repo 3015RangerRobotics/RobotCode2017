@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
@@ -28,8 +30,9 @@ public class DriveStrafeWithGamepad extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-//    	drive.setHWheelAndBackRetracted();
-//    	drive.setFrontOmnisRetracted();
+    	SmartDashboard.putBoolean("isHDriving", false);
+    	drive.setHWheelAndBackRetracted();
+    	drive.setFrontOmnisRetracted();
     }
 
     // Called when another command which requires one or more of the same

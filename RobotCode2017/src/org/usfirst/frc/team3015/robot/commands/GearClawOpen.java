@@ -7,7 +7,7 @@ package org.usfirst.frc.team3015.robot.commands;
 public class GearClawOpen extends CommandBase {
 
     public GearClawOpen() {
-        requires(gearManipulator);
+//        requires(gearManipulator);
     }
 
     // Called just before this Command runs the first time

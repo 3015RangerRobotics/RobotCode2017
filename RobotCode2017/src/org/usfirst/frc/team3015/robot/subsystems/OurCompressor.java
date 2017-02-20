@@ -43,6 +43,6 @@ public class OurCompressor extends Subsystem {
 	
     public void initDefaultCommand() {
     	// Set the default command for a subsystem here.
-        setDefaultCommand(new OurCompressorOn());
+//        setDefaultCommand(new OurCompressorOn());
     }
 }

@@ -24,7 +24,7 @@ public class ShooterFireNow extends CommandBase {
     protected void execute() {
     	hopper.startFeeder();
 //		hopper.rotate();
-    	System.out.println("hopper current: " + Math.abs(hopper.getCurrent()));
+//    	System.out.println("hopper current: " + Math.abs(hopper.getCurrent()));
 //    	System.out.println("Hopper speed: " + Math.abs(hopper.getSpeed()));
 //		if(Math.abs(hopper.getCurrent()) >= 6.5 && !isReversing){
 //		if(Math.abs(hopper.getSpeed()) <= 5 && !isReversing){

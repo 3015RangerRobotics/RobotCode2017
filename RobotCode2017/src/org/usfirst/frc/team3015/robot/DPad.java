@@ -38,28 +38,28 @@ public class DPad extends Button{
 		//pass the dpad direction in degrees, based on the enum
 		switch (value){
 			case kDPadRight:
-				this.dPadDegree = 0;
+				this.dPadDegree = 90;
 				break;
 			case kDPadUpRight:
 				this.dPadDegree = 45;
 				break;
 			case kDPadUp:
-				this.dPadDegree = 90;
+				this.dPadDegree = 0;
 				break;
 			case kDPadUpLeft:
-				this.dPadDegree = 135;
+				this.dPadDegree = 315;
 				break;
 			case kDPadLeft:
-				this.dPadDegree = 180;
+				this.dPadDegree = 270;
 				break;
 			case kDPadDownLeft:
 				this.dPadDegree = 225;
 				break;
 			case kDPadDown:
-				this.dPadDegree = 270;
+				this.dPadDegree = 180;
 				break;
 			case kDPadDownRight:
-				this.dPadDegree = 315;
+				this.dPadDegree = 135;
 				break;
 			default:
 				throw new AssertionError("Illegal value: " + value);

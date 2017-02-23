@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3015.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class DPad extends Button{
 	private int dPadDegree;
-	private Joystick joystick;
+	private GenericHID joystick;
 	
 	/**
 	 * DPad directions in words
@@ -33,7 +34,7 @@ public class DPad extends Button{
 	 * @param value 		uses enumeration names to select the 
 	 * 						DPad direction
 	 */
-	public DPad(Joystick joystick, Value value){
+	public DPad(GenericHID joystick, Value value){
 		this.joystick = joystick;
 		//pass the dpad direction in degrees, based on the enum
 		switch (value){
@@ -72,7 +73,7 @@ public class DPad extends Button{
 	 * @param joystick 		The joystick we are referencing
 	 * @param dPadDegree 	the direction to reference on the DPad in degrees
 	 */
-	public DPad(Joystick joystick, int dPadDegree){
+	public DPad(GenericHID joystick, int dPadDegree){
 		this.dPadDegree = dPadDegree;
 		this.joystick = joystick;
 	}

@@ -17,7 +17,7 @@ public class OurCompressorOn extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("pressureSensor", ourCompressor.getPressure());
+    	SmartDashboard.putNumber("pressureSensor", Math.round(ourCompressor.getPressure()));
     	System.out.println("Pressure: " + ourCompressor.getPressure());
     	ourCompressor.startCompressor();
     }
@@ -29,10 +29,12 @@ public class OurCompressorOn extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	ourCompressor.stopCompressor();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

@@ -4,6 +4,7 @@ import org.usfirst.frc.team3015.robot.commands.*;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	//Commands & Inputs for Driver
-	Joystick driver = new Joystick(0);
+	XboxController driver = new XboxController(0);
 	Button driverA1 = new JoystickButton(driver, 1);
 	Button driverB2 = new JoystickButton(driver, 2);
 	Button driverX3 = new JoystickButton(driver, 3);
@@ -52,39 +53,31 @@ public class OI {
 	
 	
 	public OI() {
-		driverA1.whileHeld(new GearIntake());
-		driverB2.whileHeld(new GearOuttake());
-//		driverA1.whileHeld(new HarvesterHarvest());
-//		driverY4.whileHeld(new ShooterFireNow());
-//		driverA1.whenReleased(new ShooterStopFiring());
-//		driverB2.whileHeld(new HopperReverseFeeder());
-//		driverB2.whenReleased(new HopperStopFeeder());
-//		driverB2.whileHeld(new HarvesterReverseHarvest());
-//		driverA1.whenPressed(new StreamFrontCamera());
-//		driverB2.whenPressed(new StreamBackCamera());
-//		driverX3.whileHeld(new GearIntake());
-//		driverY4.whileHeld(new GearOuttake());
+		
+		driverA1.whileHeld(new HarvesterHarvest());
+		driverX3.whileHeld(new HarvesterReverseHarvest());
+		driverB2.whileHeld(new GearIntake());
+		driverY4.whileHeld(new GearOuttake());
 //		driverLB5.whenPressed(new DriveTurnToTarget(true));
 //		driverRB6.whileHeld(new DriveAntiDefense());
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
-//		driverSTART8.whileHeld(new DriveAntiDefense());
-//		driverSTART8.whileHeld(new DriveAntiDefense());
+//		driverDUp.whenPressed(new DriveRetractHDrive());
+//		driverDDown.whenPressed(new DriveDeployHDrive());
 		
-		coDriverA1.whileHeld(new GearTiltDown());
+		
+		coDriverA1.whenPressed(new GearTiltDown());
 		coDriverB2.whileHeld(new HarvesterReverseHarvest());
 		coDriverX3.whileHeld(new HarvesterHarvest());
-		coDriverY4.whileHeld(new GearTiltUp());
+		coDriverY4.whenPressed(new GearTiltUp());
 		coDriverLB5.whenPressed(new GearClawClose());
 		coDriverRB6.whenPressed(new GearClawOpen());
 		coDriverSEL7.whenPressed(new ShooterStopWheel());
-		coDriverSTART8.whenPressed(new ShooterPrimeWheelVoltage());
+		coDriverSTART8.whenPressed(new ShooterPrimeWheelSpeed());
 		coDriverRTrig.whileHeld(new ShooterFireNow());
-//		coDriverDUp.whileHeld(new ClimberClimbUp());
-//		coDriverDUp.whenReleased(new ClimberClimbStop());
-//		driverA1.whileHeld(new ClimberClimbUp());
-//		driverA1.whenReleased(new ClimberClimbStop());
-//		coDriverB2.whileHeld(new ShooterFireNow());
+//		coDriverDDown.whileHeld(new GearIntake());
+		coDriverDUp.whileHeld(new ClimberClimbUp());
+		coDriverDUp.whenReleased(new ClimberClimbStop());
 	}
 	
 	public double getDriverLeftX(){

@@ -12,9 +12,9 @@ public class Harvester extends Subsystem {
 	private VictorSP intake;
 	private VictorSP transport;
 	
-	private final double HARVEST_IN_SPEED = -0.8;
+	private final double HARVEST_IN_SPEED = -1.0;
 	private final double HARVEST_OUT_SPEED = 0.8;
-	private final double TRANSPORT_IN_SPEED = 0.9;
+	private final double TRANSPORT_IN_SPEED = 1.0;
 	private final double TRANSPORT_OUT_SPEED = -0.9;
 	
     /**

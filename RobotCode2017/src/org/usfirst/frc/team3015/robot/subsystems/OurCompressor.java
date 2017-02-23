@@ -16,7 +16,7 @@ public class OurCompressor extends Subsystem {
 	
 	public OurCompressor() {
 		compressor = new Compressor();
-		pressureSensor = new AnalogPotentiometer(2, 250, -25);
+		pressureSensor = new AnalogPotentiometer(2, 250, -13);
 	}
 	
 	/**
@@ -43,6 +43,6 @@ public class OurCompressor extends Subsystem {
 	
     public void initDefaultCommand() {
     	// Set the default command for a subsystem here.
-//        setDefaultCommand(new OurCompressorOn());
+        setDefaultCommand(new OurCompressorOn());
     }
 }

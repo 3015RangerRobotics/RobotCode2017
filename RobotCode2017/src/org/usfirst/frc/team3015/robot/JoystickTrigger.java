@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3015.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -8,7 +9,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
  *
  */
 public class JoystickTrigger extends Button {
-	private Joystick m_joystick; 
+	private GenericHID m_joystick; 
 	private int m_triggerAxis;
 	private double m_triggerDistance;
 	
@@ -26,7 +27,7 @@ public class JoystickTrigger extends Button {
 	 * @param joystick 	The joystick you will be using.
 	 * @param value 	Selection between the left and right trigger via enum
 	 */
-	public JoystickTrigger(Joystick joystick, Trigger value){
+	public JoystickTrigger(GenericHID joystick, Trigger value){
 		this(joystick,value,0.5);
 	}
 	
@@ -37,7 +38,7 @@ public class JoystickTrigger extends Button {
 	 * @param value Selection between the left and right trigger enums
 	 * @param triggerDistance How far you want to push the trigger before it returns true
 	 */
-	public JoystickTrigger(Joystick joystick, Trigger value, double triggerDistance){
+	public JoystickTrigger(GenericHID joystick, Trigger value, double triggerDistance){
 		m_joystick=joystick;
 		//case structure to pull out Trigger axis from enum
 		switch (value) {

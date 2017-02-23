@@ -44,7 +44,8 @@ public class DriveTrain extends Subsystem {
 	private double turnToAngleIncrement = 0.001;
 	private double lastAngle = 0;
 	private long lastTime = 0;
-	private double transGearRedu = 30/44;
+//	private double transGearRedu = 30/44;
+	private double transGearRedu = 0.681818181818;
 	private double transGearReduH = 50/1;
 	private int clicksPerRotation = 20;
 	private double wheelCirc = 4 * Math.PI;
@@ -64,6 +65,9 @@ public class DriveTrain extends Subsystem {
 		rightEncoder = new Encoder(2,3);
 		hEncoder = new Encoder(4,5); 
 //		imu = new AHRS(Port.kUSB);
+//		transGearRedu = 30/44;
+//		wheelCirc = 4 * Math.PI;
+//		driveCPI = ((clicksPerRotation * transGearRedu)/(wheelCirc));
 	}
 	/**
 	 * Sets default command to DriveWithGamepad 
@@ -138,6 +142,9 @@ public class DriveTrain extends Subsystem {
      */
     
     public double getLeftDriveEncoderInches(){
+//    	System.out.println(transGearRedu);
+//    	System.out.println(wheelCirc);
+    	System.out.println(driveCPI);
     	return leftEncoder.getDistance() / driveCPI;
     }
     public double getRightDriveEncoderInches(){
@@ -265,7 +272,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public double getLeftEncoder() {
-		return leftEncoder.getDistance();
+		return -leftEncoder.getDistance();
 	}
 
 	public double getRightEncoder() {

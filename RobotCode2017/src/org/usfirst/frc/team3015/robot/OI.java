@@ -80,8 +80,8 @@ public class OI {
 		coDriverSEL7.whenPressed(new ShooterStopWheel());
 		coDriverSTART8.whenPressed(new ShooterPrimeWheelVoltage());
 		coDriverRTrig.whileHeld(new ShooterFireNow());
-//		coDriverDUp.whileHeld(new ClimberClimbUp());
-//		coDriverDUp.whenReleased(new ClimberClimbStop());
+		coDriverDUp.whileHeld(new ClimberClimbUp());
+		coDriverDUp.whenReleased(new ClimberClimbStop());
 //		driverA1.whileHeld(new ClimberClimbUp());
 //		driverA1.whenReleased(new ClimberClimbStop());
 //		coDriverB2.whileHeld(new ShooterFireNow());

@@ -46,13 +46,13 @@ public class DriveStraightToDistance extends CommandBase {
 //    	}
     	
     	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
-    	drive.arcadeDrive(speed, turnValue, false);
+    	drive.arcadeDrive(-speed, turnValue, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (isReverse){
-        	if(drive.getLeftDriveEncoderInches() < distance || drive.getRightDriveEncoderInches() < distance){
+        	if(drive.getLeftEncoder() < distance || drive.getRightEncoder() < distance){
         		return true;
         	}
         }else{
@@ -65,10 +65,12 @@ public class DriveStraightToDistance extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	drive.arcadeDrive(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

@@ -66,10 +66,10 @@ public class OI {
 //		driverDDown.whenPressed(new DriveDeployHDrive());
 		
 		
-		coDriverA1.whenPressed(new GearTiltDown());
+		coDriverA1.whileHeld(new GearTiltDown());
 		coDriverB2.whileHeld(new HarvesterReverseHarvest());
 		coDriverX3.whileHeld(new HarvesterHarvest());
-		coDriverY4.whenPressed(new GearTiltUp());
+		coDriverY4.whileHeld(new GearTiltUp());
 		coDriverLB5.whenPressed(new GearClawClose());
 		coDriverRB6.whenPressed(new GearClawOpen());
 		coDriverSEL7.whenPressed(new ShooterStopWheel());
@@ -81,7 +81,7 @@ public class OI {
 //		driverA1.whenReleased(new ClimberClimbStop());
 //		coDriverB2.whileHeld(new ShooterFireNow());
 //		coDriverDDown.whileHeld(new GearIntake());
-		coDriverDUp.whileHeld(new ClimberClimbUp());
+		coDriverDUp.whenPressed(new ClimberClimbUp());
 		coDriverDUp.whenReleased(new ClimberClimbStop());
 	}
 	

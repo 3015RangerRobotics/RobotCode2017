@@ -9,7 +9,7 @@ public class GearClawClose extends CommandBase {
 //	Timer timer = new Timer();
 
     public GearClawClose() {
-        requires(gearManipulator);
+//        requires(gearManipulator);
     }
 
     // Called just before this Command runs the first time

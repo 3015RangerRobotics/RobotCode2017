@@ -56,6 +56,7 @@ public class Robot extends IterativeRobot {
 //		RIOdroid.executeCommand("adb shell input tap 1200 1000");
 //		Timer.delay(1);
 //		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
+		String[] autos = new String[]{"Hopper Shot Red", "Hopper Shot Blue", "No Auto"};
 		chooser.addObject("Gear and Hopper Shot Red", new AutonomousGearAndHopperShotRed());
 		chooser.addObject("Gear and Hopper Shot Blue", new AutonomousGearAndHopperShotBlue());
 		chooser.addObject("Hopper Shot Red", new AutonomousHopperShotRed());
@@ -67,7 +68,10 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("One Gear Right", new AutonomousOneGearRight());
 		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		chooser.addObject("No Auto", null);
-		SmartDashboard.putData("autonomous",chooser);
+//		SmartDashboard.putData("autonomous",chooser);
+//		SmartDashboard.putStringArray("autonomous/options", autos);
+//		SmartDashboard test = new SmartDashboard();
+//		test.putStringArray("autonomous/options", autos);
 		System.out.println("FINISHED ROBOT INIT");
 	}
 
@@ -101,6 +105,18 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		isEnabled = true;
+//		String selected = SmartDashboard.getString("autonomous/selected", "");
+//		switch(selected){
+//			case "Hopper Shot Red":
+//				autonomousCommand = new AutonomousHopperShotRed();
+//				break;
+//			case "Hopper Shot Blue":
+//				autonomousCommand = new AutonomousHopperShotBlue();
+//				break;
+//			case "No Auto":
+//				autonomousCommand = null;
+//				break;
+//		}
 //		autonomousCommand = chooser.getSelected();
 		autonomousCommand = new AutonomousHopperShotRed();
 

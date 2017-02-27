@@ -36,26 +36,26 @@ public class GearManipulator extends Subsystem {
     
     public void tiltDown(){
     	SmartDashboard.putBoolean("isGearUp", false);
-    	if(downLimit.get()){
+//    	if(downLimit.get()){
     		tilt.set(-0.5);
-    		System.out.println("down");
-    	}else{
-    		tilt.set(0.0);
-    		System.out.println("stay");
-    	}
-    	System.out.println(downLimit.get());
+//    		System.out.println("down");
+//    	}else{
+//    		tilt.set(0.0);
+//    		System.out.println("stay");
+//    	}
+//    	System.out.println(downLimit.get());
     }
     
     public void tiltUp(){
     	SmartDashboard.putBoolean("isGearUp", true);
-    	if(upLimit.get()){
+//    	if(upLimit.get()){
     		tilt.set(1.0);
-    		System.out.println("up");
-    	}else{
-    		tilt.set(0);
-    		System.out.println("stay");
-    	}
-    	System.out.println(upLimit.get());
+//    		System.out.println("up");
+//    	}else{
+//    		tilt.set(0);
+//    		System.out.println("stay");
+//    	}
+//    	System.out.println(upLimit.get());
     }
     
     public void tiltStop(){

@@ -23,7 +23,7 @@ public class DriveWithGamepad extends CommandBase {
 //    		System.out.println("Magnetic Disturbance: " + drive.isMagneticDisturbance());
 //    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
 //    	}
-    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
+//    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
     }
 
     // Make this return true when this Command no longer needs to run execute()

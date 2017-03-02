@@ -17,7 +17,7 @@ public class OurCompressor extends Subsystem {
 	
 	public OurCompressor() {
 		compressor = new Compressor();
-		pressureSensor = new AnalogPotentiometer(1, 250, -25);
+		pressureSensor = new AnalogPotentiometer(0, 250, -25);
 	}
 	
 	/**

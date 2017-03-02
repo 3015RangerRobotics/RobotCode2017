@@ -40,7 +40,7 @@ public class DriveTrain extends Subsystem {
 	private DoubleSolenoid hWheelAndBack;
 	private DoubleSolenoid frontOmnis;
 	private AHRS imu;
-	private double turnToAngleTurnSpeed = 0;
+	private double turnToAngleTurnSpeed = 0.65;
 	private double turnToAngleIncrement = 0.001;
 	private double lastAngle = 0;
 	private long lastTime = 0;
@@ -64,7 +64,7 @@ public class DriveTrain extends Subsystem {
 		leftEncoder = new Encoder(0,1);
 		rightEncoder = new Encoder(2,3);
 		hEncoder = new Encoder(4,5); 
-//		imu = new AHRS(Port.kUSB);
+		imu = new AHRS(Port.kUSB);
 //		transGearRedu = 30/44;
 //		wheelCirc = 4 * Math.PI;
 //		driveCPI = ((clicksPerRotation * transGearRedu)/(wheelCirc));
@@ -85,17 +85,17 @@ public class DriveTrain extends Subsystem {
     	double updateRate = 1000/(currentTime-lastTime);
     	double turnRate;
     	if(angle >= 10){
-    		turnRate = -15.0;
+    		turnRate = -100.0;
     	}else if(angle >= 1){
-    		turnRate = -10.0;
+    		turnRate = -45.0;
     	}else if(angle >= 0.25){
-    		turnRate = -5.0;
+    		turnRate = -25.0;
     	}else if(angle <= -10){
-    		turnRate = 15.0;
+    		turnRate = 100.0;
     	}else if(angle <= -1){
-    		turnRate = 10.0;
+    		turnRate = 45.0;
     	}else if(angle <= -0.25){
-    		turnRate = 5.0;
+    		turnRate = 25.0;
     	}
     	else{
     		turnRate = 0;
@@ -103,9 +103,13 @@ public class DriveTrain extends Subsystem {
     	
     	double neededTurnAmount = Math.abs(turnRate / updateRate);
     	double turnAmount = Math.abs(lastAngle - (usesGyro ? getAngle() : Vision.xAngleToTarget));
-    	if(turnAmount <= neededTurnAmount - neededTurnAmount*0.1){
+    	if(turnAmount <= neededTurnAmount - neededTurnAmount*0.33){
+    		turnToAngleTurnSpeed += turnToAngleIncrement*5;
+    	}else if(turnAmount <= neededTurnAmount - neededTurnAmount*0.15){
     		turnToAngleTurnSpeed += turnToAngleIncrement;
-    	}else if(turnAmount >= neededTurnAmount + neededTurnAmount*0.1){
+    	}else if(turnAmount >= neededTurnAmount + neededTurnAmount*0.33){
+    		turnToAngleTurnSpeed -= turnToAngleIncrement*5;
+    	}else if(turnAmount >= neededTurnAmount + neededTurnAmount*0.15){
     		turnToAngleTurnSpeed -= turnToAngleIncrement;
     	}
     	System.out.println("Update Rate: " + updateRate);
@@ -161,8 +165,8 @@ public class DriveTrain extends Subsystem {
     	hEncoder.reset();
     }
     public double getAngle(){
-    	SmartDashboard.putNumber("gyro",imu.getAngle());
-    	return imu.getAngle();
+    	SmartDashboard.putNumber("gyro",imu.getYaw());
+    	return imu.getYaw();
     }
     public void zeroAngle(){
     	imu.zeroYaw();

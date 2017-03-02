@@ -52,7 +52,7 @@ public class ShooterWheel extends Subsystem {
     public void startShooterWheelSpeed(){
     	SmartDashboard.putBoolean("isShooting", true);
     	shooterWheel.set(targetSpeed);
-    	System.out.println(shooterWheel.getSpeed());
+//    	System.out.println(shooterWheel.getSpeed());
     }
     
     public void stopShooterWheel(){

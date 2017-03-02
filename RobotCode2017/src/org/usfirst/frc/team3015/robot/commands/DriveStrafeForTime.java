@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class DriveStrafeForTime extends CommandBase {
 	private double speed;
 	private Timer timer = new Timer();
+	private double startAngle;
 	
     public DriveStrafeForTime(double time, double speed) {
         this.speed = speed; 
@@ -17,6 +18,8 @@ public class DriveStrafeForTime extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+//    	drive.zeroAngle();
+//    	startAngle = drive.getAngle();
     	drive.setHWheelAndBackDeployed();
     	drive.setFrontOmnisDeployed();
     	timer.reset();
@@ -25,9 +28,19 @@ public class DriveStrafeForTime extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+//    	double currentAngle = drive.getAngle();
     	if (timer.get()>0.3) {
 			drive.hDrive(speed);
 		}
+//    	if(timer.get() > 0.6){
+//    		if(currentAngle > startAngle + 1){
+//        		drive.arcadeDrive(0, 0.5, false);
+//        	}else if(currentAngle < startAngle - 1){
+//        		drive.arcadeDrive(0, -0.5, false);
+//        	}else{
+//        		drive.arcadeDrive(0, 0, false);
+//        	}
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,6 +53,7 @@ public class DriveStrafeForTime extends CommandBase {
     	drive.setHWheelAndBackRetracted();
     	drive.setFrontOmnisRetracted();
     	drive.hDrive(0);
+    	drive.arcadeDrive(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same

@@ -21,31 +21,33 @@ public class DriveStraightToDistance extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	startAngle = drive.getAngle();
+//    	drive.zeroAngle();
+    	startAngle = drive.getAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double turnValue = 0;
-//    	double currentAngle = drive.getAngle();
-//    	if (currentAngle > startAngle + 10){
-//    		turnValue = 0.5;
-//    		
-//    	}
-//    	else if (currentAngle > startAngle + 0.5){
-//    		turnValue = 0.3;
-//    	}
-//    	else if (currentAngle < startAngle - 0.5){
-//    		turnValue = -0.3;
-//    	}
-//    	else if (currentAngle < startAngle - 10){
-//    		turnValue = -0.5;
-//    	}
-//    	else{
-//    		turnValue = 0;
-//    	}
-    	
-    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
+    	System.out.println(startAngle + ", " + drive.getAngle());
+    	double currentAngle = drive.getAngle();
+    	if (currentAngle > startAngle + 2){
+    		turnValue = 0.3;
+    		
+    	}
+    	else if (currentAngle > startAngle + 0.5){
+    		turnValue = 0.2;
+    	}
+    	else if (currentAngle < startAngle - 0.5){
+    		turnValue = -0.2;
+    	}
+    	else if (currentAngle < startAngle - 2){
+    		turnValue = -0.3;
+    	}
+    	else{
+    		turnValue = 0;
+    	}
+//    	System.out.println(currentAngle + ", " + turnValue);
+//    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
     	drive.arcadeDrive(-speed, turnValue, false);
     }
 

@@ -66,7 +66,7 @@ public class OI {
 //		driverDDown.whenPressed(new DriveDeployHDrive());
 		
 		
-		coDriverA1.whileHeld(new GearTiltDown());
+		coDriverA1.whileHeld(new GearOpenTiltDown());
 		coDriverB2.whileHeld(new HarvesterReverseHarvest());
 		coDriverX3.whileHeld(new HarvesterHarvest());
 		coDriverY4.whileHeld(new GearTiltUp());

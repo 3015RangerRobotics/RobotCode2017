@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
 	private static boolean isPrimed = false;
-	private double targetSpeed = 22750;//25500
+	private double targetSpeed = 21850;//25500
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -94,9 +94,9 @@ public class ShooterWheel extends Subsystem {
 //    	shooterWheel.setNominalClosedLoopVoltage(12.0);
     	shooterWheel.setProfile(0);
     	shooterWheel.setF(0.0255);//0.025675
-    	shooterWheel.setP(0.075);//0.03
+    	shooterWheel.setP(0.08);//0.03
     	shooterWheel.setI(0.0); 
-    	shooterWheel.setD(6);
+    	shooterWheel.setD(7);
     	shooterWheel.enableBrakeMode(false);
     	shooterWheel.changeControlMode(CANTalon.TalonControlMode.Speed);
     }

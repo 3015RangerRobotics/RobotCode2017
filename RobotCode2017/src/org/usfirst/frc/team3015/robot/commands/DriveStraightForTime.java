@@ -5,6 +5,7 @@ package org.usfirst.frc.team3015.robot.commands;
  */
 public class DriveStraightForTime extends CommandBase {
 	private double speed;
+	private double startAngle = 0;
 	/**
 	 * Driving for a set amount of time at a set speed
 	 * @param time  Length of time to drive
@@ -18,11 +19,30 @@ public class DriveStraightForTime extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize(){
+    	startAngle = drive.getAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
-    	drive.arcadeDrive(speed, 0, true);
+    	double turnValue = 0;
+    	double currentAngle = drive.getAngle();
+    	if (currentAngle > startAngle + 2){
+    		turnValue = 0.3;
+    		
+    	}
+    	else if (currentAngle > startAngle + 0.5){
+    		turnValue = 0.2;
+    	}
+    	else if (currentAngle < startAngle - 0.5){
+    		turnValue = -0.2;
+    	}
+    	else if (currentAngle < startAngle - 2){
+    		turnValue = -0.3;
+    	}
+    	else{
+    		turnValue = 0;
+    	}
+    	drive.arcadeDrive(-speed, turnValue, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

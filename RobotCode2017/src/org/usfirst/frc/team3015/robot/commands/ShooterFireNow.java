@@ -17,12 +17,13 @@ public class ShooterFireNow extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	timer.reset();
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	hopper.startFeeder();
+//    	hopper.startFeeder();
 //		hopper.rotate();
 //    	System.out.println("hopper current: " + Math.abs(hopper.getCurrent()));
 //    	System.out.println("Hopper speed: " + Math.abs(hopper.getSpeed()));
@@ -35,7 +36,17 @@ public class ShooterFireNow extends CommandBase {
 //    	}else if(timer.get() <= 0.5 && isReversing){
 //    		hopper.reverse();
 //    	}else{
+//    	if(timer.get() <= 1.75){
     		hopper.rotate();
+    		hopper.startFeeder();
+//    	}else if(timer.get() <= 2.25){
+//    		hopper.stop();
+//    		hopper.stopFeeder();
+//    	}else{
+//    		timer.reset();
+//    		timer.start();
+//    	}
+//    		hopper.rotate();
     		isReversing = false;
 //    	}
     }

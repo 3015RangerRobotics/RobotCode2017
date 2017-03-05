@@ -39,7 +39,7 @@ public class OurCompressorAuto extends CommandBase {
     	}else{
     		if(fillCompressor){
     			ourCompressor.startCompressor();
-    			if(ourCompressor.getPressure() >= 105){
+    			if(ourCompressor.getPressure() >= 118){
     				fillCompressor = false;
     			}
     		}else{

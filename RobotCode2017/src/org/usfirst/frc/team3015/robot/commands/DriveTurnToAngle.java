@@ -7,8 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveTurnToAngle extends CommandBase {
 	private double angle;
-    public DriveTurnToAngle(double angle) {
+	private double moveSpeed;
+	
+    public DriveTurnToAngle(double angle, double moveSpeed) {
     	this.angle = angle;
+    	this.moveSpeed = moveSpeed;
     	requires(drive);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,7 +24,7 @@ public class DriveTurnToAngle extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.turnToAngle(angle, true);
+    	drive.turnToAngle(angle, -moveSpeed, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

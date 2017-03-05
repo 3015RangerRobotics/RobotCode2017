@@ -20,6 +20,7 @@ public class DriveWithGamepad extends CommandBase {
     protected void execute() {
     	drive.arcadeDrive(-oi.getDriverLeftY(), oi.getDriverLeftX(), true);
     	SmartDashboard.putNumber("gyro", drive.getAngle());
+    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
 //    	if(!drive.isCalibrating()){
     		System.out.println("IMU Angle: " + drive.getAngle());
 //    		System.out.println("Is calibrating: " + drive.isCalibrating());

@@ -20,10 +20,10 @@ public class Hopper extends Subsystem {
     private VictorSP ballFeeder;
 //    private final double ROTATION_SPEED = -.5;
 //    private final double REVERSE_ROTATION_SPEED = 0.35;
-    private final double ROTATION_SPEED = -0.7*12.25;
+    private final double ROTATION_SPEED = -1*12.25;//0.7
     private final double REVERSE_ROTATION_SPEED = 0.35*12.25;
-    private final double START_BALLFEEDER_SPEED = -.8*12.25;
-    private final double REVERSE_BALLFEEDER_SPEED = 0.8*12.25;
+    private final double START_BALLFEEDER_SPEED = 1*12.25;//0.8
+    private final double REVERSE_BALLFEEDER_SPEED = -1*12.25;
     
     /**
      * Constructs hardware

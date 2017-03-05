@@ -12,7 +12,7 @@ public class AutonomousOneGearRight extends CommandGroup {
     	addSequential(new GearClawClose());
     	addParallel(new GearTiltUp());
         addSequential(new DriveStraightToDistance(-110.0, -0.7));
-        addSequential(new DriveTurnToAngle(-60));
+        addSequential(new DriveTurnToAngle(-60, 0));
         addSequential(new DriveStraightToDistance(-12.0, -0.4));
         addSequential(new GearClawOpen());
         addSequential(new WaitCommand(0.5));

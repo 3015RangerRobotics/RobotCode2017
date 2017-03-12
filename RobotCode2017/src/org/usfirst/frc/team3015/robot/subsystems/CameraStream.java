@@ -22,13 +22,14 @@ public class CameraStream extends Subsystem {
 //		backCamera = new UsbCamera("Back", 1);
 //		server = new MjpegServer("Server", 1180);
 //		server.setSource(frontCamera);
-		frontCamera = CameraServer.getInstance().startAutomaticCapture(0);
-		frontCamera.setResolution(854, 480);
-		backCamera = CameraServer.getInstance().startAutomaticCapture(1);
-		backCamera.setResolution(854, 480);
-		server = CameraServer.getInstance().addServer("cameraStream", 1180);
-		server.setSource(frontCamera);
-		SmartDashboard.putBoolean("isFront", true);
+		
+//		frontCamera = CameraServer.getInstance().startAutomaticCapture(0);
+//		frontCamera.setResolution(854, 480);
+//		backCamera = CameraServer.getInstance().startAutomaticCapture(1);
+//		backCamera.setResolution(854, 480);
+//		server = CameraServer.getInstance().addServer("cameraStream", 1180);
+//		server.setSource(frontCamera);
+//		SmartDashboard.putBoolean("isFront", true);
 	}
 
     public void initDefaultCommand() {

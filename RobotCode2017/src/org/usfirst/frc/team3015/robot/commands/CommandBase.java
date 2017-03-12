@@ -16,10 +16,11 @@ public abstract class CommandBase extends Command {
 	public static Climber climber;
 	public static Vision vision;
 	public static Harvester harvester;
-	public static Hopper hopper;
+	public static Singulator singulator;
 	public static OurCompressor ourCompressor;
 	public static GearManipulator gearManipulator;
 	public static CameraStream cameraStream;
+	public static Hopper hopper;
 	public static OI oi;
 	
 	public static void init(){
@@ -28,19 +29,21 @@ public abstract class CommandBase extends Command {
 		vision = new Vision();
 		climber = new Climber();
 		harvester = new Harvester();
-		hopper = new Hopper();
+		singulator = new Singulator();
 		ourCompressor = new OurCompressor();
 		gearManipulator = new GearManipulator();
 		cameraStream = new CameraStream();
+		hopper = new Hopper();
 		oi = new OI();
 		
 		SmartDashboard.putData(climber);
 		SmartDashboard.putData(drive);
 		SmartDashboard.putData(harvester);
-		SmartDashboard.putData(hopper);
+		SmartDashboard.putData(singulator);
 		SmartDashboard.putData(vision);
 		SmartDashboard.putData(shooter);
 		SmartDashboard.putData(ourCompressor);
 		SmartDashboard.putData(gearManipulator);
+		SmartDashboard.putData(hopper);
 	}
 }

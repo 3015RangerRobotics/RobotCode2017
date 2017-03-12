@@ -1,29 +1,24 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.subsystems.Harvester;
-
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Rotates the hopper
+ *
  */
-public class HopperStopFeeder extends CommandBase {
-//	Timer timer = new Timer();
-//	boolean isReversing;
-	
-    public HopperStopFeeder() {
-        requires(hopper);
+public class DriveToggleTargetLock extends CommandBase {
+
+    public DriveToggleTargetLock() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	hopper.rotate();
-    	hopper.stopFeeder();
+    	drive.targetLock = !drive.targetLock;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	hopper.reverseFeeder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,14 +28,10 @@ public class HopperStopFeeder extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	hopper.stopFeeder();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
-
-
 }

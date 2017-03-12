@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	//Commands & Inputs for Driver
-	XboxController driver = new XboxController(0);
+	Joystick driver = new Joystick(0);
 	Button driverA1 = new JoystickButton(driver, 1);
 	Button driverB2 = new JoystickButton(driver, 2);
 	Button driverX3 = new JoystickButton(driver, 3);
@@ -58,7 +58,7 @@ public class OI {
 		driverX3.whileHeld(new HarvesterReverseHarvest());
 		driverB2.whileHeld(new GearIntake());
 		driverY4.whileHeld(new GearOuttake());
-//		driverLB5.whenPressed(new DriveTurnToTarget(true));
+		driverLB5.whenPressed(new DriveToggleTargetLock());
 //		driverRB6.whileHeld(new DriveAntiDefense());
 		driverLTrig.whenPressed(new DriveStrafeWithGamepad());
 		driverRTrig.whenPressed(new DriveStrafeWithGamepad());
@@ -74,7 +74,7 @@ public class OI {
 		coDriverRB6.whenPressed(new GearClawOpen());
 		coDriverSEL7.whenPressed(new ShooterStopWheel());
 		coDriverSTART8.whenPressed(new ShooterPrimeWheelSpeed());
-		coDriverRTrig.whileHeld(new ShooterFireNow());
+		coDriverRTrig.whileHeld(new ShooterFireWhenReady());
 		coDriverDUp.whileHeld(new ClimberClimbUp());
 		coDriverDUp.whenReleased(new ClimberClimbStop());
 //		driverA1.whileHeld(new ClimberClimbUp());
@@ -83,6 +83,8 @@ public class OI {
 //		coDriverDDown.whileHeld(new GearIntake());
 		coDriverDUp.whenPressed(new ClimberClimbUp());
 		coDriverDUp.whenReleased(new ClimberClimbStop());
+		coDriverDLeft.whenPressed(new HopperExtend());
+		coDriverDRight.whenPressed(new HopperRetract());
 	}
 	
 	public double getDriverLeftX(){

@@ -10,35 +10,21 @@ public class ShooterFireWhenReady extends CommandBase {
 	private boolean isPrimed = false;
 
     public ShooterFireWhenReady() {
-    	requires(hopper);
-    	requires(shooter);
+    	requires(singulator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooter.setSpeedMode();
-    	shooter.enable();
-    	shooter.startShooterWheelVoltage();
-    	if(shooter.isPrimed()){
-    		isPrimed = true;
-    	}else{
-    		this.setTimeout(3.0);
-    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.startShooterWheelVoltage();
-    	if(isPrimed) {
-    		hopper.startFeeder();
-    		hopper.rotate();
-    	}
-    	else {
-    		if(isTimedOut()){
-    			isPrimed = true;
-    		}
-    		hopper.stopFeeder();
-    		hopper.stop();
+    	if(ShooterWheel.isPrimed) {
+    		singulator.startFeeder();
+    		singulator.rotate();
+    	}else{
+    		singulator.stopFeeder();
+    		singulator.stop();
     	}
     }
 
@@ -49,9 +35,8 @@ public class ShooterFireWhenReady extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	hopper.stopFeeder();
-    	hopper.stop();
-    	shooter.stopShooterWheel();
+    	singulator.stopFeeder();
+    	singulator.stop();
     }
 
     // Called when another command which requires one or more of the same

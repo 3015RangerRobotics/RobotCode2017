@@ -1,48 +1,34 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.subsystems.Harvester;
-
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Rotates the hopper
+ *
  */
-public class HopperRotate extends CommandBase {
-	Timer timer = new Timer();
-	boolean isReversing;
-	
-    public HopperRotate() {
-        requires(hopper);
+public class HopperRetract extends CommandBase {
+
+    public HopperRetract() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	hopper.rotate();
+    	hopper.retract();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(hopper.getCurrent()) >= 24 && !isReversing){
-    		hopper.reverse();
-    		timer.start();
-    		timer.reset();
-    		isReversing = true;
-    	}else if(timer.get() <= 0.5 && isReversing){
-    		hopper.reverse();
-    	}else{
-    		hopper.rotate();
-    		isReversing = false;
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	hopper.stop();
     }
 
     // Called when another command which requires one or more of the same
@@ -50,6 +36,4 @@ public class HopperRotate extends CommandBase {
     protected void interrupted() {
     	end();
     }
-
-
 }

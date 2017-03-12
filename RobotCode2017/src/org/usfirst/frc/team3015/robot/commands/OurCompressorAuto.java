@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -30,11 +32,8 @@ public class OurCompressorAuto extends CommandBase {
     	SmartDashboard.putNumber("pressureSensor", Math.round(ourCompressor.getPressure()));
 //    	System.out.println(DriverStation.getInstance().getMatchTime());
 //    	If teleop match time is less than alloted time, stop the compressor
-    	if(DriverStation.getInstance().isAutonomous() || DriverStation.getInstance().getMatchTime() <= STOP_TIME) {
-    		ourCompressor.stopCompressor();
-    	}
-//    	If voltage is less than cutoff, stop the compressor
-    	else if(DriverStation.getInstance().getBatteryVoltage() <= CUTOFF_VOLTAGE) {
+    	if(DriverStation.getInstance().isAutonomous() || DriverStation.getInstance().getMatchTime() <= STOP_TIME ||
+    			DriverStation.getInstance().getBatteryVoltage() <= CUTOFF_VOLTAGE || ShooterWheel.isWheelOn) {
     		ourCompressor.stopCompressor();
     	}else{
     		if(fillCompressor){

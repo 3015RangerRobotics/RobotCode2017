@@ -4,6 +4,7 @@ import org.usfirst.frc.team3015.robot.commands.DriveWithGamepad;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.ControllerPower;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
@@ -16,20 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Code for our skid-steer drop-H drive train
  */
 
-
-
-
-//DO NOT DELETE THIS COMMENT
-//As of right now the transGearRedu and transGrearReduH are not accurate values!!
-//DO NOT DELETE THIS COMMENT
-
-
-
-
-
-
-
-
 public class DriveTrain extends Subsystem {
 	private VictorSP leftMotors;
 	private VictorSP rightMotors;
@@ -40,10 +27,12 @@ public class DriveTrain extends Subsystem {
 	private DoubleSolenoid hWheelAndBack;
 	private DoubleSolenoid frontOmnis;
 	private AHRS imu;
-	private double turnToAngleTurnSpeed = 0.5;
+	private double turnToAngleTurnSpeed = 0.1;
 	private double turnToAngleIncrement = 0.001;
 	private double lastAngle = 0;
 	private long lastTime = 0;
+	private double turnRate = 0;
+	public boolean targetLock = false;
 //	private double transGearRedu = 30/44;
 //	private double transGearRedu = 0.681818181818;
 //	private double transGearReduH = 50/1;
@@ -68,7 +57,7 @@ public class DriveTrain extends Subsystem {
 		rightEncoder = new Encoder(2,3);
 		rightEncoder.setDistancePerPulse(dpp);
 		hEncoder = new Encoder(4,5); 
-		imu = new AHRS(Port.kUSB);
+//		imu = new AHRS(I2C.Port.kOnboard);
 		System.out.println(dpp);
 	}
 	/**
@@ -79,60 +68,105 @@ public class DriveTrain extends Subsystem {
     }
     
     public void turnToAngle(double angle, double moveSpeed, boolean usesGyro){
-    	long currentTime = System.currentTimeMillis();
-    	if(currentTime - lastTime <= 0){
-    		lastTime = currentTime;
-    		return;
-    	}
-    	double error = 0;
-    	if(usesGyro) {
-    		error = angle - getAngle();
-    	}else{
-    		error = angle;
-    	}
-    	double updateRate = 1000/(currentTime-lastTime);
-    	double turnRate;
-    	if(error >= 10){
-    		turnRate = -65.0;
-    	}else if(error >= 1){
-    		turnRate = -25.0;
-    	}else if(error >= 0.25){
-    		turnRate = -15.0;
-    	}else if(error <= -10){
-    		turnRate = 65.0;
-    	}else if(error <= -1){
-    		turnRate = 25.0;
-    	}else if(error <= -0.25){
-    		turnRate = 15.0;
-    	}
-    	else{
-    		turnRate = 0;
-    	}
-    	if(getAngle() + 180 <= angle || getAngle() - 180 >= angle){
-    		turnRate *= -1;
-    	}
-    	
-    	double neededTurnAmount = Math.abs(turnRate / updateRate);
-    	double turnAmount = Math.abs(lastAngle - (usesGyro ? getAngle() : Vision.xAngleToTarget));
-    	if(turnAmount <= neededTurnAmount - neededTurnAmount*0.33){
-    		turnToAngleTurnSpeed += turnToAngleIncrement*5;
-    	}else if(turnAmount <= neededTurnAmount - neededTurnAmount*0.15){
-    		turnToAngleTurnSpeed += turnToAngleIncrement;
-    	}else if(turnAmount >= neededTurnAmount + neededTurnAmount*0.33){
-    		turnToAngleTurnSpeed -= turnToAngleIncrement*5;
-    	}else if(turnAmount >= neededTurnAmount + neededTurnAmount*0.15){
-    		turnToAngleTurnSpeed -= turnToAngleIncrement;
-    	}
-    	System.out.println("Update Rate: " + updateRate);
-    	System.out.println("Turn Amount: " + turnAmount);
-    	System.out.println("Needed turn amount: " + neededTurnAmount);
-    	System.out.println("Angle: " + getAngle());
-    	System.out.println("Magnetic Disturbance: " + isMagneticDisturbance());
-    	System.out.println("Turn Speed: " + turnToAngleTurnSpeed);
-    	double currAngle = usesGyro ? getAngle() : Vision.xAngleToTarget;
-    	arcadeDrive(moveSpeed, (angle < currAngle) ? turnToAngleTurnSpeed : -turnToAngleTurnSpeed, false);
-    	lastAngle = usesGyro ? getAngle() : Vision.xAngleToTarget;
-    	lastTime = currentTime;
+    	if (angle != lastAngle) {
+			long currentTime = System.currentTimeMillis();
+			if (currentTime - lastTime <= 0) {
+				lastTime = currentTime;
+				return;
+			}
+			double error = 0;
+			if (usesGyro) {
+				error = angle - getAngle();
+			} else {
+				error = angle - Vision.xAngleToTarget;
+			}
+			double updateRate = 1000 / (currentTime - lastTime);
+			if (error >= 10) {
+				double newTurnRate = -65.0;
+				if(!usesGyro) newTurnRate = -30;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0.3;
+				}
+			} else if (error >= 1) {
+				double newTurnRate = -25.0;
+				if(!usesGyro) newTurnRate = -15;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0.25;
+				}
+			} else if (error >= 0.5) {
+				double newTurnRate = -15.0;
+				if(!usesGyro) newTurnRate = -10;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0.2;
+				}
+			} else if (error <= -10) {
+				double newTurnRate = 65.0;
+				if(!usesGyro) newTurnRate = 30;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0.3;
+				}
+			} else if (error <= -1) {
+				double newTurnRate = 25.0;
+				if(!usesGyro) newTurnRate = 15;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0.25;
+				}
+			} else if (error <= -0.5) {
+				double newTurnRate = 15.0;
+				if(!usesGyro) newTurnRate = 10;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0.2;
+				}
+			} else {
+				double newTurnRate = 0;
+				if(newTurnRate != turnRate){
+					turnRate = newTurnRate;
+					turnToAngleTurnSpeed = 0;
+				}
+			}
+			if (!usesGyro) {
+				if (error <= 0) {
+					turnRate = 15.0;
+				} else {
+					turnRate = -15.0;
+				}
+			}
+			if (usesGyro && (getAngle() + 180 <= angle || getAngle() - 180 >= angle)) {
+				turnRate *= -1;
+			}
+			double neededTurnAmount = Math.abs(turnRate / updateRate);
+			double turnAmount = Math.abs(lastAngle - (usesGyro ? getAngle() : Vision.xAngleToTarget));
+			if (turnAmount <= neededTurnAmount - neededTurnAmount * 0.33) {
+				turnToAngleTurnSpeed += turnToAngleIncrement * 5;
+			} else if (turnAmount <= neededTurnAmount - neededTurnAmount * 0.15) {
+				turnToAngleTurnSpeed += turnToAngleIncrement;
+			} else if (turnAmount >= neededTurnAmount + neededTurnAmount * 0.33) {
+				turnToAngleTurnSpeed -= turnToAngleIncrement * 5;
+			} else if (turnAmount >= neededTurnAmount + neededTurnAmount * 0.15) {
+				turnToAngleTurnSpeed -= turnToAngleIncrement;
+			}
+//			System.out.println("Update Rate: " + updateRate);
+//			System.out.println("Turn Amount: " + turnAmount);
+//			System.out.println("Needed turn amount: " + neededTurnAmount);
+//			System.out.println("Angle: " + Vision.xAngleToTarget);
+			//    	System.out.println("Magnetic Disturbance: " + isMagneticDisturbance());
+//			System.out.println("Turn Speed: " + turnToAngleTurnSpeed);
+			double turnSpeed = (turnToAngleTurnSpeed * 12.5) / ControllerPower.getInputVoltage();
+			double currAngle = usesGyro ? getAngle() : Vision.xAngleToTarget;
+			if (usesGyro) {
+				arcadeDrive(moveSpeed, (angle < currAngle) ? turnSpeed : -turnSpeed, false);
+			} else {
+				arcadeDrive(moveSpeed, (angle < currAngle) ? -turnSpeed : turnSpeed, false);
+			}
+			lastAngle = usesGyro ? getAngle() : Vision.xAngleToTarget;
+			lastTime = currentTime;
+		}
     }
     
     /**

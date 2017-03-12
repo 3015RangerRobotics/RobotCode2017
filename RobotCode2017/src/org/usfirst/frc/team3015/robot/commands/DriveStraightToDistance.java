@@ -10,10 +10,14 @@ public class DriveStraightToDistance extends CommandBase {
 	private double speed;
 	private boolean isReverse;
 	private double startAngle;
-	
+	/**
+	 * Drive to distance
+	 * @param distanceInInches Distance in "inches"
+	 * @param speed Speed
+	 */
     public DriveStraightToDistance(double distanceInInches, double speed) {
         this.distance = distanceInInches;
-        this.speed = speed;
+        this.speed = -speed;
         requires(drive);
     
         if (speed < 0) isReverse = true;
@@ -28,27 +32,32 @@ public class DriveStraightToDistance extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double turnValue = 0;
-    	System.out.println(startAngle + ", " + drive.getAngle());
-    	double currentAngle = drive.getAngle();
-    	if (currentAngle > startAngle + 2){
-    		turnValue = 0.3;
-    		
-    	}
-    	else if (currentAngle > startAngle + 0.5){
-    		turnValue = 0.2;
-    	}
-    	else if (currentAngle < startAngle - 0.5){
-    		turnValue = -0.2;
-    	}
-    	else if (currentAngle < startAngle - 2){
-    		turnValue = -0.3;
-    	}
-    	else{
-    		turnValue = 0;
-    	}
+//    	System.out.println(startAngle + ", " + drive.getAngle());
+//    	double currentAngle = drive.getAngle();
+//    	if (currentAngle > startAngle + 2){
+//    		turnValue = 0.3;
+//    		
+//    	}
+//    	else if (currentAngle > startAngle + 0.5){
+//    		turnValue = 0.2;
+//    	}
+//    	else if (currentAngle < startAngle - 0.5){
+//    		turnValue = -0.2;
+//    	}
+//    	else if (currentAngle < startAngle - 2){
+//    		turnValue = -0.3;
+//    	}
+//    	else{
+//    		turnValue = 0;
+//    	}
+    	double moveValue = speed;
+//    	if(Math.abs(distance - drive.getLeftEncoder()) <= 37.5 || Math.abs(distance - drive.getRightEncoder()) <= 37.5){
+//    		moveValue = speed/3;
+//    		System.out.println("slowing");
+//    	}
 //    	System.out.println(currentAngle + ", " + turnValue);
 //    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
-    	drive.arcadeDrive(-speed, turnValue, false);
+    	drive.arcadeDrive(moveValue, turnValue, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()

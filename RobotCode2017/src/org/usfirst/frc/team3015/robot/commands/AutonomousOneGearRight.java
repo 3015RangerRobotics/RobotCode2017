@@ -4,18 +4,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
- *
+ * Gear on the right :ok_hand: its lit fam.
  */
 public class AutonomousOneGearRight extends CommandGroup {
 
     public AutonomousOneGearRight() {
-    	addSequential(new GearClawClose());
-    	addParallel(new GearTiltUp());
-        addSequential(new DriveStraightToDistance(-110.0, -0.7));
-        addSequential(new DriveTurnToAngle(-60, 0));
-        addSequential(new DriveStraightToDistance(-12.0, -0.4));
-        addSequential(new GearClawOpen());
-        addSequential(new WaitCommand(0.5));
-        addSequential(new DriveStraightToDistance(12.0, 0.5));
+    	addParallel(new GearClawClose());
+    	addSequential(new DriveResetEncoders());
+    	addSequential(new DriveStraightToDistance(-60,-.5));
+    	addSequential(new DriveTurnToAngle(115,0));
+    	addSequential(new DriveToSpoinger(.5,4.5));
+    	addParallel(new GearOpenTiltDown(),1);
+    	addSequential(new WaitCommand(.25));
+    	addSequential(new DriveResetEncoders());
+    	addSequential(new DriveStraightToDistance(10,.4));
     }
 }

@@ -1,38 +1,40 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import org.usfirst.frc.team3015.robot.subsystems.Harvester;
+import org.usfirst.frc.team3015.robot.subsystems.Vision;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Rotates the hopper
+ *
  */
-public class HopperReverseFeeder extends CommandBase {
-//	Timer timer = new Timer();
-//	boolean isReversing;
-	
-    public HopperReverseFeeder() {
-        requires(hopper);
+public class DriveToSpoinger extends CommandBase {
+	private double speed;
+
+    public DriveToSpoinger(double speed, double time) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(drive);
+    	this.speed = speed;
+    	this.setTimeout(time);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	hopper.rotate();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	hopper.reverseFeeder();
+    	drive.turnToAngle(0, speed, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	hopper.stopFeeder();
+    	drive.arcadeDrive(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same
@@ -40,6 +42,4 @@ public class HopperReverseFeeder extends CommandBase {
     protected void interrupted() {
     	end();
     }
-
-
 }

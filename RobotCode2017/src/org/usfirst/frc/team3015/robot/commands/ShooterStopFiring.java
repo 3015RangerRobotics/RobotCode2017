@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ShooterStopFiring extends CommandBase {
 
     public ShooterStopFiring() {
-    	requires(hopper);
+    	requires(singulator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	hopper.stopFeeder();
-    	hopper.stop();
+    	singulator.stopFeeder();
+    	singulator.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

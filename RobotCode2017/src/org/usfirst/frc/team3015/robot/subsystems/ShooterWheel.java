@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
-	private static boolean isPrimed = false;
-	private double targetSpeed = 21850;//25500
+	public static boolean isPrimed = false;
+	public static boolean isWheelOn = false;
+	private double targetSpeed = 19100;//19100
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -52,12 +53,18 @@ public class ShooterWheel extends Subsystem {
     public void startShooterWheelSpeed(){
     	SmartDashboard.putBoolean("isShooting", true);
     	shooterWheel.set(targetSpeed);
+    	isWheelOn = true;
+    	if(shooterWheel.getSpeed() >= targetSpeed - 200){
+    		isPrimed = true;
+    	}
 //    	System.out.println(shooterWheel.getSpeed());
     }
     
     public void stopShooterWheel(){
     	SmartDashboard.putBoolean("isShooting", false);
     	shooterWheel.set(0);
+    	isWheelOn = false;
+    	isPrimed = false;
     }
     
     public double getWheelEncoder(){
@@ -91,14 +98,15 @@ public class ShooterWheel extends Subsystem {
     	shooterWheel.reverseSensor(true);
     	shooterWheel.configNominalOutputVoltage(+0.0f, -0.0f);
     	shooterWheel.configPeakOutputVoltage(+12.0f, -12.0f);
-//    	shooterWheel.setNominalClosedLoopVoltage(12.0);
+    	shooterWheel.setNominalClosedLoopVoltage(12.0);
     	shooterWheel.setProfile(0);
-    	shooterWheel.setF(0.0255);//0.025675
-    	shooterWheel.setP(0.08);//0.03
-    	shooterWheel.setI(0.0); 
-    	shooterWheel.setD(7);
+    	shooterWheel.setF(0.0255);//0.0255
+    	shooterWheel.setP(0.2);//0.2
+    	shooterWheel.setI(0.0);//0.0
+    	shooterWheel.setD(7.0);//7.0
     	shooterWheel.enableBrakeMode(false);
     	shooterWheel.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	shooterWheel.enable();
     }
     
     /**

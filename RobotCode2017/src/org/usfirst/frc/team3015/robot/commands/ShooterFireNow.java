@@ -12,7 +12,7 @@ public class ShooterFireNow extends CommandBase {
 	Timer timer = new Timer();
 
     public ShooterFireNow() {
-    	requires(hopper);
+    	requires(singulator);
     }
 
     // Called just before this Command runs the first time
@@ -37,8 +37,8 @@ public class ShooterFireNow extends CommandBase {
 //    		hopper.reverse();
 //    	}else{
 //    	if(timer.get() <= 1.75){
-    		hopper.rotate();
-    		hopper.startFeeder();
+    		singulator.rotate();
+    		singulator.startFeeder();
 //    	}else if(timer.get() <= 2.25){
 //    		hopper.stop();
 //    		hopper.stopFeeder();
@@ -58,8 +58,8 @@ public class ShooterFireNow extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	hopper.stopFeeder();
-    	hopper.stop();
+    	singulator.stopFeeder();
+    	singulator.stop();
     }
 
     // Called when another command which requires one or more of the same

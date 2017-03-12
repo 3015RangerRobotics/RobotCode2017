@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	public static boolean isEnabled = false;
-	public static volatile double xAngle = 0;
+//	public static volatile double xAngle = 0;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -35,30 +35,29 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		CommandBase.init();//Construct Subsystems BEFORE any Commands are constructed
+		//Construct Subsystems BEFORE any Commands are constructed
 		//init stuff
+		
+//		System.out.println("RIOdroid init...");
 //		RIOdroid.initUSB();
-//		System.out.println(RIOadb.clearNetworkPorts());
-//		RIOdroid.init();
-////		//forward the ports used for comms
+//		System.out.println("Clearing network ports...");
+//		RIOadb.clearNetworkPorts();
 //		Timer.delay(1);
-//		System.out.println("FOWARD ADB: " + RIOadb.ForwardAdb(3800,3015));
+//		System.out.println("Forwarding...");
+//		RIOdroid.executeCommand("adb forward tcp:3800 tcp:3015");
 //		Timer.delay(1);
-//		System.out.println("FOWARD SOCAT: " + RIOadb.forwardToLocal(3015,3800));
-////		//run adb commands on the phone to close the app if it is running, and re-open it
-//		Timer.delay(1);
-//////		RIOdroid.executeCommand("adb shell input KEYCODE_WAKEUP");
-//////		Timer.delay(0.5);
-//////		RIOdroid.executeCommand("adb shell input text 3015 && adb shell input keyevent 66");
-//////		Timer.delay(0.5);
+//		RIOdroid.executeCommandThread("socat TCP4-LISTEN:3015,fork TCP4:127.0.0.1:3800");
+//		System.out.println("Launching app...");
 //		RIOdroid.executeCommand("adb shell am force-stop com.rangerrobot.rangervision");
 //		Timer.delay(0.5);
 //		RIOdroid.executeCommand("adb shell am start -n com.rangerrobot.rangervision/com.rangerrobot.rangervision.RangerVision");
 //		Timer.delay(2);
 //		RIOdroid.executeCommand("adb shell input tap 1200 1000");
 //		Timer.delay(1);
+		
 //		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
 //		String[] autos = new String[]{"Hopper Shot Red", "Hopper Shot Blue", "No Auto"};
+		CommandBase.init();
 		SmartDashboard.putBoolean("isRed", DriverStation.getInstance().getAlliance() == Alliance.Red);
 		chooser.addObject("Red Gear and Hopper Shot", new AutonomousGearAndHopperShotRed());
 		chooser.addObject("Blue Gear and Hopper Shot", new AutonomousGearAndHopperShotBlue());
@@ -108,16 +107,17 @@ public class Robot extends IterativeRobot {
 		isEnabled = true;
 //		String selected = SmartDashboard.getString("autonomous/selected", "");
 //		switch(selected){
-//			case "Hopper Shot Red":
+//			case "Red Hopper Shot":
 //				autonomousCommand = new AutonomousHopperShotRed();
 //				break;
-//			case "Hopper Shot Blue":
+//			case "Blue Hopper Shot":
 //				autonomousCommand = new AutonomousHopperShotBlue();
 //				break;
 //			case "No Auto":
 //				autonomousCommand = null;
 //				break;
 //		}
+//		System.out.println(chooser.getSelected());
 //		autonomousCommand = chooser.getSelected();
 		autonomousCommand = new AutonomousHopperShotRed();
 

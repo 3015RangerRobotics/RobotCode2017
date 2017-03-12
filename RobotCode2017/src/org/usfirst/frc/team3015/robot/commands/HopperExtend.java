@@ -5,40 +5,31 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveTurnToAngle extends CommandBase {
-	private double angle;
-	private double moveSpeed;
-	/**
-	 * Turn angle
-	 * @param angle Angle
-	 * @param moveSpeed Speed
-	 */
-    public DriveTurnToAngle(double angle, double moveSpeed) {
-    	this.angle = angle;
-    	this.moveSpeed = moveSpeed;
-    	requires(drive);
+public class HopperExtend extends CommandBase {
+
+    public HopperExtend() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	hopper.extend();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drive.turnToAngle(angle, -moveSpeed, true);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(drive.getAngle() - angle) <= 1);
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drive.arcadeDrive(0, 0, true); 
     }
 
     // Called when another command which requires one or more of the same

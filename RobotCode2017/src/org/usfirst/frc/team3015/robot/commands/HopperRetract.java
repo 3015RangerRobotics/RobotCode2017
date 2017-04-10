@@ -15,16 +15,17 @@ public class HopperRetract extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	hopper.retract();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	hopper.retract();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

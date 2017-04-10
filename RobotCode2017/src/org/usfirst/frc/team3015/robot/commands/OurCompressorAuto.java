@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import org.usfirst.frc.team3015.robot.subsystems.Climber;
 import org.usfirst.frc.team3015.robot.subsystems.ShooterWheel;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -10,10 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Stops if lower than set match time or voltage
  */
 public class OurCompressorAuto extends CommandBase {
-	private final double CUTOFF_VOLTAGE = 8.5;
-	//WARNINGNISNFOA
-	//CHANGE DIS TO TWENTIE BEOFRE DA COMPITETION
-	private final int STOP_TIME = -2;
+	private final double CUTOFF_VOLTAGE = 8.0;
 	private boolean fillCompressor = true;
 	
     public OurCompressorAuto() {
@@ -30,9 +28,8 @@ public class OurCompressorAuto extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	SmartDashboard.putNumber("pressureSensor", Math.round(ourCompressor.getPressure()));
-//    	System.out.println(DriverStation.getInstance().getMatchTime());
-//    	If teleop match time is less than alloted time, stop the compressor
-    	if(DriverStation.getInstance().isAutonomous() || DriverStation.getInstance().getMatchTime() <= STOP_TIME ||
+
+    	if(DriverStation.getInstance().isAutonomous() || Climber.isClimbing ||
     			DriverStation.getInstance().getBatteryVoltage() <= CUTOFF_VOLTAGE || ShooterWheel.isWheelOn) {
     		ourCompressor.stopCompressor();
     	}else{
@@ -48,7 +45,6 @@ public class OurCompressorAuto extends CommandBase {
     			}
     		}
     	}
-//    	System.out.println("pressure: " + Math.round(ourCompressor.getPressure()));
     }
 
     // Make this return true when this Command no longer needs to run execute()

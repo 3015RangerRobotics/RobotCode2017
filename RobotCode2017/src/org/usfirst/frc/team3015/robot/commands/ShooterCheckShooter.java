@@ -1,45 +1,50 @@
 package org.usfirst.frc.team3015.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
-public class HopperExtend extends CommandBase {
+public class ShooterCheckShooter extends CommandBase {
+	Timer timer = new Timer();
+	boolean isFinished = false;
 
-    public HopperExtend() {
+    public ShooterCheckShooter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(hopper);
-    	requires(gearManipulator);
+    	requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	timer.reset();
+    	timer.start();
+    	shooter.setSpeedMode();
+    	shooter.startShooterWheelSpeed();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	gearManipulator.tiltUp();
-    	if(gearManipulator.isUp()){
-    		hopper.extend();
+    	shooter.startShooterWheelSpeed();
+    	if(timer.get() >= 1){
+    		if(shooter.getSpeed() < 10000){
+    			vision.speakAddMessage("Shooter error...");
+    		}
+    		isFinished = true;
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isFinished;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	gearManipulator.tiltStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

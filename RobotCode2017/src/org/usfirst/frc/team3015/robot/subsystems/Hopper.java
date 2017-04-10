@@ -18,7 +18,7 @@ public class Hopper extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-//    	this.setDefaultCommand(new HopperRetract());
+    	this.setDefaultCommand(new HopperRetract());
     }
     
     public void extend(){

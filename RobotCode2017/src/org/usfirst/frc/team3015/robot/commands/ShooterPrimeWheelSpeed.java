@@ -23,6 +23,7 @@ public class ShooterPrimeWheelSpeed extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	shooter.startShooterWheelSpeed();
+    	System.out.println(shooter.getSpeed());
     	if (isTimedOut()){
     		ShooterWheel.setIsPrimed(true);
     	}

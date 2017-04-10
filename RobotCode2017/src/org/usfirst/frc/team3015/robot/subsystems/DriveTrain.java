@@ -33,14 +33,6 @@ public class DriveTrain extends Subsystem {
 	private long lastTime = 0;
 	private double turnRate = 0;
 	public boolean targetLock = false;
-//	private double transGearRedu = 30/44;
-//	private double transGearRedu = 0.681818181818;
-//	private double transGearReduH = 50/1;
-//	private int clicksPerRotation = 20;
-//	private double wheelCirc = 4 * Math.PI;
-//	private double hDriveCPI = ((clicksPerRotation * transGearReduH)/(wheelCirc));
-//	private double driveCPI = ((clicksPerRotation * transGearRedu)/(wheelCirc));
-//	private double dpp = ((Math.PI * 4) * (30/44))/20;
 	
 	/**
 	 * Constructs the drive train
@@ -50,14 +42,14 @@ public class DriveTrain extends Subsystem {
 		leftMotors = new VictorSP(0);
 		rightMotors = new VictorSP(1);
 		hMotors = new VictorSP(2);
-		hWheelAndBack = new DoubleSolenoid(0, 1);
-		frontOmnis = new DoubleSolenoid(2, 3);
+		hWheelAndBack = new DoubleSolenoid(2, 3);//0,1
+		frontOmnis = new DoubleSolenoid(0, 1);//2,3
 		leftEncoder = new Encoder(0,1);
 		leftEncoder.setDistancePerPulse(dpp);
 		rightEncoder = new Encoder(2,3);
 		rightEncoder.setDistancePerPulse(dpp);
 		hEncoder = new Encoder(4,5); 
-//		imu = new AHRS(I2C.Port.kOnboard);
+		imu = new AHRS(I2C.Port.kMXP);
 		System.out.println(dpp);
 	}
 	/**
@@ -155,7 +147,7 @@ public class DriveTrain extends Subsystem {
 //			System.out.println("Turn Amount: " + turnAmount);
 //			System.out.println("Needed turn amount: " + neededTurnAmount);
 //			System.out.println("Angle: " + Vision.xAngleToTarget);
-			//    	System.out.println("Magnetic Disturbance: " + isMagneticDisturbance());
+//    	    System.out.println("Magnetic Disturbance: " + isMagneticDisturbance());
 //			System.out.println("Turn Speed: " + turnToAngleTurnSpeed);
 			double turnSpeed = (turnToAngleTurnSpeed * 12.5) / ControllerPower.getInputVoltage();
 			double currAngle = usesGyro ? getAngle() : Vision.xAngleToTarget;
@@ -185,34 +177,20 @@ public class DriveTrain extends Subsystem {
     	return imu.isMagneticDisturbance();
     }
     
-    /**
-     * Gets the angle from the NavX
-     * @return NavX angle
-     */
-    
-//    public double getLeftDriveEncoderInches(){
-////    	System.out.println(transGearRedu);
-////    	System.out.println(wheelCirc);
-//    	System.out.println(driveCPI);
-//    	return leftEncoder.getDistance() / driveCPI;
-//    }
-//    public double getRightDriveEncoderInches(){
-//    	return rightEncoder.getDistance() / driveCPI;
-//    }
-//    public double getHDriveEncoderInches(){
-//    	return hEncoder.getDistance() / hDriveCPI;
-//    }
     public void zeroDriveEncoder(){
     	leftEncoder.reset();
     	rightEncoder.reset();
     }
+    
     public void zeroHDriveEncoder(){
     	hEncoder.reset();
     }
+    
     public double getAngle(){
     	SmartDashboard.putNumber("gyro",imu.getYaw());
     	return imu.getYaw() + 180;
     }
+    
     public void zeroAngle(){
     	imu.zeroYaw();
     }

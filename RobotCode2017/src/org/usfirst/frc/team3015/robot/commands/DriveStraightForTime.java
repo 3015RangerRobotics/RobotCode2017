@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3015.robot.commands;
 
+import edu.wpi.first.wpilibj.ControllerPower;
+
 /**
  * Driving for a set amount of time at a set speed
  */
@@ -12,7 +14,7 @@ public class DriveStraightForTime extends CommandBase {
 	 * @param speed Speed at which it drives
 	 */
     public DriveStraightForTime(double time,double speed){
-        this.speed = speed;
+        this.speed = speed * 12.5;
         this.setTimeout(time);
 		requires(drive);
     }
@@ -42,7 +44,7 @@ public class DriveStraightForTime extends CommandBase {
     	else{
     		turnValue = 0;
     	}
-    	drive.arcadeDrive(-speed, turnValue, true);
+    	drive.arcadeDrive(-speed / ControllerPower.getInputVoltage(), turnValue, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

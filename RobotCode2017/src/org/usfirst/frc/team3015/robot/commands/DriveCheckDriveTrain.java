@@ -11,7 +11,6 @@ public class DriveCheckDriveTrain extends CommandBase {
 
     public DriveCheckDriveTrain() {
          requires(drive);
-         requires(vision);
     }
 
     // Called just before this Command runs the first time
@@ -23,19 +22,15 @@ public class DriveCheckDriveTrain extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	drive.arcadeDrive(0.3, 0, false);
-    	drive.hDrive(0.3);
     	if(timer.get() >= 1){
-    		if(drive.getAngle() == 0){
+    		if(drive.getAngle() == 180.0){
         		vision.speakAddMessage("Gyro error...");
         	}
-    		if(drive.getLeftEncoder() == 0){
+    		if(drive.getLeftEncoder() == 0.0){
     			vision.speakAddMessage("Left drive encoder error...");
     		}
-    		if(drive.getRightEncoder() == 0){
+    		if(drive.getRightEncoder() == 0.0){
     			vision.speakAddMessage("Right drive encoder error...");
-    		}
-    		if(drive.gethEncoder() == 0){
-    			vision.speakAddMessage("H drive encoder error...");
     		}
     		isFinished = true;
     	}
@@ -49,7 +44,6 @@ public class DriveCheckDriveTrain extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	drive.arcadeDrive(0, 0, false);
-    	drive.hDrive(0);
     }
 
     // Called when another command which requires one or more of the same

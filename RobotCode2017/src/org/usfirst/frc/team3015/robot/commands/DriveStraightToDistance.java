@@ -33,23 +33,23 @@ public class DriveStraightToDistance extends CommandBase {
     protected void execute() {
     	double turnValue = 0;
 //    	System.out.println(startAngle + ", " + drive.getAngle());
-//    	double currentAngle = drive.getAngle();
-//    	if (currentAngle > startAngle + 2){
-//    		turnValue = 0.3;
-//    		
-//    	}
-//    	else if (currentAngle > startAngle + 0.5){
-//    		turnValue = 0.2;
-//    	}
-//    	else if (currentAngle < startAngle - 0.5){
-//    		turnValue = -0.2;
-//    	}
-//    	else if (currentAngle < startAngle - 2){
-//    		turnValue = -0.3;
-//    	}
-//    	else{
-//    		turnValue = 0;
-//    	}
+    	double currentAngle = drive.getAngle();
+    	if (currentAngle > startAngle + 2){
+    		turnValue = 0.3;
+    		
+    	}
+    	else if (currentAngle > startAngle + 0.5){
+    		turnValue = 0.2;
+    	}
+    	else if (currentAngle < startAngle - 0.5){
+    		turnValue = -0.2;
+    	}
+    	else if (currentAngle < startAngle - 2){
+    		turnValue = -0.3;
+    	}
+    	else{
+    		turnValue = 0;
+    	}
     	double moveValue = speed;
 //    	if(Math.abs(distance - drive.getLeftEncoder()) <= 37.5 || Math.abs(distance - drive.getRightEncoder()) <= 37.5){
 //    		moveValue = speed/3;

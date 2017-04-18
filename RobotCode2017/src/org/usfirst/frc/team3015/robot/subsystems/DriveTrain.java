@@ -33,14 +33,6 @@ public class DriveTrain extends Subsystem {
 	private long lastTime = 0;
 	private double turnRate = 0;
 	public boolean targetLock = false;
-//	private double transGearRedu = 30/44;
-//	private double transGearRedu = 0.681818181818;
-//	private double transGearReduH = 50/1;
-//	private int clicksPerRotation = 20;
-//	private double wheelCirc = 4 * Math.PI;
-//	private double hDriveCPI = ((clicksPerRotation * transGearReduH)/(wheelCirc));
-//	private double driveCPI = ((clicksPerRotation * transGearRedu)/(wheelCirc));
-//	private double dpp = ((Math.PI * 4) * (30/44))/20;
 	
 	/**
 	 * Constructs the drive train
@@ -57,7 +49,7 @@ public class DriveTrain extends Subsystem {
 		rightEncoder = new Encoder(2,3);
 		rightEncoder.setDistancePerPulse(dpp);
 		hEncoder = new Encoder(4,5); 
-//		imu = new AHRS(I2C.Port.kOnboard);
+		imu = new AHRS(I2C.Port.kMXP);
 		System.out.println(dpp);
 	}
 	/**

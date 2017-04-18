@@ -16,7 +16,8 @@ public class DriveWithGamepad extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	drive.zeroAngle();
+    	drive.setFrontOmnisRetracted();
+    	drive.setHWheelAndBackRetracted();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -43,16 +44,7 @@ public class DriveWithGamepad extends CommandBase {
     		turnSpeed = oi.getDriverLeftX();
     	}
     	drive.arcadeDrive(-oi.getDriverLeftY(), turnSpeed, true);
-//    	SmartDashboard.putNumber("gyro", drive.getAngle());
-//    	System.out.println(drive.getAngle());
-//    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
-//    	if(!drive.isCalibrating()){
-//    		System.out.println("IMU Angle: " + drive.getAngle());
-//    		System.out.println("Is calibrating: " + drive.isCalibrating());
-//    		System.out.println("Magnetic Disturbance: " + drive.isMagneticDisturbance());
-//    		System.out.println("IMU Magnetic Disturbance: " + drive.isMagneticDisturbance());
-//    	}
-//    	System.out.println(drive.getLeftEncoder() + ", " + drive.getRightEncoder());
+    	System.out.println(drive.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -62,7 +54,7 @@ public class DriveWithGamepad extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	drive.arcadeDrive(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same

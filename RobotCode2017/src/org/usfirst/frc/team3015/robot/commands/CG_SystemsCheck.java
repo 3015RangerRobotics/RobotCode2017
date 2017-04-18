@@ -9,6 +9,7 @@ public class CG_SystemsCheck extends CommandGroup {
 
     public CG_SystemsCheck() {
         addSequential(new DriveCheckDriveTrain());
+        addSequential(new ShooterCheckShooter());
         addSequential(new VisionSpeak());
     }
 }

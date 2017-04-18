@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Climber extends Subsystem {
 	private CANTalon climbMotor;
-
+	public static boolean isClimbing = false;
 	
 	/**
 	 * Constructs Hardware
@@ -29,6 +29,7 @@ public class Climber extends Subsystem {
 	public void stopClimb(){
 		SmartDashboard.putBoolean("isClimbing", false);
 		climbMotor.set(0);
+		isClimbing = false;
 	}
 	
 	/**
@@ -37,6 +38,7 @@ public class Climber extends Subsystem {
 	public void climbUp() {
 		SmartDashboard.putBoolean("isClimbing", true);
 		climbMotor.set(-1.0);
+		isClimbing = true;
 	}
 	
 	/**

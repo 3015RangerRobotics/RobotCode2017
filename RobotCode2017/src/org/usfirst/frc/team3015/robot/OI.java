@@ -69,7 +69,7 @@ public class OI {
 		coDriverA1.whileHeld(new GearOpenTiltDown());
 		coDriverB2.whileHeld(new HarvesterReverseHarvest());
 		coDriverX3.whileHeld(new HarvesterHarvest());
-		coDriverY4.whileHeld(new GearTiltUp());
+		coDriverY4.whenPressed(new GearTiltUp());
 		coDriverLB5.whenPressed(new GearClawClose());
 		coDriverRB6.whenPressed(new GearClawOpen());
 		coDriverSEL7.whenPressed(new ShooterStopWheel());

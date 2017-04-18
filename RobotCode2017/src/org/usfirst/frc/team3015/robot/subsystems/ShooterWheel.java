@@ -16,7 +16,7 @@ public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
 	public static boolean isPrimed = false;
 	public static boolean isWheelOn = false;
-	private double targetSpeed = 19100;//19100
+	private double targetSpeed = 19250;//19100
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -121,6 +121,10 @@ public class ShooterWheel extends Subsystem {
      */
     public void disable(){
     	shooterWheel.disable();
+    }
+    
+    public double getSpeed(){
+    	return shooterWheel.getSpeed();
     }
     
 }

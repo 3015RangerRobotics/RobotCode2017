@@ -11,6 +11,7 @@ import org.spectrum3847.RIOdroid.RIOdroid;
 import org.usfirst.frc.team3015.robot.Robot;
 import org.usfirst.frc.team3015.robot.commands.VisionEnableComms;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Vision subsystem for communicating with the vision tracking phone
@@ -69,9 +70,9 @@ public class Vision extends Subsystem {
 							out.println("say:" + message);
 							message = "";
 							shouldSpeak = false;
-						}else if(Robot.isEnabled){
+						}else if(DriverStation.getInstance().isEnabled()){
 							out.println("enabled");
-						}else{
+						}else if(!DriverStation.getInstance().isEnabled()){
 							out.println("disabled");
 						}
 					}

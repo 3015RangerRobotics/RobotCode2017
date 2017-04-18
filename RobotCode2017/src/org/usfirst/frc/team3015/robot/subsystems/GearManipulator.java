@@ -43,18 +43,18 @@ public class GearManipulator extends Subsystem {
 //    		tilt.set(0.0);
 //    		System.out.println("stay");
 //    	}
-//    	System.out.println(downLimit.get());
+//    	System.out.println(upLimit.get());
     }
     
     public void tiltUp(){
     	SmartDashboard.putBoolean("isGearUp", true);
-//    	if(upLimit.get()){
+    	if(upLimit.get()){
     		tilt.set(1.0);
 //    		System.out.println("up");
-//    	}else{
-//    		tilt.set(0);
+    	}else{
+    		tilt.set(0);
 //    		System.out.println("stay");
-//    	}
+    	}
 //    	System.out.println(upLimit.get());
     }
     
@@ -68,6 +68,10 @@ public class GearManipulator extends Subsystem {
     public void openClaw() {
     	SmartDashboard.putBoolean("isClawOpen", true);
     	grabber.set(false);
+    }
+    
+    public boolean isUp(){
+    	return !upLimit.get();
     }
     
     public void openClaw2() {

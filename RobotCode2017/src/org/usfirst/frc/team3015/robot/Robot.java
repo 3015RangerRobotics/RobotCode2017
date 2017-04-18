@@ -4,6 +4,7 @@ package org.usfirst.frc.team3015.robot;
 import org.spectrum3847.RIOdroid.RIOadb;
 import org.spectrum3847.RIOdroid.RIOdroid;
 import org.usfirst.frc.team3015.robot.commands.*;
+import org.usfirst.frc.team3015.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -23,11 +24,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	public static boolean isEnabled = false;
-//	public static volatile double xAngle = 0;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -55,23 +53,15 @@ public class Robot extends IterativeRobot {
 //		RIOdroid.executeCommand("adb shell input tap 1200 1000");
 //		Timer.delay(1);
 		
-//		chooser.addDefault("Hopper Shot", new AutonomousHopperShot());
-//		String[] autos = new String[]{"Hopper Shot Red", "Hopper Shot Blue", "No Auto"};
 		CommandBase.init();
 		SmartDashboard.putBoolean("isRed", DriverStation.getInstance().getAlliance() == Alliance.Red);
 		chooser.addObject("Red Gear and Hopper Shot", new AutonomousGearAndHopperShotRed());
 		chooser.addObject("Blue Gear and Hopper Shot", new AutonomousGearAndHopperShotBlue());
 		chooser.addObject("Red Hopper Shot", new AutonomousHopperShotRed());
 		chooser.addObject("Blue Hopper Shot", new AutonomousHopperShotBlue());
-//		chooser.addObject("One Gear Middle", new AutonomousOneGearMiddle());
-//		chooser.addObject("One Gear Left", new AutonomousOneGearLeft());
-//		chooser.addObject("One Gear Right", new AutonomousOneGearRight());
 		chooser.addObject("Cross Base Line", new AutonomousCrossBaseLine());
 		chooser.addObject("No Auto", null);
 		SmartDashboard.putData("autonomous",chooser);
-//		SmartDashboard.putStringArray("autonomous/options", autos);
-//		SmartDashboard test = new SmartDashboard();
-//		test.putStringArray("autonomous/options", autos);
 		System.out.println("FINISHED ROBOT INIT");
 	}
 
@@ -83,7 +73,7 @@ public class Robot extends IterativeRobot {
 	//bla
 	@Override
 	public void disabledInit() {
-		isEnabled = false;
+		
 	}
 
 	@Override
@@ -104,31 +94,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		isEnabled = true;
-//		String selected = SmartDashboard.getString("autonomous/selected", "");
-//		switch(selected){
-//			case "Red Hopper Shot":
-//				autonomousCommand = new AutonomousHopperShotRed();
-//				break;
-//			case "Blue Hopper Shot":
-//				autonomousCommand = new AutonomousHopperShotBlue();
-//				break;
-//			case "No Auto":
-//				autonomousCommand = null;
-//				break;
-//		}
-//		System.out.println(chooser.getSelected());
 //		autonomousCommand = chooser.getSelected();
-		autonomousCommand = new AutonomousHopperShotRed();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		if(DriverStation.getInstance().getAlliance() == Alliance.Red){
+			autonomousCommand = new AutonomousHopperShotRed();
+		}else if(DriverStation.getInstance().getAlliance() == Alliance.Blue){
+			autonomousCommand = new AutonomousHopperShotBlue();
+		}else{
+			autonomousCommand = null;
+		}
+		
+//		RIOdroid.executeCommandThread("adb shell screenrecord /sdcard/Movies/" + (int) (Math.random() * 1000) + ".mp4");
+		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -143,7 +119,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		isEnabled = true;
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

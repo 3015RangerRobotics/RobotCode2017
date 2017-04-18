@@ -22,9 +22,9 @@ public class HopperAgitate extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() < 5){
+    	if(timer.get() < 4){
     		hopper.extend();
-    	}else if(timer.get() < 5.25){
+    	}else if(timer.get() < 4.5){
     		hopper.retract();
     	}else{
     		timer.reset();

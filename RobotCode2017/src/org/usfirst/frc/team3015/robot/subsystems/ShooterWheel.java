@@ -60,6 +60,24 @@ public class ShooterWheel extends Subsystem {
 //    	System.out.println(shooterWheel.getSpeed());
     }
     
+    public void setShooterWheelSpeedWithVision(){
+    	if (Vision.distance >= 10 && Vision.distance <= 20){
+    		shooterWheel.set(10);
+    	}
+    	else if ( Vision.distance >= 20 && Vision.distance <= 30){
+    		shooterWheel.set(99);
+    		
+    	}
+    	else if (Vision.distance >= 30 && Vision.distance <= 40){
+    		shooterWheel.set(500);
+    	}
+    	
+    	isWheelOn = true;
+    	if(shooterWheel.getSpeed() >= targetSpeed - 200){
+    		isPrimed = true;
+    	}
+    }
+    
     public void stopShooterWheel(){
     	SmartDashboard.putBoolean("isShooting", false);
     	shooterWheel.set(0);

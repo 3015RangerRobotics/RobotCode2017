@@ -102,6 +102,7 @@ public class Robot extends IterativeRobot {
 		}else{
 			autonomousCommand = null;
 		}
+		Vision.isCompMode = true;
 		
 //		RIOdroid.executeCommandThread("adb shell screenrecord /sdcard/Movies/" + (int) (Math.random() * 1000) + ".mp4");
 		

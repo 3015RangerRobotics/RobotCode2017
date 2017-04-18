@@ -20,7 +20,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Vision extends Subsystem {
 	public static volatile double xAngleToTarget = 0;
+	public static volatile double distance = 0;
 	public static volatile boolean isSpoinger = false;
+	public static volatile boolean isCompMode = false;
 	private volatile boolean shouldRun = false;
 	private volatile boolean shouldSpeak = false;
 	private volatile boolean shouldSeeTarget = false;
@@ -61,7 +63,7 @@ public class Vision extends Subsystem {
 						if(messageIn != null){
 //							System.out.println(messageIn);
 							Vision.xAngleToTarget = Double.parseDouble(messageIn.substring(0, messageIn.indexOf(',')));
-							Vision.isSpoinger = Boolean.parseBoolean(messageIn.substring(messageIn.indexOf('-')));
+							Vision.distance = Double.parseDouble(messageIn.substring(messageIn.lastIndexOf(',')));
 						}
 						
 						if(shouldSeeTarget){
@@ -70,6 +72,9 @@ public class Vision extends Subsystem {
 							out.println("say:" + message);
 							message = "";
 							shouldSpeak = false;
+						}else if(isCompMode){
+							out.println("comp");
+							isCompMode = false;
 						}else if(DriverStation.getInstance().isEnabled()){
 							out.println("enabled");
 						}else if(!DriverStation.getInstance().isEnabled()){

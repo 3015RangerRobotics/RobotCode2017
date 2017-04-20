@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+//		System.exit(0);
 		//Construct Subsystems BEFORE any Commands are constructed
 		//init stuff
 		

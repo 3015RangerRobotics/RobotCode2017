@@ -3,6 +3,7 @@ package org.usfirst.frc.team3015.robot.subsystems;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,7 +17,8 @@ public class ShooterWheel extends Subsystem {
 	private CANTalon shooterWheel;
 	public static boolean isPrimed = false;
 	public static boolean isWheelOn = false;
-	private double targetSpeed = 19250;//19100
+	private double offset = 0;
+	private double targetSpeed = 19050;//19150-18950
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -34,6 +36,10 @@ public class ShooterWheel extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void setOffset(double offset){
+    	this.offset = offset;
     }
     /**
      * Sets the speed of the shooter wheel
@@ -57,20 +63,23 @@ public class ShooterWheel extends Subsystem {
     	if(shooterWheel.getSpeed() >= targetSpeed - 200){
     		isPrimed = true;
     	}
-//    	System.out.println(shooterWheel.getSpeed());
+//    	System.out.println(Vision.distance);
     }
     
     public void setShooterWheelSpeedWithVision(){
-    	if (Vision.distance >= 10 && Vision.distance <= 20){
-    		shooterWheel.set(10);
-    	}
-    	else if ( Vision.distance >= 20 && Vision.distance <= 30){
-    		shooterWheel.set(99);
-    		
-    	}
-    	else if (Vision.distance >= 30 && Vision.distance <= 40){
-    		shooterWheel.set(500);
-    	}
+//    	if (Vision.distance >= 110 && Vision.distance <= 115){
+//    		shooterWheel.set(19050);
+//    	}
+//    	else if ( Vision.distance >= 102 && Vision.distance <= 107){
+//    		shooterWheel.set(18400);
+//    		
+//    	}
+//    	else if (Vision.distance >= 112 && Vision.distance <= 118){
+//    		shooterWheel.set(20000);
+//    	}
+    	double thing = Math.round(((Math.round(Vision.distance) - 100)/3) * 300);
+    	System.out.println(Math.round(Vision.distance) + " - " + thing);
+    	shooterWheel.set(targetSpeed + thing);
     	
     	isWheelOn = true;
     	if(shooterWheel.getSpeed() >= targetSpeed - 200){
@@ -119,9 +128,9 @@ public class ShooterWheel extends Subsystem {
     	shooterWheel.setNominalClosedLoopVoltage(12.0);
     	shooterWheel.setProfile(0);
     	shooterWheel.setF(0.0255);//0.0255
-    	shooterWheel.setP(0.2);//0.2
+    	shooterWheel.setP(0.2);//0.2-0.375
     	shooterWheel.setI(0.0);//0.0
-    	shooterWheel.setD(7.0);//7.0
+    	shooterWheel.setD(8.0);//7.0-12
     	shooterWheel.enableBrakeMode(false);
     	shooterWheel.changeControlMode(CANTalon.TalonControlMode.Speed);
     	shooterWheel.enable();

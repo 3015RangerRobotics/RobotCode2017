@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.ControllerPower;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,10 +18,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class DriveTrain extends Subsystem {
-	private VictorSP leftMotors;
-	private VictorSP rightMotors;
-	private Encoder leftEncoder; 
-	private Encoder rightEncoder;
+	public VictorSP leftMotors;
+	public VictorSP rightMotors;
+	public Encoder leftEncoder; 
+	public Encoder rightEncoder;
 	private Encoder hEncoder;
 	private VictorSP hMotors;
 	private DoubleSolenoid hWheelAndBack;
@@ -33,6 +33,8 @@ public class DriveTrain extends Subsystem {
 	private long lastTime = 0;
 	private double turnRate = 0;
 	public boolean targetLock = false;
+	private PIDController leftController;
+	private PIDController rightController;
 	
 	/**
 	 * Constructs the drive train

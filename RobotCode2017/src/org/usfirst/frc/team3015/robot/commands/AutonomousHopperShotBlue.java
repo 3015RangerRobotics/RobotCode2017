@@ -10,11 +10,12 @@ public class AutonomousHopperShotBlue extends CommandGroup {
 
     public AutonomousHopperShotBlue() {
     	addParallel(new GearClawClose());
-    	addSequential(new DriveResetEncoders());
+//    	addSequential(new DriveResetEncoders());
     	addParallel(new HopperExtend());
     	addParallel(new ShooterPrimeWheelSpeed());
-    	addSequential(new DriveStraightToDistance(-65.5, -1.0));
-    	addSequential(new DriveStraightForTime(0.3, 0.25));
+    	addSequential(new DriveStraightWithPID(69));
+//    	addSequential(new DriveStraightToDistance(-65.5, -1.0));
+//    	addSequential(new DriveStraightForTime(0.3, 0.25));
     	addSequential(new DriveStrafeForTime(2.5, 1.0));
     	addParallel(new HopperAgitate());
     	addSequential(new ShooterFireNow());

@@ -44,7 +44,7 @@ public class DriveWithGamepad extends CommandBase {
     		turnSpeed = oi.getDriverLeftX();
     	}
     	drive.arcadeDrive(-oi.getDriverLeftY(), turnSpeed, true);
-    	System.out.println(drive.getAngle());
+    	System.out.println(drive.leftEncoder.getDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()

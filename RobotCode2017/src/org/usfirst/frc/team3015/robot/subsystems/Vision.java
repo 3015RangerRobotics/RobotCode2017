@@ -63,7 +63,7 @@ public class Vision extends Subsystem {
 						if(messageIn != null){
 //							System.out.println(messageIn);
 							Vision.xAngleToTarget = Double.parseDouble(messageIn.substring(0, messageIn.indexOf(',')));
-							Vision.distance = Double.parseDouble(messageIn.substring(messageIn.lastIndexOf(',')));
+							Vision.distance = Double.parseDouble(messageIn.substring(messageIn.lastIndexOf(',') + 1));
 						}
 						
 						if(shouldSeeTarget){
